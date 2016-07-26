@@ -10,12 +10,41 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/config/database.yml
+/db/structure.sql
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/log/*.log*
+/tmp
+
+# Ignore temporary location of uploaded assets
+public/system/
+app/assets/matchpoint_rails/system/
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+
+# Ignore environment-specific configurations that will vary from user to user
+database.yml
+
+# Ignore bower installed components
+app/assets/third_party/
+prune_local.sh
+
+# Ignore node modules
+node_modules/
+
+# Ignore npm debug log
+npm-debug.log
+
+# Secret environment variables
+.secret_envs
 
 # Ignore Byebug command history file.
 .byebug_history
