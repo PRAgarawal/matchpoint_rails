@@ -10,8 +10,8 @@ development:
   adapter: postgresql
   encoding: unicode
   database: matchpoint_development
-  username: postgres
-  password: password
+#  username: matchpoint
+#  password: matchpoint
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -21,14 +21,14 @@ test:
   adapter: postgresql
   encoding: unicode
   database: matchpoint_test
-  username: postgres
-  password: password
+#  username: matchpoint
+#  password: matchpoint
   host: localhost
 
 production:
   adapter: postgresql
   encoding: unicode
   database: matchpoint_production
-  username: postgres
-  password: password
+#  username: matchpoint
+#  password: matchpoint
   host: localhost
