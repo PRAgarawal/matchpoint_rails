@@ -83,4 +83,24 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # For devise
+  config.action_mailer.default_url_options = {host: ENV['EXTERNAL_URL']}
+  config.action_mailer.asset_host = ENV['EXTERNAL_URL']
+
+  # For sendgrid
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => 'heroku.com',
+      :enable_starttls_auto => true
+  }
+
+  config.filter_parameters += [:client_secret, :client_id, :access_token]
 end

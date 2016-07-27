@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Matchpoint</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
+<!--[if gt IE 9]><html lang="en"><![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon"
+        type="image/png"
+        href="<%= asset_path 'favicon.ico' %>">
+  <title>MatchPoint</title>
+  <%= csrf_meta_tags %>
+  <%= yield :css %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "ru-es5-shim" %>
+    <%= stylesheet_link_tag 'ie8-helper', :media => 'all' %>
+  <![endif]-->
+
+  <!--[if lte IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <%= yield :javascript_head %>
+</head>
+
+<body ng-app='housepayApp' class="all-background">
+<!--<div data-ng-show="!notFoundMessage">-->
+<%= yield %>
+<!--</div>-->
+<!--<ng-include src="'common/invalid_url/invalid_url.html'"></ng-include>-->
+<!--<div id="progressSpinner" ng-if="outstandingRequests"></div>-->
+<%= yield :javascript %>
+</body>
 </html>

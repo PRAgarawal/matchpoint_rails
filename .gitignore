@@ -44,7 +44,7 @@ node_modules/
 npm-debug.log
 
 # Secret environment variables
-.secret_envs
+.env
 
 # Ignore Byebug command history file.
 .byebug_history

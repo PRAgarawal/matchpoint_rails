@@ -1,0 +1,41 @@
+/*Variables*/
+$nav_height: 60px;
+$sm_menu_height: 40px;
+
+.nav {
+  background: $hp-green;
+  height: $nav_height;
+  z-index: 100;
+
+  .top-nav-block {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    height: $nav_height;
+    padding-top: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+
+    &:hover, &.active {
+      background: $hp-green-hl;
+      border-bottom: 3px solid $green300;
+    }
+  }
+
+  .top-nav-link {
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: .6px;
+    &:hover,
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  .remove_spacing {
+    padding: 0;
+    margin: 0;
+  }
+}

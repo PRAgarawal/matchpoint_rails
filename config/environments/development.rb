@@ -51,4 +51,42 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # For devise
+  config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
+  config.action_mailer.asset_host = 'http://localhost:3000'
+  ENV['SENDGRID_USERNAME'] = 'app45653070@heroku.com'
+  ENV['SENDGRID_PASSWORD'] = 'dpj7r2gr2223'
+
+  # For sendgrid
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :enable_starttls_auto => true
+  }
+
+  # Limit size of log file, and limit number of log files to one
+  config.logger = Logger.new(config.paths['log'].first, 1, 1.megabytes)
+
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
+  # # UNCOMMENT THESE TO DIAGNOSE PERFORMANCE ISSUES
+  #
+  # # These two lines will provide a fancy HTML view of how long every action on a given page takes
+  # require 'rack-mini-profiler'
+  # Rack::MiniProfilerRails.initialize!(Rails.application)
+  #
+  # This block will output an informative warning to the console anytime we are not including
+  # the proper associations in an action
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+  end
 end

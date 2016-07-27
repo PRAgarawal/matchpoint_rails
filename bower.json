@@ -1,0 +1,37 @@
+{
+  "name": "matchpoint",
+  "version": "0.0.0",
+  "authors": [
+    "Raj Agarawal <raj@housepay.us>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/assets/third_party",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-animate": "~1.5.8",
+    "angular-bootstrap": "0.11.0",
+    "angular-filter": "~0.5.1",
+    "angular-mocks": "~1.5.8",
+    "angular-moment": "~0.10.0",
+    "angular-route": "~1.5.8",
+    "angular-sanitize": "~1.5.8",
+    "angular-strap": "https://github.com/rigup/angular-strap.git#5304b826244195d71cb2a81d5c1082d8e778058b",
+    "angular-ui-utils": "bower-mask",
+    "angular-uuid-service": "~0.1.0",
+    "aws-sdk-js": "~2.1.37",
+    "bootstrap": "3.1.1",
+    "es5-shim": "4.1.8",
+    "jquery1": "jquery/jquery#1.11.3",
+    "restangular": "1.4.0",
+    "toastr": "2.0.3"
+  },
+  "resolutions": {
+    "angular": "~1.5.8"
+  }
+}

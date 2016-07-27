@@ -1,0 +1,47 @@
+<div class="autopay col-md-offset-1 col-md-10">
+  <div class="row page-title">
+    <h3>Dashboard</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 address">
+          <h4>Address</h4>
+          <p>
+            {{property.line_1}}<br />
+            {{property.line_2}}
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <table class="table col-md-12 payments">
+          <thead>
+          <tr>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="payment in payments">
+            <th>{{bankAccount.nickname}}</th>
+            <th>XXXXXX{{bankAccount.last_four}}</th>
+            <td data-ng-click="ctrl.deleteBankAccount">
+              <span class="glyphicon glyphicon-trash"></span>
+            </td>
+            <td>
+            <span ng-if="bankAccount.is_primary"
+                  class="glyphicon glyphicon-star primary-bank">
+            </span>
+            <span ng-if="!bankAccount.is_primary" ng-click="ctrl.makePrimary(bankAccount)"
+                  class="glyphicon glyphicon-star non-primary-bank">
+            </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
