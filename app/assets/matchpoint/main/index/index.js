@@ -5,14 +5,15 @@ matchpoint = angular.module('matchpointApp', [
   'angular.filter',
   'ui.bootstrap',
   'restangular',
-  'BankAccountsModule',
+  'FriendsModule',
+  'MatchesModule',
   'matchpointWidgetsModule'
 ]);
 
 matchpoint.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
       otherwise({
-        redirectTo: '/properties'
+        redirectTo: '/'
       });
 }]);
 

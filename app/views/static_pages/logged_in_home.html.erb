@@ -4,4 +4,11 @@
   <%= stylesheet_link_tag "application", :media => 'all' %>
 <% end %>
 
-<h1>HOME</h1>
+<div ng-init="user = <%= current_user.to_json %>">
+</div>
+
+<ng-include src="'matchpoint/main/index/index.html'"></ng-include>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag "main_app" %>
+<% end %>
