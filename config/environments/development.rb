@@ -9,9 +9,6 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  # Show full error reports.
-  config.consider_all_requests_local = true
-
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
@@ -25,6 +22,10 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+
+  # Show full error reports.
+  config.consider_all_requests_local = true
+  config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -72,7 +73,8 @@ Rails.application.configure do
   }
 
   # Limit size of log file, and limit number of log files to one
-  config.logger = Logger.new(config.paths['log'].first, 1, 1.megabytes)
+  # TODO: Figure this shizz out for rails 5.0
+  # config.logger = Logger.new(config.paths['log'].first, 1, 1.megabytes)
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

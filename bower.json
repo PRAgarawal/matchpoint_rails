@@ -2,7 +2,7 @@
   "name": "matchpoint",
   "version": "0.0.0",
   "authors": [
-    "Raj Agarawal <raj@housepay.us>"
+    "Raj Agarawal <raj@matchpoint.us>"
   ],
   "ignore": [
     "**/.*",

@@ -1,6 +1,6 @@
 class AssetsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:serve_asset, :serve_home_asset]
-  before_filter :authenticate_user!, :except => [:serve_asset, :serve_home_asset]
+  skip_before_filter :verify_authenticity_token, :only => [:serve_main_asset]
+  before_filter :authenticate_user!, :except => [:serve_main_asset]
 
   def serve_main_asset
     serve_asset_for_app("main")
