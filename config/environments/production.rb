@@ -30,6 +30,12 @@ Rails.application.configure do
   # http://stackoverflow.com/questions/27137895/cannot-set-compile-flag-to-true-when-using-custom-precompilation
   config.assets.precompile.shift
 
+  # Explicitly register the extensions we are interested in compiling
+  Rails.application.config.assets.precompile.push(
+      Proc.new do |path|
+        File.extname(path).in? %w(.html .erb .haml .png .gif .jpg .jpeg .eot .otf .svc .woff .woff2 .ttf)
+      end)
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
