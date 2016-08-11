@@ -82,3 +82,12 @@ end
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
+
+group :production do
+  gem 'rails_12factor', '0.0.3'
+  gem 'unicorn', '~>4.8.3'
+  gem 'unicorn-worker-killer'
+  gem 'heroku-deflater'
+  gem 'font_assets'
+  gem 'rack-timeout'
+end
