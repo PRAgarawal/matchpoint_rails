@@ -25,6 +25,11 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
+  # We don't want the default of everything that isn't js or css, because it pulls too many things in
+  # https://github.com/sstephenson/sprockets/issues/347#issuecomment-25543201
+  # http://stackoverflow.com/questions/27137895/cannot-set-compile-flag-to-true-when-using-custom-precompilation
+  config.assets.precompile.shift
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
