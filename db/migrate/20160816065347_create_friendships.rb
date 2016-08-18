@@ -8,5 +8,7 @@ class CreateFriendships < ActiveRecord::Migration[5.0]
     end
 
     add_index :friendships, [:user_id, :friend_id], unique: true
+    add_index :friendships, :user_id
+    add_index :friendships, :friend_id
   end
 end

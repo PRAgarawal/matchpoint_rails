@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
   after_filter :set_csrf_cookie_for_ng
+  before_filter :set_current_user
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [
@@ -18,5 +19,11 @@ class ApplicationController < ActionController::Base
 
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+  end
+
+  private
+
+  def set_current_user
+    User.current_user = current_user
   end
 end

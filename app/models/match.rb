@@ -18,6 +18,8 @@ class Match < ApplicationRecord
 
   validates_with MaxPlayersValidator
 
+  scope :user_matches, -> { where }
+
   def is_pending?
     max_players = self.is_singles ? 2 : 4
     return self.users.count < max_players
