@@ -11,17 +11,29 @@ class MaxPlayersValidator < ActiveModel::Validator
 end
 
 class Match < ApplicationRecord
+  include ApplicationRecord::UnionScope
+
   has_many :match_users
   has_many :users, through: :match_users
   has_one :chat
   belongs_to :court
+  belongs_to :creator, class_name: 'User', foreign_key: 'created_by_id'
 
   validates_with MaxPlayersValidator
 
-  scope :user_matches, -> { where }
+  scope :from_friends, -> {
+    joins(:court).joins(:users).where('users.id IN (?)', User.friends.pluck(:id)) }
+  scope :on_courts, -> {
+    joins(:court).joins(:users).where('users.id' => User.current_user.id)
+        .where(is_friends_only: false) }
+  scope :available, -> { union_scope(from_friends, on_courts) }
 
   def is_pending?
     max_players = self.is_singles ? 2 : 4
     return self.users.count < max_players
+  end
+
+  def create_match_court
+
   end
 end

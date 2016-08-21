@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :chats, through: :chat_users
   has_many :courts, through: :court_users
   has_many :court_matches, through: :courts, source: :matches, class_name: 'Match'
+  has_many :created_matches, class_name: 'Match', foreign_key: 'created_by_id'
 
   scope :friends, -> { where(Friendable.where_friend_clause(User.current_user.id)) }
 
