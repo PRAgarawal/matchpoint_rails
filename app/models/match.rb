@@ -21,6 +21,8 @@ class Match < ApplicationRecord
 
   validates_with MaxPlayersValidator
 
+  after_create :create_match_user
+
   scope :from_friends, -> {
     joins(:court).joins(:users).where('users.id IN (?)', User.friends.pluck(:id)) }
   scope :on_courts, -> {
@@ -33,7 +35,7 @@ class Match < ApplicationRecord
     return self.users.count < max_players
   end
 
-  def create_match_court
-
+  def create_match_user
+    MatchUser.create!(user_id: self.created_by_id, match_id: self.id)
   end
 end

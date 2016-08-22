@@ -29,4 +29,8 @@ class MatchPolicy < Struct.new(:user, :match)
   def destroy?
     user.created_matches.include?(match)
   end
+
+  def join?
+    show?
+  end
 end
