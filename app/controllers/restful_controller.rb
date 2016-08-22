@@ -1,7 +1,7 @@
 class IndexOnlyRestfulController < ApplicationController
   include RestfulHelper
 
-  before_filter :set_default_request_format, :authenticate_user!
+  before_action :set_default_request_format, :authenticate_user!
   after_action :verify_policy_scoped, :only => :index
 
   def set_default_request_format
@@ -181,7 +181,8 @@ class RestfulController < IndexOnlyRestfulController
   end
 
   def allowed_params
+    action = params.as_json["action"]
     policy_with = @record ? @record : resource_class
-    params.permit(policy(policy_with).permitted_attributes)
+    params.permit(policy(policy_with).send("permitted_attributes_for_#{action}"))
   end
 end

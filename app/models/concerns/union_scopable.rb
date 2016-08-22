@@ -1,4 +1,6 @@
-module ApplicationRecord::UnionScope
+module UnionScopable
+  extend ActiveSupport::Concern
+
   def self.included(base)
     base.send :extend, ClassMethods
   end

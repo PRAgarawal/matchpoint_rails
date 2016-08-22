@@ -11,7 +11,7 @@ class MaxPlayersValidator < ActiveModel::Validator
 end
 
 class Match < ApplicationRecord
-  include ApplicationRecord::UnionScope
+  include UnionScopable
 
   has_many :match_users
   has_many :users, through: :match_users
@@ -36,6 +36,7 @@ class Match < ApplicationRecord
   end
 
   def create_match_user
+    self.update_attributes!(created_by_id: User.current_user.id)
     MatchUser.create!(user_id: self.created_by_id, match_id: self.id)
   end
 end
