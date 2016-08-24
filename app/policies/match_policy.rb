@@ -10,7 +10,7 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def permitted_attributes_for_update
-    [:match_date, :is_singles]
+    [:id, :match_date, :is_singles]
   end
 
   def show?

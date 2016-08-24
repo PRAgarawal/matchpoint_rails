@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
     end
   end
-  resources :friendships, only: [:create, :destroy, :index]
+  resources :friendships, except: [:show]
 
   match '/asset/*path', to: 'assets#serve_main_asset', via: :get
   match '/main/*path', to: 'assets#serve_main_asset', via: :get

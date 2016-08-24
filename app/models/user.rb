@@ -4,14 +4,18 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
+         :validatable
 
   validates :first_name, presence: true, length: {maximum: 255}
   validates :last_name, presence: true, length: {maximum: 255}
   validates :email, presence: true, format:
       {with: VALID_EMAIL_REGEX,
        message: "check email format"}, length: {maximum: 255}
+
+  before_create :create_invite_code
+  after_create :create_friendship
+  after_invitation_accepted :create_friendship
 
   has_many :messages
   has_many :match_users
@@ -39,5 +43,20 @@ class User < ApplicationRecord
 
   def self.current_user=(user)
     Thread.current[:user] = user
+  end
+
+  def create_invite_code
+    code_length = 5
+    # Random, 5-character, alphanumeric string
+    user.invite_code = rand(36**14).to_s(36)[0..code_length-1].upcase
+  end
+
+  def create_friendship
+    if self.invited_by_code.present?
+      user = User.find_by(invite_code: self.invited_by_code)
+      Friendship.create!(friend_id: self.id, user_id: user.id, is_confirmed: true)
+    elsif self.invited_by_id.present?
+      Friendship.create!(friend_id: self.id, user_id: self.invited_by_id, is_confirmed: true)
+    end
   end
 end
