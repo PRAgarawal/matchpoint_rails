@@ -1,0 +1,2 @@
+class FriendshipsController < RestfulController
+end

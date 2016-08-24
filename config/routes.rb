@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :matches do
     collection do
       post 'join/:match_id', to: 'matches#join', as: 'join'
+      delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
     end
   end
+  resources :friendships, only: [:create, :destroy, :index]
 
   match '/asset/*path', to: 'assets#serve_main_asset', via: :get
   match '/main/*path', to: 'assets#serve_main_asset', via: :get

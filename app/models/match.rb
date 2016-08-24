@@ -17,14 +17,15 @@ class Match < ApplicationRecord
   has_many :users, through: :match_users
   has_one :chat
   belongs_to :court
-  belongs_to :creator, class_name: 'User', foreign_key: 'created_by_id'
 
   validates_with MaxPlayersValidator
 
-  after_create :create_match_user
+  after_create :create_initial_match_user
 
+  # All the current user's friends' matches
   scope :from_friends, -> {
     joins(:court).joins(:users).where('users.id IN (?)', User.friends.pluck(:id)) }
+  # All public matches at the current user's courts
   scope :on_courts, -> {
     joins(:court).joins(:users).where('users.id' => User.current_user.id)
         .where(is_friends_only: false) }
@@ -35,8 +36,11 @@ class Match < ApplicationRecord
     return self.users.count < max_players
   end
 
-  def create_match_user
-    self.update_attributes!(created_by_id: User.current_user.id)
-    MatchUser.create!(user_id: self.created_by_id, match_id: self.id)
+  def create_initial_match_user
+    MatchUser.create!(user_id: User.current_user.id, match_id: self.id)
+  end
+
+  def first_user
+    return self.match_users.order(created_at: :desc).first.user
   end
 end

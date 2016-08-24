@@ -1,7 +1,6 @@
 class MatchPolicy < Struct.new(:user, :match)
   class Scope < Struct.new(:user, :scope)
     def resolve
-      # All public matches at the users courts and all
       Match.available
     end
   end
@@ -23,14 +22,18 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def update?
-    user.matches.include?(match)
+    match.first_user.id == user.id
   end
 
   def destroy?
-    user.created_matches.include?(match)
+    update?
   end
 
   def join?
-    show?
+    show? && match.is_pending?
+  end
+
+  def leave?
+    match.users.include?(user)
   end
 end
