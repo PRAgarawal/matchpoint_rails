@@ -3,7 +3,7 @@ var friendsModule = angular.module('FriendsModule', ['ngSanitize']);
 friendsModule.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
-    when('/friends', {
+    when('/friends_courts', {
       templateUrl: 'main/friends/friends.html',
       controller: 'FriendsListController as ctrl'
     }).

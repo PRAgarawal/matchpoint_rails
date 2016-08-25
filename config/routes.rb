@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     end
   end
   resources :friendships, except: [:show]
+  resources :courts, only: [:index] do
+    collection do
+      post 'join/:court_id', to: 'courts#join', as: 'join'
+      delete 'leave/:court_id', to: 'courts#leave', as: 'leave'
+    end
+  end
 
   match '/asset/*path', to: 'assets#serve_main_asset', via: :get
   match '/main/*path', to: 'assets#serve_main_asset', via: :get

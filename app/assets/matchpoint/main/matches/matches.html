@@ -1,8 +1,40 @@
-<div class="autopay col-md-offset-1 col-md-10">
+<div class="matches col-md-offset-1 col-md-10">
   <div class="row page-title">
     <h3>{{pageTitle}}</h3>
   </div>
 
   <div class="row">
+    <div data-ng-repeat="match in matches" class="match">
+      <div class="match-date">
+        {{match.match_date | date}} at {{ctrl.getTime(match.match_time)}}
+      </div>
+      <div class="match-court">
+        {{match.court.name}}
+      </div>
+      <div class="match-type">
+        {{match.is_singles ? "Singles" : "Doubles"}}
+      </div>
+      <div data-ng-repeat="user in match.users" class="match-date">
+        {{user.first_name + " " + user.last_name}}
+        <span class="user-skill">{{user.skill/2}}</span>
+      </div>
+      <div data-ng-if="matchType == 'my_matches'">
+        <a href="/matches/leave/{{match.id}}" data-ng-click="ctrl.leaveMatch(match)"
+           data-method="delete" class="leave-btn">
+          Leave match
+        </a>
+      </div>
+      <div data-ng-if="matchType == 'requests'">
+        <a href="/matches/join/{{match.id}}" data-ng-click="ctrl.joinMatch(match)"
+           data-method="post" class="leave-btn">
+          Join
+        </a>
+      </div>
+    </div>
+  </div>
+  <div data-ng-if="matchType == 'my_matches'">
+    <a href="#/new_match" class="create-btn">
+      Create Match Request
+    </a>
   </div>
 </div>
