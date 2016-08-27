@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h3 class="modal-title">Join a new court</h3>
+</div>
+<div class="modal-body">
+  <div data-ng-repeat="court in courts" class="court">
+    <div class="court-name">
+      {{court.name}}
+    </div>
+    <div class="court-address">
+      {{court.postal_address.street}}<br />
+      {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
+    </div>
+    <a href="/courts/join/{{court.id}}" data-ng-click="cancel()"
+       data-method="post" class="leave-btn">
+      Join
+    </a>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn-grey" data-ng-click="cancel()">Close</button>
+</div>

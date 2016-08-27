@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def render_403(invalid_exception)
-    render :nothing => true, :status => :forbidden
+    render json: {error: { detail: "You are not authorized to perform this action" }},
+           :status => :forbidden
     logger.info "Authorization errors: #{invalid_exception.inspect}"
   end
 

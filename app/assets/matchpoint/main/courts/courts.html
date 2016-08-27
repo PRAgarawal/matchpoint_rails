@@ -1,0 +1,27 @@
+<div class="courts col-md-offset-1 col-md-10">
+  <div class="row page-title">
+    <h3>COURTS</h3>
+  </div>
+
+  <div class="row">
+    <button type="button" class="add-court" data-ng-click="ctrl.showJoinCourtDialog()">
+      Join new court
+    </button>
+  </div>
+
+  <div class="row">
+    <div data-ng-repeat="court in data.userCourts" class="court">
+      <div class="court-name">
+        {{court.name}}
+      </div>
+      <div class="court-address">
+        {{court.postal_address.street}}<br />
+        {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
+      </div>
+      <a href="/courts/leave/{{court.id}}" data-ng-click="ctrl.leaveCourt(court)"
+         data-method="delete" class="leave-btn">
+        Leave
+      </a>
+    </div>
+  </div>
+</div>

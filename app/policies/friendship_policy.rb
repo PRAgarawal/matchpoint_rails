@@ -1,7 +1,7 @@
 class FriendshipPolicy < Struct.new(:user, :friendship)
   class Scope < Struct.new(:user, :scope)
     def resolve
-      Match.available
+      User.current_user.friendships
     end
   end
 

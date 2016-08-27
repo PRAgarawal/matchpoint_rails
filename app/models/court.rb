@@ -5,5 +5,8 @@ class Court < ApplicationRecord
   has_many :users, through: :court_users
   has_many :matches
 
+  scope :not_joined, -> { where('id NOT IN (SELECT court_id from court_users WHERE user_id = ?)',
+                                User.current_user.id) }
+
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
 end
