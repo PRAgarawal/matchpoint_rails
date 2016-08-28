@@ -49,7 +49,7 @@ class User < ApplicationRecord
   def create_invite_code
     code_length = 5
     # Random, 5-character, alphanumeric string
-    user.invite_code = rand(36**14).to_s(36)[0..code_length-1].upcase
+    self.invite_code = rand(36**14).to_s(36)[0..code_length-1].upcase
   end
 
   def create_friendship

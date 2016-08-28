@@ -12,7 +12,7 @@ courtsModule.config(['$routeProvider',
 courtsModule.controller('CourtsListController',
     ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
       var ctrl = this;
-      $scope.data = {}
+      $scope.data = {};
       
       function getCourts() {
         resources.all('courts?joined=true').getList().then(function (courts) {
@@ -23,10 +23,10 @@ courtsModule.controller('CourtsListController',
       ctrl.showJoinCourtDialog = function () {
         $modal.open({
           templateUrl: 'main/courts/join_court_modal.html',
-          controller: JoinCourtModalController,
-          size: 'lg',
-          scope: $scope,
-          resources: resources
+          controller: 'JoinCourtModalController as ctrl',
+          'size': 'lg',
+          'scope': $scope,
+          'resources': resources
         }).result.then(function () {
           getCourts();
         });
@@ -39,10 +39,11 @@ courtsModule.controller('CourtsListController',
       getCourts();
     }]);
 
-var JoinCourtModalController = function ($scope, $modalInstance, resources) {
-  resources.all('courts?joined=false').getList().then(function (courts) {
-    $scope.courts = courts;
-  });
+courtsModule.controller('JoinCourtModalController',
+    ['$scope', '$modalInstance', 'resources', function ($scope, $modalInstance, resources) {
+      resources.all('courts?joined=false').getList().then(function (courts) {
+        $scope.courts = courts;
+      });
 
-  $scope.cancel = function() {dismiss($modalInstance);}
-};
+      $scope.cancel = function() {dismiss($modalInstance);}
+    }]);
