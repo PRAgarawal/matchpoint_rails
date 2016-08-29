@@ -19,6 +19,8 @@ class Match < ApplicationRecord
   belongs_to :court
 
   validates_with MaxPlayersValidator
+  validates :match_date, presence: true
+  validates :court, presence: true
 
   after_create :create_initial_match_user
 

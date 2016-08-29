@@ -45,5 +45,5 @@ courtsModule.controller('JoinCourtModalController',
         $scope.courts = courts;
       });
 
-      $scope.cancel = function() {dismiss($modalInstance);}
+      $scope.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);

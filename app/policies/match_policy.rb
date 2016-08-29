@@ -6,11 +6,11 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def permitted_attributes_for_create
-    [:match_date, :match_time, :court_id, :is_singles, :is_friends_only]
+    [:match_date, :court_id, :is_singles, :is_friends_only]
   end
 
   def permitted_attributes_for_update
-    [:id, :match_date, :match_time]
+    [:id, :match_date]
   end
 
   def show?

@@ -25,15 +25,6 @@ var BaseMatchesListController = function ($scope, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
 
-  ctrl.getTime = function(timeInt) {
-    var amPm = timeInt > 23 ? ' PM' : ' AM';
-    timeInt = timeInt > 23 ? timeInt - 12 : timeInt;
-    var hour = String(parseInt(timeInt/2) + 12);
-    var minute = timeInt/2 > 0 ? ':30' : ':00';
-
-    return hour + minute + amPm;
-  };
-
   resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
     $scope.matches = matches;
   });
@@ -80,11 +71,12 @@ matchesModule.controller('NewMatchRequestsController',
 
       $scope.match = {};
 
-      resources.all('courts?user=true').getList().then(function (courts) {
+      resources.all('courts?joined=true').getList().then(function (courts) {
         $scope.courts = courts;
       });
 
       ctrl.createMatch = function() {
+        $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
         resources.success_message(
             resources.all('matches').post($scope.match), "Match created")
             .then(function () {
