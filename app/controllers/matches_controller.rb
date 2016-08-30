@@ -20,24 +20,34 @@ class MatchesController < RestfulController
       scope = current_user.matches.where('matches.match_date < CURRENT_DATE')
     end
 
-    return scope
+    return scope.order(match_date: :asc)
   end
 
   def join
-    match = Match.find(params[:match_id])
-    authorize match, :join?
-
-    MatchUser.create!(user_id: current_user.id, match_id: match.id)
+    update_match_membership do |match|
+      authorize match, :join?
+      MatchUser.create!(user_id: current_user.id, match_id: match.id)
+    end
   end
 
   def leave
-    match = Match.find(params[:match_id])
-    authorize match, :leave?
-
-    MatchUser.where(user_id: current_user.id, match_id: match.id).first.destroy!
+    update_match_membership do |match|
+      authorize match, :leave?
+      MatchUser.where(user_id: current_user.id, match_id: match.id).first.destroy!
+    end
   end
 
   protected
+
+  def update_match_membership
+    match = Match.find(params[:match_id])
+    if match.present?
+      yield match if block_given?
+      render nothing: true, status: :no_content
+    else
+      render nothing: true, status: :not_found
+    end
+  end
 
   def render_records(matches)
     render json: matches, include: [

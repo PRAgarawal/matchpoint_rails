@@ -3,14 +3,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#index'
 
-  resources :users, except: [:create, :index]
+  resources :users, except: [:create] do
+    collection do
+      post 'create_friendship', to: 'users#create_friendship', as: 'create_friendship'
+      put 'accept_friendship/:friendship_id', to: 'users#accept_friendship', as: 'accept_friendship'
+      delete 'destroy_friendship/:friendship_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
+    end
+  end
   resources :matches do
     collection do
       post 'join/:match_id', to: 'matches#join', as: 'join'
       delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
     end
   end
-  resources :friends
   resources :courts, only: [:index] do
     collection do
       post 'join/:court_id', to: 'courts#join', as: 'join'

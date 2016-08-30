@@ -14,20 +14,30 @@ class CourtsController < RestfulController
   end
 
   def join
-    court = Court.find(params[:court_id])
-    authorize court, :join?
-
-    CourtUser.create!(user_id: current_user.id, court_id: court.id)
+    update_court_membership do |court|
+      authorize court, :join?
+      CourtUser.create!(user_id: current_user.id, court_id: court.id)
+    end
   end
 
   def leave
-    court = Court.find(params[:court_id])
-    authorize court, :leave?
-
-    CourtUser.where(user_id: current_user.id, court_id: court.id).first.destroy!
+    update_court_membership do |court|
+      authorize court, :leave?
+      CourtUser.where(user_id: current_user.id, court_id: court.id).first.destroy!
+    end
   end
 
   protected
+
+  def update_court_membership
+    court = Court.find(params[:court_id])
+    if court.present?
+      yield court if block_given?
+      render nothing: true, status: :no_content
+    else
+      render nothing: true, status: :not_found
+    end
+  end
 
   def render_records(courts)
     render json: courts, include: [:postal_address]
