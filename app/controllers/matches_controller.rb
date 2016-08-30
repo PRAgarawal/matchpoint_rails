@@ -27,14 +27,14 @@ class MatchesController < RestfulController
     match = Match.find(params[:match_id])
     authorize match, :join?
 
-    MatchUser.create!(user_id: User.current_user.id, match_id: match.id)
+    MatchUser.create!(user_id: current_user.id, match_id: match.id)
   end
 
   def leave
     match = Match.find(params[:match_id])
     authorize match, :leave?
 
-    MatchUser.where(user_id: User.current_user.id, match_id: match.id).first.destroy!
+    MatchUser.where(user_id: current_user.id, match_id: match.id).first.destroy!
   end
 
   protected

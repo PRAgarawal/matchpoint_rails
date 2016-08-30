@@ -5,7 +5,7 @@ class CourtsController < RestfulController
     get_joined_courts = params[:joined]
 
     if get_joined_courts == "true"
-      scope = User.current_user.courts
+      scope = current_user.courts
     elsif get_joined_courts == "false"
       scope = Court.not_joined
     end
@@ -17,14 +17,14 @@ class CourtsController < RestfulController
     court = Court.find(params[:court_id])
     authorize court, :join?
 
-    CourtUser.create!(user_id: User.current_user.id, court_id: court.id)
+    CourtUser.create!(user_id: current_user.id, court_id: court.id)
   end
 
   def leave
     court = Court.find(params[:court_id])
     authorize court, :leave?
 
-    CourtUser.where(user_id: User.current_user.id, court_id: court.id).first.destroy!
+    CourtUser.where(user_id: current_user.id, court_id: court.id).first.destroy!
   end
 
   protected

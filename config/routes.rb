@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
     end
   end
-  resources :friendships, except: [:show]
+  resources :friends
   resources :courts, only: [:index] do
     collection do
       post 'join/:court_id', to: 'courts#join', as: 'join'

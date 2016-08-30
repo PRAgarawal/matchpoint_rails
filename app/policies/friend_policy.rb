@@ -1,7 +1,7 @@
-class FriendshipPolicy < Struct.new(:user, :friendship)
+class FriendPolicy < Struct.new(:user, :friendship)
   class Scope < Struct.new(:user, :scope)
     def resolve
-      User.current_user.friendships
+      user.friends
     end
   end
 
@@ -14,7 +14,7 @@ class FriendshipPolicy < Struct.new(:user, :friendship)
   end
 
   def show?
-    friendship.user.id == user.id
+    friend.user.id == user.id
   end
 
   def create?
