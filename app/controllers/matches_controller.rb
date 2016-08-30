@@ -15,13 +15,9 @@ class MatchesController < RestfulController
                           User.current_user.id)
                   .having('COUNT(users.id) < (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)')
     elsif get_my_matches == 'true'
-      scope = scope.where('matches.match_date >= CURRENT_DATE')
-                  .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) > 0',
-                          User.current_user.id)
+      scope = current_user.matches.where('matches.match_date >= CURRENT_DATE')
     elsif get_past_matches == 'true'
-      scope = scope.where('matches.match_date < CURRENT_DATE')
-                  .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) > 0',
-                          User.current_user.id)
+      scope = current_user.matches.where('matches.match_date < CURRENT_DATE')
     end
 
     return scope
