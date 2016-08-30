@@ -26,11 +26,19 @@ class Match < ApplicationRecord
 
   # All the current user's friends' matches
   scope :from_friends, -> {
-    joins(:court).joins(:users).where('users.id IN (?)', User.friends.pluck(:id)) }
+    joins(:match_users)
+        .where('match_users.user_id IN (?)', User.friends.pluck(:id))
+        .where("match_users.user_id <> #{User.current_user.id}") }
   # All public matches at the current user's courts
   scope :on_courts, -> {
-    joins(:court).joins(:users).where('users.id' => User.current_user.id)
-        .where(is_friends_only: false) }
+    joins(:court)
+        .joins("INNER JOIN court_users ON court_users.court_id = courts.id AND court_users " +
+                   ".user_id = #{User.current_user.id}")
+        .joins("LEFT JOIN match_users ON match_users.match_id = matches.id")
+        .where(is_friends_only: false)
+        .where("match_users.user_id <> #{User.current_user.id}")
+        .distinct }
+  # Union of the above two, including all matches visible to the user that he has not yet joined
   scope :available, -> { union_scope(from_friends, on_courts) }
 
   def is_pending?
