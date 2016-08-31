@@ -25,12 +25,21 @@ class User < ApplicationRecord
   has_many :chats, through: :chat_users
   has_many :courts, through: :court_users
   has_many :court_matches, through: :courts, source: :matches, class_name: 'Match'
-  has_many :friendships, -> { where() }
 
   scope :friends, -> { where(Friendable.where_friend_clause(User.current_user.id)) }
 
   def friends
-    User.find_by_sql "SELECT * FROM users WHERE " + Friendable.where_friend_clause(self.id)
+    User.find_by_sql "SELECT * FROM users AS friends
+                        WHERE #{Friendable.where_friend_clause(self.id)}
+                        ORDER BY friends.first_name ASC"
+  end
+
+  def incoming_friends
+    User.find_by_sql 'SELECT friends.* FROM users
+                        INNER JOIN friendships ON friendships.friend_id = users.id
+                        INNER JOIN users AS friends ON friends.id = friendships.user_id
+                        WHERE friendships.is_confirmed = false
+                        ORDER BY friends.first_name ASC'
   end
 
   # See:
