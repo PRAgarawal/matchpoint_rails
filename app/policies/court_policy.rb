@@ -6,10 +6,10 @@ class CourtPolicy < Struct.new(:user, :court)
   end
 
   def join?
-    !user.courts.include?(court)
+    true
   end
 
   def leave?
-    user.courts.include?(court)
+    true
   end
 end

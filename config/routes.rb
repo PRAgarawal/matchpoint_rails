@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, except: [:create] do
     collection do
-      post 'create_friendship', to: 'users#create_friendship', as: 'create_friendship'
+      post 'create_friendship/:friend_finder', to: 'users#create_friendship', as: 'create_friendship',
+           constraints: { friend_finder: /[^\/]+/ }
       put 'accept_friendship/:friendship_id', to: 'users#accept_friendship', as: 'accept_friendship'
       delete 'destroy_friendship/:friendship_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
     end

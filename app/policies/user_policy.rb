@@ -28,10 +28,14 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
   end
 
   def accept_friendship?
-    user.incoming_friends.include?(user_object_to_authorize)
+    friendship = user.friendship_to_authorize
+    return true if friendship.nil?
+    friendship.user == user_object_to_authorize && friendship.friend == user
   end
 
   def destroy_friendship?
-    user.friends.include?(user_object_to_authorize)
+    friendship = user.friendship_to_authorize
+    return true if friendship.nil?
+    friendship.user == user || friendship.friend == user
   end
 end

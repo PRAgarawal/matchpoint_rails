@@ -2,19 +2,14 @@ class Friendship < ApplicationRecord
   attr_accessor :invite_code
   attr_accessor :email
 
-  before_create :set_attributes
+  validates :user_id, presence: true
+  validates :friend_id, presence: true
+  validate :not_adding_self
 
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
 
-  def set_attributes
-    user = nil
-    if invite_code.present?
-      user = User.find_by(invite_code: invite_code)
-    elsif email.present?
-      user = User.find_by(email: email)
-    end
-    self.user_id = User.current_user.id
-    self.friend_id = user.try(:id)
+  def not_adding_self
+    errors.add(:friend_id, 'You cannot add yourself as a friend.') if user_id == friend_id
   end
 end

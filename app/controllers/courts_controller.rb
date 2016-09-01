@@ -16,23 +16,23 @@ class CourtsController < RestfulController
   def join
     update_court_membership do |court|
       authorize court, :join?
-      CourtUser.create!(user_id: current_user.id, court_id: court.id)
+      CourtUser.create!(user_id: current_user.id, court_id: court.id) if court.present?
     end
   end
 
   def leave
     update_court_membership do |court|
       authorize court, :leave?
-      CourtUser.where(user_id: current_user.id, court_id: court.id).first.destroy!
+      CourtUser.where(user_id: current_user.id, court_id: court.id).first.destroy! if court.present?
     end
   end
 
   protected
 
   def update_court_membership
-    court = Court.find(params[:court_id])
+    court = Court.find_by(id: params[:court_id])
+    yield court if block_given?
     if court.present?
-      yield court if block_given?
       render nothing: true, status: :no_content
     else
       render nothing: true, status: :not_found

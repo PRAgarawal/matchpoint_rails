@@ -7,6 +7,7 @@ class MatchesController < RestfulController
     scope = scope.select('matches.*')
                 .joins(:match_users)
                 .group('matches.id')
+    sort_order = :asc
 
     #TODO: These queries may need to be re-examined for performance
     if get_requests == 'true'
@@ -18,31 +19,32 @@ class MatchesController < RestfulController
       scope = current_user.matches.where('matches.match_date >= CURRENT_DATE')
     elsif get_past_matches == 'true'
       scope = current_user.matches.where('matches.match_date < CURRENT_DATE')
+      sort_order = :desc
     end
 
-    return scope.order(match_date: :asc)
+    return scope.order(match_date: sort_order)
   end
 
   def join
     update_match_membership do |match|
       authorize match, :join?
-      MatchUser.create!(user_id: current_user.id, match_id: match.id)
+      MatchUser.create!(user_id: current_user.id, match_id: match.id) if match.present?
     end
   end
 
   def leave
     update_match_membership do |match|
       authorize match, :leave?
-      MatchUser.where(user_id: current_user.id, match_id: match.id).first.destroy!
+      MatchUser.where(user_id: current_user.id, match_id: match.id).first.destroy! if match.present?
     end
   end
 
   protected
 
   def update_match_membership
-    match = Match.find(params[:match_id])
+    match = Match.find_by(id: params[:match_id])
+    yield match if block_given?
     if match.present?
-      yield match if block_given?
       render nothing: true, status: :no_content
     else
       render nothing: true, status: :not_found

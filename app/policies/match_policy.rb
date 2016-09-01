@@ -30,10 +30,12 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def join?
+    return true if match.nil?
     show? && match.is_pending?
   end
 
   def leave?
+    return true if match.nil?
     match.users.include?(user)
   end
 end

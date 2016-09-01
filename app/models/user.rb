@@ -2,6 +2,9 @@ class User < ApplicationRecord
   include RegexHelper
   include Friendable
 
+  # This is a hack-y way to allow us to use a Friendship model for authorization in the UserPolicy
+  attr_accessor :friendship_to_authorize
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
@@ -31,15 +34,23 @@ class User < ApplicationRecord
   def friends
     User.find_by_sql "SELECT * FROM users AS friends
                         WHERE #{Friendable.where_friend_clause(self.id)}
-                        ORDER BY friends.first_name ASC"
+                        ORDER BY friends.last_name ASC"
   end
 
   def incoming_friends
-    User.find_by_sql 'SELECT friends.* FROM users
-                        INNER JOIN friendships ON friendships.friend_id = users.id
-                        INNER JOIN users AS friends ON friends.id = friendships.user_id
-                        WHERE friendships.is_confirmed = false
-                        ORDER BY friends.first_name ASC'
+    User.find_by_sql "SELECT * FROM users AS friends
+                        WHERE id IN (
+                          SELECT user_id FROM friendships
+                            WHERE friend_id = #{self.id} AND is_confirmed = false)
+                        ORDER BY friends.last_name ASC"
+  end
+
+  #including unconfirmed
+  def all_friends
+    User.find_by_sql "SELECT * FROM users AS friends
+                        WHERE id IN (
+                          SELECT friend_id FROM friend_links
+                            WHERE user_id = #{self.id})"
   end
 
   # See:

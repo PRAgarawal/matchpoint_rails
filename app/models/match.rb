@@ -1,15 +1,3 @@
-class MaxPlayersValidator < ActiveModel::Validator
-  def validate(record)
-    if record.is_singles && record.users.count > 2
-      record.errors[:base] << 'Singles match cannot have more than two players'
-    end
-
-    if !record.is_singles && record.users.count > 4
-      record.errors[:base] << 'Doubles match cannot have more than four players'
-    end
-  end
-end
-
 class Match < ApplicationRecord
   include UnionScopable
 
@@ -18,9 +6,9 @@ class Match < ApplicationRecord
   has_one :chat
   belongs_to :court
 
-  validates_with MaxPlayersValidator
   validates :match_date, presence: true
   validates :court, presence: true
+  validate :max_players_not_exceeded
 
   after_create :create_initial_match_user
 
@@ -51,5 +39,15 @@ class Match < ApplicationRecord
 
   def first_user
     return self.match_users.order(created_at: :desc).first.user
+  end
+
+  def max_players_not_exceeded
+    if self.is_singles && self.users.count > 2
+      self.errors[:base] << 'Singles match cannot have more than two players'
+    end
+
+    if !self.is_singles && self.users.count > 4
+      self.errors[:base] << 'Doubles match cannot have more than four players'
+    end
   end
 end
