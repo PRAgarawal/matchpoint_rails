@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
         :first_name, :last_name, :email, :password, :password_confirmation, :invited_by_code])
     devise_parameter_sanitizer.permit(:sign_in, keys: [
         :email, :password, :remember_me])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name, :skill, :password, :password_confirmation, :invitation_token])
   end
 
   def set_csrf_cookie_for_ng

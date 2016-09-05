@@ -14,7 +14,6 @@ class UsersController < RestfulController
   end
 
   def create_friendship
-    #TODO: add `friend_finder` to permitted params
     authorize User, :create_friendship?
     friend_finder = params[:friend_finder]
 
@@ -23,12 +22,8 @@ class UsersController < RestfulController
     user = User.find_by(invite_code: friend_finder) if user.nil?
 
     if user.nil?
-      if friend_finder.present? && friend_finder.match(VALID_EMAIL_REGEX).nil?
-        render json: {error: { detail: "Unable to find a user by that invite code" }},
-               status: :not_found
-      elsif friend_finder.match(VALID_EMAIL_REGEX).present?
-        # TODO: The user entered an email that isn't yet on the system, so let's send them an invite
-      end
+      render json: {error: { detail: "Unable to find a user by that invite code" }},
+             status: :not_found
     else
       existing = Friendship.where("(user_id = #{current_user.id} AND friend_id = #{user.id}) OR
                                     (user_id = #{user.id} AND friend_id = #{current_user.id})")
@@ -42,6 +37,14 @@ class UsersController < RestfulController
         render nothing: true, status: :no_content
       end
     end
+  end
+
+  def invite_friend
+    authorize User, :invite_friend?
+    email = params[:email]
+    new_user = User.new(email: email)
+    new_user.invite!(current_user)
+    render nothing: true, status: :ok
   end
 
   def accept_friendship

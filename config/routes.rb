@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#index'
 
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
     collection do
       post 'create_friendship/:friend_finder', to: 'users#create_friendship', as: 'create_friendship',
            constraints: { friend_finder: /[^\/]+/ }
+      post 'invite_friend/:email', to: 'users#invite_friend', as: 'invite_friend',
+           constraints: { email: /[^\/]+/ }
       put 'accept_friendship/:friendship_id', to: 'users#accept_friendship', as: 'accept_friendship'
       delete 'destroy_friendship/:friendship_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
     end

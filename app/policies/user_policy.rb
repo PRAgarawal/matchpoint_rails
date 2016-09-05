@@ -27,6 +27,10 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
     true
   end
 
+  def invite_friend?
+    true
+  end
+
   def accept_friendship?
     friendship = user.friendship_to_authorize
     return true if friendship.nil?

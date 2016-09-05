@@ -15,9 +15,9 @@ class User < ApplicationRecord
   validates :email, presence: true, format:
       {with: VALID_EMAIL_REGEX,
        message: "check email format"}, length: {maximum: 255}
+  validates :skill, presence: true, inclusion: {in: 2..14}
 
   before_create :create_invite_code
-  after_create :create_friendship
   after_invitation_accepted :create_friendship
 
   has_many :messages
