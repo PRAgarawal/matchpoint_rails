@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3 class="modal-title">Invite a friend</h3>
+</div>
+<div class="modal-body">
+  <div class="invite-prompt">
+    We'll send your friend an email with a link to join MatchPoint. When they accept, they'll
+    be added to your friend list.
+  </div>
+  <div class="friend-email">
+    <input type="text" class="form-control" id="email" name="email"
+           data-ng-model="data.email" placeholder="Enter your friend's email">
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn-grey" data-ng-click="ctrl.inviteFriend()">Send invite</button>
+  <button class="btn-grey" data-ng-click="ctrl.cancel()">Close</button>
+</div>

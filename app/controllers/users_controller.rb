@@ -13,21 +13,19 @@ class UsersController < RestfulController
     return scope
   end
 
-  def create_friendship
+  def add_friend
     authorize User, :create_friendship?
     friend_finder = params[:friend_finder]
 
     # `friend_finder` will be either the friend's email or friend code
-    user = User.find_by(email: friend_finder)
-    user = User.find_by(invite_code: friend_finder) if user.nil?
+    user = User.find_by(email: friend_finder.downcase)
+    user = User.find_by(invite_code: friend_finder.upcase) if user.nil?
 
     if user.nil?
       render json: {error: { detail: "Unable to find a user by that invite code" }},
              status: :not_found
     else
-      existing = Friendship.where("(user_id = #{current_user.id} AND friend_id = #{user.id}) OR
-                                    (user_id = #{user.id} AND friend_id = #{current_user.id})")
-                     .first
+      existing = Friendship.friendship_for_friend(user.id, current_user.id)
 
       if existing.nil?
         Friendship.create!(user_id: current_user.id, friend_id: user.id)
@@ -64,7 +62,7 @@ class UsersController < RestfulController
   protected
 
   def update_friendship
-    friendship = Friendship.find_by(id: params[:friendship_id])
+    friendship = Friendship.friendship_for_friend(params[:friend_id], current_user.id)
     current_user.friendship_to_authorize = friendship
     yield friendship if block_given?
     if friendship.present?

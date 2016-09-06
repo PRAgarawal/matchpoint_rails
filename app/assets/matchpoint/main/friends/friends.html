@@ -4,5 +4,46 @@
   </div>
 
   <div class="row">
+    <div class="col-md-4">
+      <button type="button" class="add-friend" data-ng-click="ctrl.showAddFriendDialog()">
+        Add friend
+      </button>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="invite-friend" data-ng-click="ctrl.showInviteFriendDialog()">
+        Invite friend
+      </button>
+    </div>
+  </div>
+
+  <div data-ng-repeat="friend in friends" class="friend">
+    <div class="friend-name">
+      {{friend.first_name + ' ' + friend.last_name}}
+    </div>
+    <div class="friend-skill">
+      {{(friend.skill / 2).toFixed(1)}}
+    </div>
+    <div class="friend-remove" data-ng-click="ctrl.removeFriend(friend.id)">
+      Remove Friend
+    </div>
+  </div>
+
+  <div data-ng-if="friendRequests.length > 0">
+    <h4>Requests waiting for your approval</h4>
+
+    <div data-ng-repeat="friend in friendRequests" class="friendRequest">
+      <div class="request-name">
+        {{friend.first_name + ' ' + friend.last_name}}
+      </div>
+      <div class="request-skill">
+        {{(friend.skill / 2).toFixed(1)}}
+      </div>
+      <div class="request-accept" data-ng-click="ctrl.acceptRequest(friend.id)">
+        Accept
+      </div>
+      <div class="request-remove" data-ng-click="ctrl.removeFriend(friend.id)">
+        Decline
+      </div>
+    </div>
   </div>
 </div>

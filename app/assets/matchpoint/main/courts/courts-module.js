@@ -12,11 +12,10 @@ courtsModule.config(['$routeProvider',
 courtsModule.controller('CourtsListController',
     ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
       var ctrl = this;
-      $scope.data = {};
       
       function getCourts() {
         resources.all('courts?joined=true').getList().then(function (courts) {
-          $scope.data.userCourts = courts;
+          $scope.userCourts = courts;
         });
       }
       
