@@ -14,8 +14,8 @@ class Friendship < ApplicationRecord
   end
 
   def self.friendship_for_friend(user_id, friend_id)
-    self.where("(user_id = #{user_id} AND friend_id = #{friend_id}) OR
-                (user_id = #{friend_id} AND friend_id = #{user_id})")
+    self.where("(user_id = #{user_id} AND friend_id = #{friend_id}) OR " +
+               "(user_id = #{friend_id} AND friend_id = #{user_id})")
         .first
   end
 end

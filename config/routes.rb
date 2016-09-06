@@ -10,7 +10,7 @@ Rails.application.routes.draw do
            constraints: { friend_finder: /[^\/]+/ }
       post 'invite_friend/:email', to: 'users#invite_friend', as: 'invite_friend',
            constraints: { email: /[^\/]+/ }
-      put 'accept_friendship/:friendship_id', to: 'users#accept_friendship', as: 'accept_friendship'
+      put 'accept_friendship/:friend_id', to: 'users#accept_friendship', as: 'accept_friendship'
       delete 'destroy_friendship/:friend_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
     end
   end
