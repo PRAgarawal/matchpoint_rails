@@ -22,7 +22,7 @@ class UsersController < RestfulController
     user = User.find_by(invite_code: friend_finder.upcase) if user.nil?
 
     if user.nil?
-      render json: {error: { detail: "Unable to find a user by that invite code" }},
+      render json: {error: { detail: "Unable to find a user by that invite code or email" }},
              status: :not_found
     else
       existing = Friendship.friendship_for_friend(user.id, current_user.id)
@@ -68,7 +68,7 @@ class UsersController < RestfulController
     if friendship.present?
       render nothing: true, status: :no_content
     else
-      render nothing: true, status: :not_found
+      render json: {error: { detail: "Friend not found" }}, status: :not_found
     end
   end
 

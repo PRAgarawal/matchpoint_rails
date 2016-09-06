@@ -30,8 +30,6 @@ friendsModule.controller('FriendsListController',
           'size': 'md',
           'scope': $scope,
           'resources': resources
-        }).result.then(function () {
-          matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
         });
       };
 
@@ -42,8 +40,6 @@ friendsModule.controller('FriendsListController',
           'size': 'md',
           'scope': $scope,
           'resources': resources
-        }).result.then(function () {
-          matchpointModals.genericConfirmation(null, "Friend request sent!", "Success", "OK", true);
         });
       };
       
@@ -65,7 +61,7 @@ friendsModule.controller('FriendsListController',
     }]);
 
 friendsModule.controller('InviteFriendModalController',
-    ['$scope', '$modalInstance', 'resources', function ($scope, $modalInstance, resources) {
+    ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
       var ctrl = this;
       $scope.data = {};
       
@@ -73,6 +69,7 @@ friendsModule.controller('InviteFriendModalController',
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
             .then(function () {
               $modalInstance.dismiss('cancel');
+              matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
             })
       };
       
@@ -80,16 +77,15 @@ friendsModule.controller('InviteFriendModalController',
     }]);
 
 friendsModule.controller('AddFriendModalController',
-    ['$scope', '$modalInstance', 'resources', function ($scope, $modalInstance, resources) {
+    ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
       var ctrl = this;
       $scope.data = {};
 
       ctrl.addFriend = function () {
         resources.one('users/add_friend/' + $scope.data.friendFinder).customPOST()
-            .then(function (res, err) {
-              console.log(res);
-              console.log(err);
+            .then(function () {
               $modalInstance.dismiss('cancel');
+              matchpointModals.genericConfirmation(null, "Friend request sent!", "Success", "OK", true);
             });
       };
 
