@@ -18,17 +18,18 @@ class UsersController < RestfulController
     friend_finder = params[:friend_finder]
 
     # `friend_finder` will be either the friend's email or friend code
-    user = User.find_by(email: friend_finder.downcase)
-    user = User.find_by(invite_code: friend_finder.upcase) if user.nil?
+    friend = User.find_by(email: friend_finder.downcase)
+    friend = User.find_by(invite_code: friend_finder.upcase) if friend.nil?
 
-    if user.nil?
+    if friend.nil?
       render json: {error: { detail: "Unable to find a user by that invite code or email" }},
              status: :not_found
     else
-      existing = Friendship.friendship_for_friend(user.id, current_user.id)
+      existing = Friendship.friendship_for_friend(friend.id, current_user.id)
 
       if existing.nil?
-        Friendship.create!(user_id: current_user.id, friend_id: user.id)
+        Friendship.create!(user_id: current_user.id, friend_id: friend.id)
+        FriendRequestMailer.request_received(friend, current_user).deliver_later
         render nothing: true, status: :ok
       else
         # Friendship already exists

@@ -54,6 +54,7 @@ Rails.application.configure do
 
   # To allow root/admin users to sign up without an invite:
   ENV['ROOT_INVITE_CODE'] = 'BOGUS'
+  ENV['EXTERNAL_URL'] = 'http://localhost:3000'
 
   # For devise
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
