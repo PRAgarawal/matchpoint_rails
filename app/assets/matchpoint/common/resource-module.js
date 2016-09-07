@@ -56,8 +56,8 @@ resourceModule.factory('resources', ['$rootScope', '$http', '$location', '$route
         }
       } else {
         var serverErrorMsg, clientErrorMsg;
-        if (typeof response.data == 'object' && response.data.custom_error) {
-          serverErrorMsg = response.data.custom_error;
+        if (typeof response.data == 'object' && response.data.error) {
+          serverErrorMsg = response.data.error.detail;
         }
         if (response.status == 401) {
           clientErrorMsg = "You have been signed out.  Please sign back in to continue.";

@@ -40,6 +40,11 @@ class UsersController < RestfulController
   def invite_friend
     authorize User, :invite_friend?
     email = params[:email]
+    if email.match(VALID_EMAIL_REGEX).nil?
+      render json: {error: { detail: "Invalid email address." }},
+             status: :bad_request
+      return
+    end
     new_user = User.new(email: email)
     new_user.invite!(current_user)
     render nothing: true, status: :ok
