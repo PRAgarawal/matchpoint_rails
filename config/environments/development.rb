@@ -52,6 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # To allow root/admin users to sign up without an invite:
+  ENV['ROOT_INVITE_CODE'] = 'BOGUS'
+
   # For devise
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
   config.action_mailer.asset_host = 'http://localhost:3000'

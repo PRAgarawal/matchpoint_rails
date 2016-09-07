@@ -16,9 +16,12 @@ class User < ApplicationRecord
       {with: VALID_EMAIL_REGEX,
        message: "check email format"}, length: {maximum: 255}
   validates :skill, presence: true, inclusion: {in: 2..14}
+  validates :invited_by_id, presence: true, if: :is_not_root_user?
 
   before_create :create_invite_code
+  after_create :create_friendship
   after_invitation_accepted :create_friendship
+  before_validation :set_invited_by_id
 
   has_many :messages
   has_many :match_users
@@ -73,11 +76,19 @@ class User < ApplicationRecord
   end
 
   def create_friendship
-    if self.invited_by_code.present?
-      user = User.find_by(invite_code: self.invited_by_code)
-      Friendship.create!(friend_id: self.id, user_id: user.id, is_confirmed: true)
-    elsif self.invited_by_id.present?
+    if Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
       Friendship.create!(friend_id: self.id, user_id: self.invited_by_id, is_confirmed: true)
     end
+  end
+
+  def set_invited_by_id
+    if self.invited_by_id.nil?
+      inviter = User.find_by(invite_code: self.invited_by_code)
+      self.invited_by_id = inviter.try(:id)
+    end
+  end
+
+  def is_not_root_user?
+    return self.invited_by_code != ENV['ROOT_INVITE_CODE']
   end
 end

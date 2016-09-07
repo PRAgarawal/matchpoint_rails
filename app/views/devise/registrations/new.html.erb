@@ -4,8 +4,13 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :invited_by_code %><br />
+    <%= f.text_field :invited_by_code, autofocus: true, value: nil %>
+  </div>
+
+  <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+    <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
@@ -17,6 +22,25 @@
     <%= f.label :email %><br />
     <%= f.email_field :email %>
   </div>
+
+  <p><%= f.label :skill %><br />
+    <select name="user[skill]" id="user_skill">
+      <option value="" selected="selected">Please select</option>
+      <option value="2">1.0</option>
+      <option value="3">1.5</option>
+      <option value="4">2.0</option>
+      <option value="5">2.5</option>
+      <option value="6">3.0</option>
+      <option value="7">3.5</option>
+      <option value="8">4.0</option>
+      <option value="9">4.5</option>
+      <option value="10">5.0</option>
+      <option value="11">5.5</option>
+      <option value="12">6.0</option>
+      <option value="13">6.5</option>
+      <option value="14">7.0</option>
+    </select>
+  </p>
 
   <div class="field">
     <%= f.label :password %>
