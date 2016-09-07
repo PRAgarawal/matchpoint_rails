@@ -27,4 +27,4 @@ en:
         user:
           attributes:
             invited_by_id:
-              blank: "code must be specified"
+              blank: "code must be provided from an existing user"

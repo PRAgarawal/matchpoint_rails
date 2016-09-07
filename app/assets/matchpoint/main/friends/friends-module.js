@@ -73,7 +73,7 @@ friendsModule.controller('InviteFriendModalController',
             })
       };
       
-      $scope.cancel = function() { $modalInstance.dismiss('cancel'); }
+      ctrl.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);
 
 friendsModule.controller('AddFriendModalController',
