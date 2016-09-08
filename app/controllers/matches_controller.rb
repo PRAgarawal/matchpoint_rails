@@ -6,7 +6,6 @@ class MatchesController < RestfulController
 
     scope = scope.select('matches.*')
                 .joins(:match_users)
-                .joins(:chats)
                 .group('matches.id')
     sort_order = :asc
 
