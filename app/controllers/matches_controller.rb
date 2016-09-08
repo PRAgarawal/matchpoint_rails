@@ -6,6 +6,7 @@ class MatchesController < RestfulController
 
     scope = scope.select('matches.*')
                 .joins(:match_users)
+                .joins(:chats)
                 .group('matches.id')
     sort_order = :asc
 
@@ -53,6 +54,8 @@ class MatchesController < RestfulController
 
   def render_records(matches)
     render json: matches, include: [
-        :court, users: {only: [:id, :first_name, :last_name, :skill]}]
+        :court,
+        users: {only: [:id, :first_name, :last_name, :skill]}
+    ]
   end
 end

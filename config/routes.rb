@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       delete 'leave/:court_id', to: 'courts#leave', as: 'leave'
     end
   end
+  resources :messages, only: [:index, :create]
 
   match '/asset/*path', to: 'assets#serve_main_asset', via: :get
   match '/main/*path', to: 'assets#serve_main_asset', via: :get

@@ -1,7 +1,7 @@
 class Match < ApplicationRecord
   include UnionScopable
 
-  has_many :match_users
+  has_many :match_users, dependent: :destroy
   has_many :users, through: :match_users
   has_one :chat
   belongs_to :court
@@ -10,7 +10,7 @@ class Match < ApplicationRecord
   validates :court, presence: true
   validate :max_players_not_exceeded
 
-  after_create :create_initial_match_user
+  after_create :create_initial_match_user_and_chat
 
   # All the current user's friends' matches
   scope :from_friends, -> {
@@ -33,7 +33,8 @@ class Match < ApplicationRecord
     return self.users.count < max_players
   end
 
-  def create_initial_match_user
+  def create_initial_match_user_and_chat
+    Chat.create!(match_id: self.id)
     MatchUser.create!(user_id: User.current_user.id, match_id: self.id)
   end
 
