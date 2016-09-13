@@ -8,6 +8,7 @@ matchpoint = angular.module('matchpointApp', [
   'FriendsModule',
   'CourtsModule',
   'MatchesModule',
+  'ChatsModule',
   'matchpointWidgetsModule'
 ]);
 

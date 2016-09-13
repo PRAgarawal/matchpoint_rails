@@ -30,6 +30,11 @@
           Join
         </a>
       </div>
+      <div data-ng-if="matchType == 'my_matches'">
+        <a href="#/chats/{{match.chat.id}}/{{match.id}}" class="messages-btn">
+          Messages
+        </a>
+      </div>
     </div>
   </div>
   <div data-ng-if="matchType == 'requests'">

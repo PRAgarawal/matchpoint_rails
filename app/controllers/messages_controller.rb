@@ -1,6 +1,6 @@
 class MessagesController < RestfulController
   def index_scope(scope)
-    chat = Chat.find_by(match_id: params[:match_id])
+    chat = Chat.find_by(id: params[:chat_id])
     raise Pundit::NotAuthorizedError if !authorize_chat(chat)
     return chat.messages.order(created_at: :desc)
   end

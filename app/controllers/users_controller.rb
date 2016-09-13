@@ -17,12 +17,13 @@ class UsersController < RestfulController
     authorize User, :create_friendship?
     friend_finder = params[:friend_finder]
 
-    # `friend_finder` will be either the friend's email or friend code
+    # `friend_finder` will be either the friend's email, friend code, or ID
     friend = User.find_by(email: friend_finder.downcase)
     friend = User.find_by(invite_code: friend_finder.upcase) if friend.nil?
+    friend = User.find_by(id: friend_finder) if friend.nil?
 
     if friend.nil?
-      render json: {error: { detail: "Unable to find a user by that invite code or email" }},
+      render json: {error: { detail: "Unable to find that user" }},
              status: :not_found
     else
       existing = Friendship.friendship_for_friend(friend.id, current_user.id)
