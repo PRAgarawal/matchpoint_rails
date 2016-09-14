@@ -7,6 +7,6 @@ class Message < ApplicationRecord
   after_create :send_notification_email
 
   def send_notification_email
-    ChatMailer.new_message(self).deliver_later
+    ChatMailer.new_messages(self)
   end
 end
