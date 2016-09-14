@@ -54,8 +54,6 @@ class Match < ApplicationRecord
     end
   end
 
-  private
-
   # This should only really be called on the `from_friends` and `on_courts` scopes
   def self.filter_available_matches(scope)
     return scope.select('matches.*')

@@ -3,18 +3,11 @@ class MatchesController < RestfulController
     get_requests = params[:requests]
     get_my_matches = params[:my_matches]
     get_past_matches = params[:past_matches]
-
-    scope = scope.select('matches.*')
-                .joins(:match_users)
-                .group('matches.id')
     sort_order = :asc
 
     #TODO: These queries may need to be re-examined for performance
     if get_requests == 'true'
-      scope = scope.where('matches.match_date >= CURRENT_DATE')
-                  .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) = 0',
-                          User.current_user.id)
-                  .having('COUNT(match_users.id) < (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)')
+      scope = Match.filter_available_matches(scope)
     elsif get_my_matches == 'true'
       scope = current_user.matches.where('matches.match_date >= CURRENT_DATE')
     elsif get_past_matches == 'true'
