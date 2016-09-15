@@ -65,4 +65,16 @@ class Match < ApplicationRecord
         .having('COUNT(match_users.id) < (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)')
         .order(match_date: :asc)
   end
+
+  def get_player_list
+    players = ''
+    player_count = self.users.count
+
+    self.users.each_with_index do |player, i|
+      players += "#{player.first_name} (#{player.skill/2.round(1)})"
+      players += ', ' if i < player_count - 1
+    end
+
+    return players
+  end
 end

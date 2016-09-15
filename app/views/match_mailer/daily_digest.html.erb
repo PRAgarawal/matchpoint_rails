@@ -1,11 +1,24 @@
-<h4>
-  My matches
-</h4>
+<% if @my_matches.first.present? %>
+  <h4>
+    My matches
+  </h4>
+  <%= render partial: 'match_table', locals: {matches: @my_matches} %>
+<% end %>
 
-<h4>
-  Available matches with my friends
-</h4>
+<% if @friend_matches.first.present? %>
+  <h4>
+    Available matches with my friends
+  </h4>
+  <%= render partial: 'match_table', locals: {matches: @friend_matches} %>
+<% end %>
 
-<h4>
-  Available matches at my courts
-</h4>
+<% if @court_matches.first.present? %>
+  <h4>
+    Available matches at my courts
+  </h4>
+  <%= render partial: 'match_table', locals: {matches: @court_matches} %>
+<% end %>
+
+<br>
+
+<a href="<%= ENV['EXTERNAL_URL'] %>">Launch MatchPoint</a>

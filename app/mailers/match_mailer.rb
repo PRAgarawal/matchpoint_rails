@@ -6,6 +6,8 @@ class MatchMailer < ApplicationMailer
     @court_matches = Match.available_on_courts
     @date = Date.today.strftime('%b %-d, %Y')
 
-    mail(to: user.email, subject: "Your Daily Summary - #{@date}")
+    if @my_matches.first.present? || @friend_matches.first.present? || @court_matches.first.present?
+      mail(to: user.email, subject: "Your Daily Summary - #{@date}")
+    end
   end
 end
