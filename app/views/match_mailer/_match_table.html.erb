@@ -7,10 +7,10 @@
   </tr>
   <% matches.each do |match| %>
     <tr>
-      <td><%= match.match_date.strftime('%a, %b %-d at %-l:%M %p') %></td>
-      <td><%= match.court.name %></td>
-      <td><%= match.is_singles ? 'Singles' : 'Doubles' %></td>
-      <td><%= match.get_player_list %></td>
+      <td style="width: 30%"><%= match.match_date.strftime('%a, %b %-d at %-l:%M %p') %></td>
+      <td style="width: 20%"><%= match.court.name %></td>
+      <td style="width: 15%"><%= match.is_singles ? 'Singles' : 'Doubles' %></td>
+      <td style="width: 35%"><%= match.get_player_list %></td>
     </tr>
   <% end %>
 </table>
