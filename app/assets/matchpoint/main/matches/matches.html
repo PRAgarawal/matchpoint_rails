@@ -16,7 +16,7 @@
       </div>
       <div data-ng-repeat="user in match.users" class="match-date">
         {{user.first_name + " " + user.last_name}}
-        <span class="user-skill">{{user.skill/2}}</span>
+        <span class="user-skill">({{user.skill/2}})</span>
       </div>
       <div data-ng-if="matchType == 'my_matches'">
         <a href="/matches/leave/{{match.id}}" data-ng-click="ctrl.leaveMatch(match)"

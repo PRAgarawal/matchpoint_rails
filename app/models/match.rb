@@ -15,7 +15,7 @@ class Match < ApplicationRecord
   # All the current user's friends' matches
   scope :from_friends, -> {
     joins(:match_users)
-        .where('match_users.user_id IN (?)', User.friends.pluck(:id))
+        .where('match_users.user_id IN (?)', User.friends.pluck(:id).push(User.current_user.id))
         .distinct
   }
   scope :available_from_friends, -> { Match.filter_available_matches(from_friends) }
