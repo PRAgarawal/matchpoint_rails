@@ -26,13 +26,17 @@ courtsModule.controller('CourtsListController',
           'size': 'lg',
           'scope': $scope,
           'resources': resources
-        }).result.then(function () {
-          getCourts();
+        }).result.then(function (reason) {
+          if (reason == 'success') {
+            getCourts();
+          }
         });
       };
 
       ctrl.leaveCourt = function(court) {
-        getCourts();
+        resources.all('courts/leave/' + court.id).customDELETE().then(function () {
+          getCourts();
+        });
       };
 
       getCourts();
@@ -40,9 +44,17 @@ courtsModule.controller('CourtsListController',
 
 courtsModule.controller('JoinCourtModalController',
     ['$scope', '$modalInstance', 'resources', function ($scope, $modalInstance, resources) {
+      var ctrl = this;
+
       resources.all('courts?joined=false').getList().then(function (courts) {
         $scope.courts = courts;
       });
 
-      $scope.cancel = function() { $modalInstance.dismiss('cancel'); }
+      ctrl.joinCourt = function(court) {
+        resources.all('courts/join/' + court.id).customPOST().then(function () {
+          $modalInstance.close('success');
+        });
+      };
+
+      ctrl.cancel = function() { $modalInstance.close('cancel'); }
     }]);

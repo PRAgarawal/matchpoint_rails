@@ -18,8 +18,7 @@
         {{court.postal_address.street}}<br />
         {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
       </div>
-      <a href="/courts/leave/{{court.id}}" data-ng-click="ctrl.leaveCourt(court)"
-         data-method="delete" class="leave-btn">
+      <a href="#/courts" data-ng-click="ctrl.leaveCourt(court)" class="leave-btn">
         Leave
       </a>
     </div>

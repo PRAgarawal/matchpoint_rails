@@ -10,12 +10,11 @@
       {{court.postal_address.street}}<br />
       {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
     </div>
-    <a href="/courts/join/{{court.id}}" data-ng-click="cancel()"
-       data-method="post" class="leave-btn">
+    <a href="#/courts" class="leave-btn" data-ng-click="ctrl.joinCourt(court)">
       Join
     </a>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn-grey" data-ng-click="cancel()">Close</button>
+  <button class="btn-grey" data-ng-click="ctrl.cancel()">Close</button>
 </div>
