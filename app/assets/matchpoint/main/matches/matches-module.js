@@ -25,13 +25,17 @@ var BaseMatchesListController = function ($scope, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
 
-  resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
-    $scope.matches = matches;
-  });
+  ctrl.getMatches = function() {
+    resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
+      $scope.matches = matches;
+    });
+  };
 
   ctrl.goToMatchRequestDetailPage = function(id) {
     resources.location.path('matches/' + id);
   };
+
+  ctrl.getMatches();
 };
 
 matchesModule.controller('MatchRequestsListController',
@@ -42,7 +46,10 @@ matchesModule.controller('MatchRequestsListController',
 
       $scope.pageTitle = 'MATCH REQUESTS';
 
-      ctrl.joinMatch = function (joinedMatch) {
+      ctrl.joinMatch = function (match) {
+        resources.all('matches/join/' + match.id).customPOST().then(function () {
+          ctrl.getMatches();
+        });
       };
     }]);
 
@@ -54,7 +61,10 @@ matchesModule.controller('MyMatchesListController',
 
       $scope.pageTitle = 'MY MATCHES';
 
-      ctrl.leaveMatch = function (leftMatch) {
+      ctrl.leaveMatch = function (match) {
+        resources.all('matches/leave/' + match.id).customDELETE().then(function () {
+          ctrl.getMatches();
+        });
       };
     }]);
 
