@@ -3,10 +3,15 @@ class MatchUser < ApplicationRecord
   belongs_to :user
 
   before_destroy :destroy_match_if_last
+  before_destroy :destroy_chat_user
   after_create :create_chat_user
 
   def destroy_match_if_last
     match.destroy! if match.users.count == 1
+  end
+
+  def destroy_chat_user
+    ChatUser.where(chat_id: match.chat.id, user_id: user.id).destroy_all
   end
   
   def create_chat_user
