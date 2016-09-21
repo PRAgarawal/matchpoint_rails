@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :invited_by_id, presence: true, if: :is_not_root_user?
 
   before_create :create_invite_code
-  after_create :create_friendship
+  after_create :create_friendship, if: :is_not_root_user?
   after_invitation_accepted :create_friendship
   before_validation :set_invited_by_id
 
@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def create_friendship
-    if self.is_not_root_user? && Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
+    if Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
       Friendship.create!(friend_id: self.id, user_id: self.invited_by_id, is_confirmed: true)
     end
   end
