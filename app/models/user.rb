@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def create_friendship
-    if Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
+    if self.is_not_root_user? && Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
       Friendship.create!(friend_id: self.id, user_id: self.invited_by_id, is_confirmed: true)
     end
   end
