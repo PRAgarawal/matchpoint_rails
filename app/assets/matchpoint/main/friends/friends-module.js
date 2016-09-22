@@ -9,6 +9,21 @@ friendsModule.config(['$routeProvider',
     })
   }]);
 
+function openUserInfoModal(user, $modal, $scope, resources) {
+  $modal.open({
+    templateUrl: 'main/friends/user_info_modal.html',
+    controller: 'UserInfoModalController as ctrl',
+    'size': 'lg',
+    'scope': $scope,
+    'resources': resources,
+    'resolve': {
+      'userId': function() {
+        return user.id;
+      }
+    }
+  });
+}
+
 friendsModule.controller('FriendsListController',
     ['$scope', 'resources', '$modal', 'matchpointModals', function ($scope, resources, $modal, matchpointModals) {
       var ctrl = this;
@@ -97,18 +112,18 @@ friendsModule.controller('UserInfoModalController',
       var ctrl = this;
 
       resources.one('users/' + userId).get().then(function (user) {
-        $scope.user = user;
+        $scope.otherUser = user;
       });
 
       ctrl.addFriend = function() {
         resources.one('users/add_friend/' + userId).customPOST().then(function () {
-          $scope.user.friend_status = 'request_sent';
+          $scope.otherUser.friend_status = 'request_sent';
         });
       };
 
       ctrl.acceptFriend = function() {
         resources.one('users/accept_friendship/' + userId).customPUT().then(function () {
-          $scope.user.friend_status = 'friend';
+          $scope.otherUser.friend_status = 'friend';
         });
       };
 

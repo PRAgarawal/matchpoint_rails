@@ -33,5 +33,9 @@ chatsModule.controller('ChatController',
         });
       };
 
+      ctrl.showUserModal = function(user) {
+        openUserInfoModal(user, $modal, $scope, resources);
+      };
+
       getMessages();
     }]);

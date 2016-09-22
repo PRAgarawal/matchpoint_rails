@@ -15,7 +15,7 @@ class MessagesController < RestfulController
 
   def render_records(messages)
     render json: messages, include: [
-        user: {only: [:first_name, :last_name]}]
+        user: {only: [:id, :first_name, :last_name]}]
   end
 
   private
