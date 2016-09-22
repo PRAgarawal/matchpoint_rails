@@ -91,4 +91,16 @@ class User < ApplicationRecord
   def is_not_root_user?
     return self.invited_by_code != ENV['ROOT_INVITE_CODE']
   end
+
+  def friend_status(user = User.current_user)
+    if !user.all_friends.include?(self)
+      return 'no_friendship'
+    elsif user.friends.include?(self)
+      return 'friend'
+    elsif user.incoming_friends.include?(self)
+      return 'request_received'
+    else
+      return 'request_sent'
+    end
+  end
 end

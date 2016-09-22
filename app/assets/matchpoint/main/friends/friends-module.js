@@ -91,3 +91,26 @@ friendsModule.controller('AddFriendModalController',
 
       ctrl.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);
+
+friendsModule.controller('UserInfoModalController',
+    ['$scope', '$modalInstance', 'resources', 'userId', function ($scope, $modalInstance, resources, userId) {
+      var ctrl = this;
+
+      resources.one('users/' + userId).get().then(function (user) {
+        $scope.user = user;
+      });
+
+      ctrl.addFriend = function() {
+        resources.one('users/add_friend/' + userId).customPOST().then(function () {
+          $scope.user.friend_status = 'request_sent';
+        });
+      };
+
+      ctrl.acceptFriend = function() {
+        resources.one('users/accept_friendship/' + userId).customPUT().then(function () {
+          $scope.user.friend_status = 'friend';
+        });
+      };
+
+      ctrl.cancel = function() { $modalInstance.close('cancel'); }
+    }]);

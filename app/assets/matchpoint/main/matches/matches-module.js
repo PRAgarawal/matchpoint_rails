@@ -35,6 +35,17 @@ var BaseMatchesListController = function ($scope, resources, matchType) {
     resources.location.path('matches/' + id);
   };
 
+  ctrl.showUserModal = function(user) {
+    $modal.open({
+      templateUrl: 'main/friends/user_info_modal.html',
+      controller: 'UserInfoModalController as ctrl',
+      'size': 'lg',
+      'scope': $scope,
+      'resources': resources,
+      'userId': user.id
+    });
+  };
+
   ctrl.getMatches();
 };
 

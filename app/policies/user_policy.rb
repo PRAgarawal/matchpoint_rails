@@ -12,7 +12,7 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
   end
 
   def show?
-    user == user_object_to_authorize
+    true
   end
 
   def update?

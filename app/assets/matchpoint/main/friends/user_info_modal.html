@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h3 class="modal-title">Player Profile</h3>
+</div>
+<div class="modal-body">
+  <div class="player-name">
+    {{user.first_name + " " + user.last_name}}
+  </div>
+  <div class="player-skill">
+    Skill level: {{(user.skill/2).toFixed(1)}}
+  </div>
+  <div data-ng-if="user.friend_status == 'friend'" class="friend-status">
+    You and {{user.first_name}} are friends.
+  </div>
+  <div data-ng-if="user.friend_status == 'request_sent'" class="friend-status">
+    Friend request sent!
+  </div>
+  <button data-ng-if="user.friend_status == 'no_friendship'" type="button" class="add-friend-btn" data-ng-click="ctrl.addFriend()">
+    Add friend
+  </button>
+  <div data-ng-if="user.friend_status == 'request_received'">
+    <div>
+      {{user.first_name}} wants to be your friend.
+    </div>
+    <button type="button" class="add-friend-btn" data-ng-click="ctrl.acceptFriend()">
+      Add friend
+    </button>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn-grey" data-ng-click="ctrl.cancel()">Close</button>
+</div>
