@@ -21,7 +21,7 @@ matchesModule.config(['$routeProvider',
     });
   }]);
 
-var BaseMatchesListController = function ($scope, resources, matchType) {
+var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
 
@@ -42,7 +42,11 @@ var BaseMatchesListController = function ($scope, resources, matchType) {
       'size': 'lg',
       'scope': $scope,
       'resources': resources,
-      'userId': user.id
+      'resolve': {
+        'userId': function() {
+          return user.id;
+        }
+      }
     });
   };
 
@@ -50,10 +54,10 @@ var BaseMatchesListController = function ($scope, resources, matchType) {
 };
 
 matchesModule.controller('MatchRequestsListController',
-    ['$scope', 'resources', function ($scope, resources) {
+    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
       var ctrl = this;
 
-      BaseMatchesListController.call(this, $scope, resources, 'requests');
+      BaseMatchesListController.call(this, $scope, $modal, resources, 'requests');
 
       $scope.pageTitle = 'MATCH REQUESTS';
 
@@ -65,10 +69,10 @@ matchesModule.controller('MatchRequestsListController',
     }]);
 
 matchesModule.controller('MyMatchesListController',
-    ['$scope', 'resources', function ($scope, resources) {
+    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
       var ctrl = this;
 
-      BaseMatchesListController.call(this, $scope, resources, 'my_matches');
+      BaseMatchesListController.call(this, $scope, $modal, resources, 'my_matches');
 
       $scope.pageTitle = 'MY MATCHES';
 
@@ -80,8 +84,8 @@ matchesModule.controller('MyMatchesListController',
     }]);
 
 matchesModule.controller('PastMatchesListController',
-    ['$scope', 'resources', function ($scope, resources) {
-      BaseMatchesListController.call(this, $scope, resources, 'past_matches');
+    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
+      BaseMatchesListController.call(this, $scope, $modal, resources, 'past_matches');
 
       $scope.pageTitle = 'PAST MATCHES';
     }]);
