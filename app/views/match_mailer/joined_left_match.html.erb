@@ -1,0 +1,6 @@
+<p>
+  <%= @user.first_name %> has <%= @joined_left %> your match on <%= @match.match_date.strftime('%b %-d, %Y') %> at <%= @match.court.name%>
+</p>
+<p>
+  <a href="<%= ENV['EXTERNAL_URL'] %>/#/my_matches">View your matches here</a>
+</p>
