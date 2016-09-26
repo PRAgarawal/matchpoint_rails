@@ -59,18 +59,24 @@ friendsModule.controller('FriendsListController',
         });
       };
       
-      ctrl.removeFriend = function(friendId) {
+      ctrl.removeFriend = function(friend, isRequest) {
         matchpointModals.genericConfirmation(function() {
-          resources.one('users/destroy_friendship/' + friendId).customDELETE()
+          resources.one('users/destroy_friendship/' + friend.id).customDELETE()
               .then(function () {
+                if (isRequest) {
+                  mixPanelEvts.friendRequestReject(friend);
+                } else {
+                  mixPanelEvts.friendRemove(friend);
+                }
                 getFriendsAndRequests();
               });
         }, "remove this friend", "Confirm", "Yes");
       };
 
-      ctrl.acceptRequest = function(friendId) {
-        resources.one('users/accept_friendship/' + friendId).customPUT()
+      ctrl.acceptRequest = function(friend) {
+        resources.one('users/accept_friendship/' + friend.id).customPUT()
             .then(function () {
+              mixPanelEvts.friendRequestAccept(friend);
               getFriendsAndRequests();
             });
       };
@@ -84,6 +90,7 @@ friendsModule.controller('InviteFriendModalController',
       ctrl.inviteFriend = function () {
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
             .then(function () {
+              mixPanelEvts.inviteFriend(scope.data.email);
               $modalInstance.dismiss('cancel');
               matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
             })
@@ -100,6 +107,7 @@ friendsModule.controller('AddFriendModalController',
       ctrl.addFriend = function () {
         resources.one('users/add_friend/' + $scope.data.friendFinder).customPOST()
             .then(function () {
+              mixPanelEvts.addFriend($scope.data.friendFinder);
               $modalInstance.dismiss('cancel');
               matchpointModals.genericConfirmation(null, "Friend request sent!", "Success", "OK", true);
             });
@@ -124,7 +132,16 @@ friendsModule.controller('UserInfoModalController',
 
       ctrl.acceptFriend = function() {
         resources.one('users/accept_friendship/' + userId).customPUT().then(function () {
+          mixPanelEvts.friendRequestAccept($scope.otherUser);
           $scope.otherUser.friend_status = 'friend';
+        });
+      };
+
+      //TODO: Implement reject friend button
+      ctrl.rejectFriend = function() {
+        resources.one('users/accept_friendship/' + userId).customPUT().then(function () {
+          mixPanelEvts.friendRequestReject($scope.otherUser);
+          $scope.otherUser.friend_status = 'no_friendship';
         });
       };
 

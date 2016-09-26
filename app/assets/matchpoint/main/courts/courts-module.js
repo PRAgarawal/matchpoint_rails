@@ -36,6 +36,7 @@ courtsModule.controller('CourtsListController',
 
       ctrl.leaveCourt = function(court) {
         resources.all('courts/leave/' + court.id).customDELETE().then(function () {
+          mixPanelEvts.leaveCourt(court);
           getCourts();
         });
       };
@@ -53,6 +54,7 @@ courtsModule.controller('JoinCourtModalController',
 
       ctrl.joinCourt = function(court) {
         resources.all('courts/join/' + court.id).customPOST().then(function () {
+          mixPanelEvts.joinCourt(court);
           $modalInstance.close('success');
         });
       };

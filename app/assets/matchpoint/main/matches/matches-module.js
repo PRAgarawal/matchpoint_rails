@@ -53,6 +53,7 @@ matchesModule.controller('MatchRequestsListController',
 
       ctrl.joinMatch = function (match) {
         resources.all('matches/join/' + match.id).customPOST().then(function () {
+          mixPanelEvts.joinMatch(match);
           ctrl.getMatches();
         });
       };
@@ -69,6 +70,7 @@ matchesModule.controller('MyMatchesListController',
 
       ctrl.leaveMatch = function (match) {
         resources.all('matches/leave/' + match.id).customDELETE().then(function () {
+          mixPanelEvts.leaveMatch(match);
           ctrl.getMatches();
         });
       };
@@ -96,7 +98,9 @@ matchesModule.controller('NewMatchRequestsController',
         $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
         resources.success_message(
             resources.all('matches').post($scope.match), "Match created")
-            .then(function () {
+            .then(function (match) {
+              mixPanelEvts.createMatch(match);
+              mixPanelEvts.joinMatch(match);
               resources.location.path('/my_matches');
               return false;
             });

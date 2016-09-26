@@ -48,3 +48,9 @@ String.prototype.titleize = function () {
 
   return titleString.trim();
 };
+
+var EMAIL_REGEXP = /\S+@\S+\.\S+/i;
+
+String.prototype.is_email = function() {
+  return this.match(EMAIL_REGEXP) !== null;
+};

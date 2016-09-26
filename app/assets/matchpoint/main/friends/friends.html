@@ -23,7 +23,7 @@
     <div class="friend-skill">
       {{(friend.skill / 2).toFixed(1)}}
     </div>
-    <div class="friend-remove" data-ng-click="ctrl.removeFriend(friend.id)">
+    <div class="friend-remove" data-ng-click="ctrl.removeFriend(friend, false)">
       Remove Friend
     </div>
   </div>
@@ -38,10 +38,10 @@
       <div class="request-skill">
         {{(friend.skill / 2).toFixed(1)}}
       </div>
-      <div class="request-accept" data-ng-click="ctrl.acceptRequest(friend.id)">
+      <div class="request-accept" data-ng-click="ctrl.acceptRequest(friend)">
         Accept
       </div>
-      <div class="request-remove" data-ng-click="ctrl.removeFriend(friend.id)">
+      <div class="request-remove" data-ng-click="ctrl.removeFriend(friend, true)">
         Decline
       </div>
     </div>
