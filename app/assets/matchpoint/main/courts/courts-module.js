@@ -11,6 +11,7 @@ courtsModule.config(['$routeProvider',
 
 courtsModule.controller('CourtsListController',
     ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
+      mixpanel.track("Navigate 'Courts'");
       var ctrl = this;
       
       function getCourts() {

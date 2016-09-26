@@ -75,6 +75,8 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
 
+  ENV['MIXPANEL_KEY'] = '193a285a569c812e4938b7c38a9357da'
+
   # Limit size of log file, and limit number of log files to one
   # TODO: Figure this shizz out for rails 5.0
   # config.logger = Logger.new(config.paths['log'].first, 1, 1.megabytes)

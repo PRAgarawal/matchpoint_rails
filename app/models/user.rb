@@ -103,4 +103,8 @@ class User < ApplicationRecord
       return 'request_sent'
     end
   end
+
+  def ui_skill
+    return (self.skill.to_i/2.0).round(1)
+  end
 end

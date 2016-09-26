@@ -4,10 +4,32 @@
   <%= stylesheet_link_tag "application", :media => 'all' %>
 <% end %>
 
-<div ng-init="user = <%= current_user.to_json %>">
+<div data-ng-init="user = <%= current_user.to_json %>">
 </div>
 
 <ng-include src="'main/index/index.html'"></ng-include>
+
+<% if current_user.sign_in_count == 1 %>
+  <script>
+    mixpanel.alias("<%= current_user.email %>");
+    mixpanel.people.set({
+      '$first_name':        '<%= current_user.first_name %>',
+      '$last_name':         '<%= current_user.last_name %>',
+      '$email':             '<%= current_user.email %>',
+      'Skill':              '<%= current_user.ui_skill %>',
+      'New Friends Invited': 0,
+      'Friends Invited':     0
+    });
+  </script>
+<% end %>
+<script>
+  mixpanel.identify("<%= current_user.email %>");
+  mixpanel.register({email: "<%= current_user.email %>"});
+<% if current_user.sign_in_count == 1 %>
+  mixpanel.track("Sign up successful");
+<% end %>
+  mixpanel.track("Login successful");
+</script>
 
 <% content_for :javascript do %>
   <%= javascript_include_tag "main_app" %>

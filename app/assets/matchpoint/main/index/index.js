@@ -39,3 +39,7 @@ matchpoint.config(['$provide', function ($provide) {
     return $delegate;
   });
 }]);
+
+function trackSendFeedback() {
+  mixpanel.track("Navigate 'Send Feedback'");
+}

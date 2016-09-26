@@ -72,7 +72,7 @@ class Match < ApplicationRecord
     player_count = self.users.count
 
     self.users.each_with_index do |player, i|
-      players += "#{player.first_name} (#{(player.skill.to_i/2.0).round(1)})"
+      players += "#{player.first_name} (#{player.ui_skill})"
       players += ', ' if i < player_count - 1
     end
 
