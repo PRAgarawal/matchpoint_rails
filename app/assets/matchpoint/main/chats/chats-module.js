@@ -16,6 +16,7 @@ chatsModule.controller('ChatController',
       $scope.message = {chat_id: chatId};
 
       resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
+        mixPanelEvts.matchChatView(match);
         $scope.match = match;
       });
 
@@ -29,6 +30,7 @@ chatsModule.controller('ChatController',
         var message = angular.copy($scope.message);
         $scope.message = {chat_id: chatId};
         resources.all('messages').post(message).then(function () {
+          mixPanelEvts.matchMessageSend($scope.match);
           getMessages();
         });
       };

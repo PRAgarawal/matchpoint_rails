@@ -84,7 +84,10 @@ var mixPanelEvts = {
   },
 
   // --------- MESSAGE EVENTS ---------
-  matchMessage: function(match) {
-    mixpanel.track("Match message sent", mixPanelMatchInfo(match));
+  matchMessageSend: function(match) {
+    mixpanel.track("Match chat message send", mixPanelMatchInfo(match));
+  },
+  matchChatView: function(match) {
+    mixpanel.track("Match chat view", mixPanelMatchInfo(match));
   }
 };
