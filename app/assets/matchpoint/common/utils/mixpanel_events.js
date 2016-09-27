@@ -20,11 +20,13 @@ var mixPanelEvts = {
     var friend = {};
     if (typeof friendFinder === 'object') {
       friend['email'] = friendFinder.email;
-      friend['db_id'] = friendFinder.id;
+      friend['method'] = 'user_profile';
     } else if (friendFinder.is_email()) {
       friend['email'] = friendFinder;
+      friend['method'] = 'friends_page_email';
     } else {
       friend['code'] = friendFinder;
+      friend['method'] = 'friends_page_invite_code';
     }
     mixpanel.track("Friend request send", friend);
     mixpanel.people.increment('friends_invited');
