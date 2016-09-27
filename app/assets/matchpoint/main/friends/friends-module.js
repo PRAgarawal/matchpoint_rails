@@ -90,7 +90,7 @@ friendsModule.controller('InviteFriendModalController',
       ctrl.inviteFriend = function () {
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
             .then(function () {
-              mixPanelEvts.inviteFriend(scope.data.email);
+              mixPanelEvts.inviteFriend($scope.data.email);
               $modalInstance.dismiss('cancel');
               matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
             })
@@ -126,6 +126,7 @@ friendsModule.controller('UserInfoModalController',
 
       ctrl.addFriend = function() {
         resources.one('users/add_friend/' + userId).customPOST().then(function () {
+          mixPanelEvts.addFriend($scope.otherUser);
           $scope.otherUser.friend_status = 'request_sent';
         });
       };

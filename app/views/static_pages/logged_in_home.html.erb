@@ -23,6 +23,7 @@
       'friends':             0
     });
   </script>
+<% current_user.update_attributes!(sign_in_count: 2) %>
 <% end %>
 <script>
   mixpanel.identify("<%= current_user.email %>");

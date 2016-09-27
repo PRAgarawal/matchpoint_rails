@@ -9,20 +9,24 @@ function mixPanelMatchInfo(match) {
   }
 }
 
-function mixPanelIsMatchFull(match) {
-  return (match.is_singles && match.users.length == 2) || (match.users.length == 4);
+function mixPanelIsMatchFull(match, beforeLeave) {
+  var userCount = beforeLeave ? match.users.length : match.users.length + 1;
+  return (match.is_singles &&userCount == 2) || (userCount == 4);
 }
 
 var mixPanelEvts = {
   // --------- FRIEND EVENTS ---------
   addFriend: function(friendFinder) {
     var friend = {};
-    if (friendFinder.is_email()) {
+    if (typeof friendFinder === 'object') {
+      friend['email'] = friendFinder.email;
+      friend['db_id'] = friendFinder.id;
+    } else if (friendFinder.is_email()) {
       friend['email'] = friendFinder;
     } else {
       friend['code'] = friendFinder;
     }
-    mixpanel.track("Friend invite", friend);
+    mixpanel.track("Friend request send", friend);
     mixpanel.people.increment('friends_invited');
   },
   inviteFriend: function(friendEmail) {
@@ -51,14 +55,14 @@ var mixPanelEvts = {
   joinCourt: function(court) {
     mixpanel.track("Court player join", {
       'court_id': court.id,
-      'name':     court.name
+      'court_name':     court.name
     });
     mixpanel.people.increment('courts');
   },
   leaveCourt: function(court) {
     mixpanel.track("Court player leave", {
       'court_id': court.id,
-      'name':     court.name
+      'court_name':     court.name
     });
     mixpanel.people.increment('courts', -1);
   },
@@ -78,7 +82,7 @@ var mixPanelEvts = {
     mixpanel.track("Match player leave", mixPanelMatchInfo(match));
     if (match.users.length == 1) {
       mixpanel.track("Match delete", mixPanelMatchInfo(match));
-    } else if (mixPanelIsMatchFull(match)) {
+    } else if (mixPanelIsMatchFull(match, true)) {
       mixpanel.track("Match full to open", mixPanelMatchInfo(match));
     }
   },
