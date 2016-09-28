@@ -100,7 +100,6 @@ matchesModule.controller('NewMatchRequestsController',
             resources.all('matches').post($scope.match), "Match created")
             .then(function (match) {
               mixPanelEvts.createMatch(match);
-              mixPanelEvts.joinMatch(match);
               resources.location.path('/my_matches');
               return false;
             });

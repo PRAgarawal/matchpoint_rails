@@ -72,6 +72,7 @@ var mixPanelEvts = {
   // --------- MATCH EVENTS ---------
   createMatch: function(match) {
     mixpanel.track("Match create", mixPanelMatchInfo(match));
+    mixpanel.track("Match player join", mixPanelMatchInfo(match));
   },
   joinMatch: function(match) {
     mixpanel.track("Match player join", mixPanelMatchInfo(match));
