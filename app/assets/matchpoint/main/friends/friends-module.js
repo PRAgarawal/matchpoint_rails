@@ -26,7 +26,7 @@ function openUserInfoModal(user, $modal, $scope, resources) {
 
 friendsModule.controller('FriendsListController',
     ['$scope', 'resources', '$modal', 'matchpointModals', function ($scope, resources, $modal, matchpointModals) {
-      mixpanel.track("Navigate 'Friends'");
+      mixPanelEvts.navigateFriends();
       var ctrl = this;
 
       function getFriendsAndRequests() {

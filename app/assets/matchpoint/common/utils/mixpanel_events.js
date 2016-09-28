@@ -6,7 +6,14 @@ function mixPanelMatchInfo(match) {
     'court_id':   match.court.id,
     'date':       match.match_date,
     'visibility': match.is_friends_only ? 'friends only' : 'friends and courts'
-  }
+  };
+}
+
+function mixPanelFriendInfo(friend) {
+  return {
+    'friend_first_name': friend.first_name,
+    'friend_last_name': friend.last_name,
+  };
 }
 
 function mixPanelIsMatchFull(match, beforeLeave) {
@@ -15,17 +22,36 @@ function mixPanelIsMatchFull(match, beforeLeave) {
 }
 
 var mixPanelEvts = {
+  // --------- PAGE NAVIGATION --------
+  navigateFriends: function() {
+    mixpanel.track("Navigate 'Friends'");
+  },
+  navigateMyMatches: function() {
+    mixpanel.track("Navigate 'My Matches'");
+  },
+  navigateMatchRequests: function() {
+    mixpanel.track("Navigate 'Match Requests'");
+  },
+  navigatePastMatches: function() {
+    mixpanel.track("Navigate 'Past Matches'");
+  },
+  navigateCourts: function() {
+    mixpanel.track("Navigate 'Courts'");
+  },
+  navigateSendFeedback: function() {
+    mixpanel.track("Navigate 'Send Feedback'");
+  },
   // --------- FRIEND EVENTS ---------
   addFriend: function(friendFinder) {
     var friend = {};
     if (typeof friendFinder === 'object') {
-      friend['email'] = friendFinder.email;
+      friend['friend'] = friendFinder.email;
       friend['method'] = 'user_profile';
     } else if (friendFinder.is_email()) {
-      friend['email'] = friendFinder;
+      friend['friend'] = friendFinder;
       friend['method'] = 'friends_page_email';
     } else {
-      friend['code'] = friendFinder;
+      friend['friend'] = friendFinder;
       friend['method'] = 'friends_page_invite_code';
     }
     mixpanel.track("Friend request send", friend);
@@ -38,19 +64,13 @@ var mixPanelEvts = {
     mixpanel.people.increment('new_friends_invited');
   },
   friendRequestAccept: function(friend) {
-    mixpanel.track("Friend request accept", {
-      'friend': friend.email
-    });
+    mixpanel.track("Friend request accept", mixPanelFriendInfo(friend));
   },
   friendRequestReject: function(friend) {
-    mixpanel.track("Friend request reject", {
-      'friend': friend.email
-    });
+    mixpanel.track("Friend request reject", mixPanelFriendInfo(friend));
   },
   friendRemove: function(friend) {
-    mixpanel.track("Friend remove", {
-      'friend': friend.email
-    });
+    mixpanel.track("Friend remove", mixPanelFriendInfo(friend));
   },
 
   // --------- COURT EVENTS ---------

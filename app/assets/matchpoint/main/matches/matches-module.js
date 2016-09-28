@@ -44,7 +44,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 
 matchesModule.controller('MatchRequestsListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
-      mixpanel.track("Navigate 'Match Requests'");
+      mixPanelEvts.navigateMatchRequests();
       var ctrl = this;
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'requests');
@@ -61,7 +61,7 @@ matchesModule.controller('MatchRequestsListController',
 
 matchesModule.controller('MyMatchesListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
-      mixpanel.track("Navigate 'My Matches'");
+      mixPanelEvts.navigateMyMatches()
       var ctrl = this;
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'my_matches');
@@ -78,7 +78,7 @@ matchesModule.controller('MyMatchesListController',
 
 matchesModule.controller('PastMatchesListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
-      mixpanel.track("Navigate 'Past Matches'");
+      mixPanelEvts.navigatePastMatches();
       BaseMatchesListController.call(this, $scope, $modal, resources, 'past_matches');
 
       $scope.pageTitle = 'PAST MATCHES';
