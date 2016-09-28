@@ -56,15 +56,15 @@ var mixPanelEvts = {
   // --------- COURT EVENTS ---------
   joinCourt: function(court) {
     mixpanel.track("Court player join", {
-      'court_id': court.id,
-      'court_name':     court.name
+      'court_id':   court.id,
+      'court_name': court.name
     });
     mixpanel.people.increment('courts');
   },
   leaveCourt: function(court) {
     mixpanel.track("Court player leave", {
-      'court_id': court.id,
-      'court_name':     court.name
+      'court_id':   court.id,
+      'court_name': court.name
     });
     mixpanel.people.increment('courts', -1);
   },

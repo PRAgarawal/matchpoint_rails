@@ -23,13 +23,13 @@
       'friends':             0
     });
   </script>
-<% current_user.update_attributes!(sign_in_count: 2) %>
 <% end %>
 <script>
   mixpanel.identify("<%= current_user.email %>");
   mixpanel.register({email: "<%= current_user.email %>"});
 <% if current_user.sign_in_count == 1 %>
   mixpanel.track("Sign up successful");
+<% current_user.update_attributes!(sign_in_count: 2) %>
 <% end %>
   mixpanel.track("Login successful");
 </script>
