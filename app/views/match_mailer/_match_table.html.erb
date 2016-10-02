@@ -1,16 +1,18 @@
-<table style="width:80%">
+<table style="border-collapse:collapse;width:100%">
+  <tbody>
   <tr>
-    <th align="left">Date</th>
-    <th align="left">Location</th>
-    <th align="left">Type</th>
-    <th align="left">Players</th>
+    <th style="padding:8px;text-align:left;border-bottom:1px solid #ddd">Date</th>
+    <th style="padding:8px;text-align:left;border-bottom:1px solid #ddd">Location</th>
+    <th style="padding:8px;text-align:left;border-bottom:1px solid #ddd">Type</th>
+    <th style="padding:8px;text-align:left;border-bottom:1px solid #ddd">Players</th>
   </tr>
   <% matches.each do |match| %>
     <tr>
-      <td style="width: 30%"><%= match.match_date.strftime('%a, %b %-d at %-l:%M %p') %></td>
-      <td style="width: 20%"><%= match.court.name %></td>
-      <td style="width: 15%"><%= match.is_singles ? 'Singles' : 'Doubles' %></td>
-      <td style="width: 35%"><%= match.get_player_list %></td>
+      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.match_date.strftime('%a, %b %-d at %-l:%M %p') %></td>
+      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.court.name %></td>
+      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.is_singles ? 'Singles' : 'Doubles' %></td>
+      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.get_player_list %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
