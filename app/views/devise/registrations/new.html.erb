@@ -55,9 +55,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <p>
+    By clicking "Sign Up", you agree to our <a href="/privacy_policy.html" target="_blank">privacy policy</a> and <a href="/terms_of_service.html" target="_blank">terms of service</a>.
+  </p>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<a href="/copyright_policy.html" target="_blank">©Match Point Technologies 2016</a>
