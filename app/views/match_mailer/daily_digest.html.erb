@@ -104,7 +104,7 @@
             <td class="alert alert-warning"
                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; color: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 0; background-color: #009933; margin: 0; padding: 20px;"
                 align="center" bgcolor="#009933" valign="top">
-              Daily Summary - <%= @date %>
+              Daily Summary - <%= @Date.today.strftime('%b %-d, %Y') %>
             </td>
           </tr>
           <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">

@@ -4,11 +4,10 @@ class MatchMailer < ApplicationMailer
     @my_matches = user.matches.where('matches.match_date >= CURRENT_DATE')
     @friend_matches = Match.available_from_friends
     @court_matches = Match.available_on_courts
-    @date = Date.today.strftime('%b %-d, %Y')
 
     if @my_matches.first.present? || @friend_matches.first.present? || @court_matches.first.present?
       @first_name = user.first_name
-      mail(to: user.email, subject: "Your Daily Summary - #{@date}")
+      mail(to: user.email, subject: "Your Daily Summary - #{Date.today.strftime('%a %b %-d, %Y')}")
     end
   end
 
@@ -33,6 +32,6 @@ class MatchMailer < ApplicationMailer
     @friend = user
     @to_user_name = to_user.first_name
     @match_type = match.is_singles ? 'singles' : 'doubles'
-    mail(to: to_user.email, subject: "#{user.first_name} has #{joined_left} your #{@match_type} match on #{match.match_date.strftime('%b %-d, %Y')}")
+    mail(to: to_user.email, subject: "Update to your Singles match on #{match.match_date.strftime('%a, %b %-d at %-l:%M %p')}")
   end
 end

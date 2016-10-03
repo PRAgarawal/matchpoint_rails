@@ -15,6 +15,6 @@ class ChatMailer < ApplicationMailer
     @text = message.body
     @url_ext = chat.id.to_s + '/' + match.id.to_s
 
-    mail(to: recipient.email, subject: "New message from #{@user_name} about your match")
+    mail(to: recipient.email, subject: "Update to your Singles match on #{match.match_date.strftime('%a, %b %-d at %-l:%M %p')}")
   end
 end

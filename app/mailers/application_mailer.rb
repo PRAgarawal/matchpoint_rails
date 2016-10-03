@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'DO-NOT-REPLY@matchpoint.us'
+  default from: '"Match Point" <postmaster@mail.matchpoint.us>'
   layout 'mailer'
 end
