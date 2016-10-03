@@ -62,9 +62,10 @@ resourceModule.factory('resources', ['$rootScope', '$http', '$location', '$route
         if (response.status == 401) {
           clientErrorMsg = "You have been signed out.  Please sign back in to continue.";
         } else if (response.status == 404) {
-          $rootScope.notFoundMessage = serverErrorMsg ? serverErrorMsg :
-              "We could not find the page you were looking for, perhaps an administrator deleted it.";
-          return;
+          if (!serverErrorMsg) {
+            $rootScope.notFoundMessage = "We could not find the page you were looking for, perhaps an administrator deleted it.";
+            return;
+          }
         } else if (response.status == 403) {
           clientErrorMsg = "You do not have access privileges.  Please contact your administrator.";
         } else {
