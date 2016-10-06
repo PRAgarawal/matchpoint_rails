@@ -9,9 +9,9 @@ class MatchesController < RestfulController
     if get_requests == 'true'
       scope = Match.filter_available_matches(scope)
     elsif get_my_matches == 'true'
-      scope = current_user.matches.where('matches.match_date >= CURRENT_DATE')
+      scope = current_user.matches.where('matches.match_date >= ?', Date.today)
     elsif get_past_matches == 'true'
-      scope = current_user.matches.where('matches.match_date < CURRENT_DATE')
+      scope = current_user.matches.where('matches.match_date < ?', Date.today)
       sort_order = :desc
     end
 
