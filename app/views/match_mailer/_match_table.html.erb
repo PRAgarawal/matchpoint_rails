@@ -9,7 +9,7 @@
   <% matches.each do |match| %>
     <tr>
       <!--TODO: Make this use the user's local time zone rather than hardcoding to central-->
-      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.match_date.in_time_zone('America/Chicago').strftime('%a, %b %-d at %-l:%M %p') %></td>
+      <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.formatted_match_date %></td>
       <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.court.name %></td>
       <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.is_singles ? 'Singles' : 'Doubles' %></td>
       <td style="padding:8px;text-align:left;border-bottom:1px solid #ddd"><%= match.get_player_list %></td>

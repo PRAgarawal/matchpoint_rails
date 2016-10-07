@@ -10,7 +10,7 @@ class ChatMailer < ApplicationMailer
     match = chat.match
     @sender_name = message.user.first_name
     @recipient_name = recipient.first_name
-    @match_time = match.match_date.strftime('%-l:%M %p %a, %-m/%-d')
+    @match_time = match.formatted_match_date
     @match_type = match.is_singles ? 'Singles' : 'Doubles'
     @text = message.body
     @url_ext = chat.id.to_s + '/' + match.id.to_s
