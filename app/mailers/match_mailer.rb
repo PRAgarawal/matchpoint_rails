@@ -1,11 +1,11 @@
 class MatchMailer < ApplicationMailer
   def daily_digest(user)
     User.current_user = user
-    @my_matches = user.matches.where('matches.match_date >= ?', Date.today).order(match_date: :asc)
-    @friend_matches = Match.available_from_friends
-    @court_matches = Match.available_on_courts
+    @my_matches = user.matches.where('matches.match_date >= ?', Date.today).order(match_date: :asc).to_a
+    @friend_matches = Match.available_from_friends.to_a
+    @court_matches = Match.available_on_courts.where('matches.id NOT IN (?)', @friend_matches.pluck(:id)).to_a
 
-    if @my_matches.first.present? || @friend_matches.first.present? || @court_matches.first.present?
+    if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
       @first_name = user.first_name
       mail(to: user.email, subject: "Your Daily Summary - #{Date.today.strftime('%a %b %-d, %Y')}")
     end
