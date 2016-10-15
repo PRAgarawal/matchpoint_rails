@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :invited_by_id, presence: true, if: :is_not_root_user?
 
   before_create :create_invite_code
-  after_create :create_friendship, if: :is_not_root_user?
+  after_create :create_friendship, if: :is_friend_code_signup?
   after_invitation_accepted :create_friendship
   before_validation :set_invited_by_id
 
@@ -90,6 +90,10 @@ class User < ApplicationRecord
 
   def is_not_root_user?
     return self.invited_by_code != ENV['ROOT_INVITE_CODE']
+  end
+
+  def is_friend_code_signup?
+    return is_not_root_user? && self.invited_by_id.nil?
   end
 
   def friend_status(user = User.current_user)
