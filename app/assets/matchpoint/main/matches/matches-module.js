@@ -96,7 +96,6 @@ matchesModule.controller('NewMatchRequestsController',
 
       ctrl.createMatch = function() {
         $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
-        $scope.match.is_friends_only = false;
         resources.success_message(
             resources.all('matches').post($scope.match), "Match created")
             .then(function (match) {
