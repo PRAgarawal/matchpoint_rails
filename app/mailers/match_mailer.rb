@@ -1,7 +1,7 @@
 class MatchMailer < ApplicationMailer
   def daily_digest(user)
     User.current_user = user
-    @my_matches = user.matches.where('matches.match_date >= ?', Date.today).order(match_date: :asc).to_a
+    @my_matches = user.matches.where('matches.match_date.in_time_zone('America/Chicago') >= ?', Time.now.in_time_zone('America/Chicago').to_date).order(match_date: :asc).to_a
     @friend_matches = Match.available_from_friends.to_a
     @court_matches = Match.available_on_courts.where('matches.id NOT IN (?)', @friend_matches.pluck(:id)).to_a
 
