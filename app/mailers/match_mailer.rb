@@ -1,5 +1,6 @@
 class MatchMailer < ApplicationMailer
   include DateHelper
+
   def daily_digest(user)
     User.current_user = user
     @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff).order(match_date: :asc).to_a
