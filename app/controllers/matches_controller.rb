@@ -1,4 +1,6 @@
 class MatchesController < RestfulController
+  include DateHelper
+
   def index_scope(scope)
     get_requests = params[:requests]
     get_my_matches = params[:my_matches]
@@ -9,9 +11,9 @@ class MatchesController < RestfulController
     if get_requests == 'true'
       scope = Match.filter_available_matches(scope)
     elsif get_my_matches == 'true'
-      scope = current_user.matches.where('matches.match_date >= ?', Date.today)
+      scope = current_user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff)
     elsif get_past_matches == 'true'
-      scope = current_user.matches.where('matches.match_date < ?', Date.today)
+      scope = current_user.matches.where('matches.match_date < ?', DateHelper.today_cutoff)
       sort_order = :desc
     end
 
