@@ -8,7 +8,7 @@ class MatchMailer < ApplicationMailer
     if @friend_matches.count > 0
       @court_matches = Match.available_on_courts.where('matches.id NOT IN (?)', @friend_matches.pluck(:id)).to_a
     else
-      @court_matches = Match.available_on_courts
+      @court_matches = Match.available_on_courts.to_a
     end
 
     if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
