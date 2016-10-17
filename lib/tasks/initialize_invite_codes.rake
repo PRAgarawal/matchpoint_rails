@@ -1,4 +1,4 @@
-desc 'Set a unique, random friend code for all existing users'
+desc 'Set a unique, random invite code for all existing users'
 task :initialize_invite_codes => :environment do
   User.all.each do |user|
     # Random, 5-character, alphanumeric string
