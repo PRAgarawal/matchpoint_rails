@@ -94,11 +94,13 @@ var mixPanelEvts = {
     mixpanel.track("Match create", mixPanelMatchInfo(match));
     mixpanel.track("Match player join", mixPanelMatchInfo(match));
   },
-  joinMatch: function(match) {
-    mixpanel.track("Match player join", mixPanelMatchInfo(match));
+  joinMatch: function(match, joinMethod) {
+    var matchData = mixPanelMatchInfo(match);
+    matchData['join_method'] = joinMethod || 'from website';
+    mixpanel.track("Match player join", matchData);
     // Notify match is full depending on whether this is a singles or doubles match
     if (mixPanelIsMatchFull(match)) {
-      mixpanel.track("Match full", mixPanelMatchInfo(match));
+      mixpanel.track("Match full", matchData);
     }
   },
   leaveMatch: function(match) {

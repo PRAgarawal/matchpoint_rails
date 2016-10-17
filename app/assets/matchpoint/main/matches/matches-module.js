@@ -21,6 +21,21 @@ matchesModule.config(['$routeProvider',
     });
   }]);
 
+function openMatchJoinedModal($scope, resources, $modal, match) {
+  $modal.open({
+    templateUrl: 'main/matches/match_joined_modal.html',
+    controller: 'MatchJoinedModalController as ctrl',
+    'size': 'lg',
+    'scope': $scope,
+    'resources': resources,
+    'resolve': {
+      'match': function() {
+        return match;
+      }
+    }
+  });
+}
+
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
@@ -51,12 +66,19 @@ matchesModule.controller('MatchRequestsListController',
 
       $scope.pageTitle = 'MATCH REQUESTS';
 
-      ctrl.joinMatch = function (match) {
+      ctrl.joinMatch = function (match, joinMethod) {
         resources.all('matches/join/' + match.id).customPOST().then(function () {
-          mixPanelEvts.joinMatch(match);
+          mixPanelEvts.joinMatch(match, joinMethod);
+          openMatchJoinedModal($scope, resources, $modal, match);
           ctrl.getMatches();
         });
       };
+
+      if (resources.routeParams.joinMatchId) {
+        resources.one('matches/' + resources.routeParams.joinMatchId).get().then(function (match) {
+          ctrl.joinMatch(match, 'from email');
+        });
+      }
     }]);
 
 matchesModule.controller('MyMatchesListController',
@@ -106,4 +128,16 @@ matchesModule.controller('NewMatchRequestsController',
       };
 
       return ctrl;
+    }]);
+
+matchesModule.controller('MatchJoinedModalController',
+    ['$scope', 'resources', '$modalInstance', 'match', function ($scope, resources, $modalInstance, match) {
+      var ctrl = this;
+
+      $scope.match = match;
+
+      ctrl.cancel = function() {
+        $modalInstance.close('cancel');
+        resources.location.search('joinMatchId', null);
+      }
     }]);
