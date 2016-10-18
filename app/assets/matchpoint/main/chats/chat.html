@@ -1,7 +1,7 @@
 <div class="chats col-md-offset-1 col-md-10">
   <div class="row page-title">
     <div class="msg-match-date">
-      {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}
+      <b>{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}</b>
     </div>
     <div class="msg-match-court">
       {{match.court.name}}
@@ -10,18 +10,23 @@
       {{match.is_singles ? "Singles" : "Doubles"}}
     </div>
     <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
-      {{user.first_name + " " + user.last_name}}
-      <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
+      <i>{{user.first_name + " " + user.last_name}}</i>
+      <span class="user-skill"><i>({{(user.skill/2).toFixed(1)}})</i></span>
     </div>
   </div>
+
+    <p></p>
+    <div>
+        <b>Group Chat:</b>
+    </div>
 
   <div class="row">
     <div data-ng-repeat="message in messages | orderBy: created_at : true" class="message">
       <div class="message-sender" data-ng-click="ctrl.showUserModal(message.user)">
         {{message.user.first_name + ': '}}
-      </div>
-      <div class="message-body">
+      <span class="message-body">
         {{message.body}}
+      </span>
       </div>
     </div>
   </div>
