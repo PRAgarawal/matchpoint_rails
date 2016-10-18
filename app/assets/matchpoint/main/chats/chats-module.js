@@ -39,5 +39,12 @@ chatsModule.controller('ChatController',
         openUserInfoModal(user, $modal, $scope, resources);
       };
 
+      ctrl.leaveMatch = function () {
+        resources.all('matches/leave/' + $scope.match.id).customDELETE().then(function () {
+          mixPanelEvts.leaveMatch($scope.match, 'from_match_detail');
+          resources.location.path('my_matches');
+        });
+      };
+
       getMessages();
     }]);

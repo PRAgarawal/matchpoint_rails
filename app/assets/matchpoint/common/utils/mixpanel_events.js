@@ -96,19 +96,22 @@ var mixPanelEvts = {
   },
   joinMatch: function(match, joinMethod) {
     var matchData = mixPanelMatchInfo(match);
-    matchData['join_method'] = joinMethod || 'from website';
+    matchData['join_method'] = joinMethod || 'from_website';
     mixpanel.track("Match player join", matchData);
     // Notify match is full depending on whether this is a singles or doubles match
     if (mixPanelIsMatchFull(match)) {
       mixpanel.track("Match full", matchData);
     }
   },
-  leaveMatch: function(match) {
-    mixpanel.track("Match player leave", mixPanelMatchInfo(match));
+  leaveMatch: function(match, leaveMethod) {
+    var matchData = mixPanelMatchInfo(match);
+    matchData['leave_method'] = leaveMethod;
+    mixpanel.track("Match player leave", matchData);
+
     if (match.users.length == 1) {
-      mixpanel.track("Match delete", mixPanelMatchInfo(match));
+      mixpanel.track("Match delete", matchData);
     } else if (mixPanelIsMatchFull(match, true)) {
-      mixpanel.track("Match full to open", mixPanelMatchInfo(match));
+      mixpanel.track("Match full to open", matchData);
     }
   },
 

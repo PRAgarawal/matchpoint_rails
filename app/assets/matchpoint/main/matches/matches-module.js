@@ -41,6 +41,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
   $scope.matchType = matchType;
 
   ctrl.getMatches = function() {
+    $scope.matches = [];
     resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
       $scope.matches = matches;
     });
@@ -76,7 +77,7 @@ matchesModule.controller('MatchRequestsListController',
 
       if (resources.routeParams.joinMatchId) {
         resources.one('matches/' + resources.routeParams.joinMatchId).get().then(function (match) {
-          ctrl.joinMatch(match, 'from email');
+          ctrl.joinMatch(match, 'from_email');
         });
       }
     }]);
@@ -92,7 +93,7 @@ matchesModule.controller('MyMatchesListController',
 
       ctrl.leaveMatch = function (match) {
         resources.all('matches/leave/' + match.id).customDELETE().then(function () {
-          mixPanelEvts.leaveMatch(match);
+          mixPanelEvts.leaveMatch(match, 'from_my_matches');
           ctrl.getMatches();
         });
       };
@@ -122,7 +123,7 @@ matchesModule.controller('NewMatchRequestsController',
             resources.all('matches').post($scope.match), "Match created")
             .then(function (match) {
               mixPanelEvts.createMatch(match);
-              resources.location.path('/my_matches');
+              resources.location.path('my_matches');
               return false;
             });
       };
