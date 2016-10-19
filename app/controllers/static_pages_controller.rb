@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
         render template: "static_pages/logged_in_home"
       end
     else
-      redirect_to '/users/sign_up'
+      redirect_to '/users/sign_in'
     end
   end
 
