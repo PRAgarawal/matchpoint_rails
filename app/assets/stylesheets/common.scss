@@ -1,0 +1,33 @@
+@mixin single-btn-page {
+  .single-btn-page {
+    margin-top: 15%;
+    text-align: center;
+
+    .single-btn-text {
+      font-size: 20px;
+    }
+
+    .single-btn {
+      margin-top: 25px;
+    }
+  }
+}
+
+*[data-ng-click], *[ng-click] {
+  cursor: pointer;
+}
+
+.upload-input {
+  display: none;
+}
+
+.center-btn {
+  max-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}

@@ -34,9 +34,9 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
 </head>
 
 <body ng-app='matchpointApp' class="all-background">
-<!--<div data-ng-show="!notFoundMessage">-->
-<%= yield %>
-<!--</div>-->
+<div class="col-md-offset-4 col-md-4">
+  <%= yield %>
+</div>
 <!--<ng-include src="'common/invalid_url/invalid_url.html'"></ng-include>-->
 <!--<div id="progressSpinner" ng-if="outstandingRequests"></div>-->
 

@@ -1,0 +1,36 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap/dist/css/bootstrap";
+// Partials that are used elsewhere
+@import "partials/buttons_and_colors";
+// Pull in rest of files
+@import "common";
+@import '../matchpoint/main/**/*';
+
+// See: http://stackoverflow.com/questions/19323563/heroku-font-assets-not-working
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
+  src: font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+.all-background {
+  background-color: $light-green50;
+}

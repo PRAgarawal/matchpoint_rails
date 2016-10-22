@@ -1,0 +1,728 @@
+/*************************************************************
+  Colors
+*************************************************************/
+$mp-green: #449d44;
+$mp-green-hl: #2E7D32;
+
+$purple: #884d9f;
+$green: #95CF45;
+$sickly-green: #6ab519;
+$dark-green: #3DBE24;
+$dark-green-2: #2d7e1f;
+$red: #ff0b19;
+$dark-blue: #309DB9;
+$orange: #f7a22e;
+$yellow: #e6cf00;
+$background-yellow: #fefce7;
+$white: #ffffff;
+$gray: #808080;
+$background-gray: #f7f7f7;
+$light-gray: #dddddd;
+$med-gray: #cccccc;
+$med-gray-2: #b0b0b0;
+$text-gray: #acacac;
+$edit-gray: #979797;
+$warm-grey: #979797;
+$text-gray-2: #838383;
+$dark-gray-text: #666666;
+$dark-gray: #4a4a4a;
+$black: #000000;
+$light-red: #f4d6d6;
+
+$color_map: (
+        red50: #FFEBEE,
+        red100: #FFCDD2,
+        red200: #EF9A9A,
+        red300: #E57373,
+        red400: #EF5350,
+        red500: #F44336,
+        red600: #E53935,
+        red700: #D32F2F,
+        red800: #C62828,
+        red900: #B71C1C,
+        pink50: #FCE4EC,
+        pink100: #F8BBD0,
+        pink200: #F48FB1,
+        pink300: #F06292,
+        pink400: #EC407A,
+        pink500: #E91E63,
+        pink600: #D81B60,
+        pink700: #C2185B,
+        pink800: #AD1457,
+        pink900: #880E4F,
+        purple50: #F3E5F5,
+        purple100: #E1BEE7,
+        purple200: #CE93D8,
+        purple300: #BA68C8,
+        purple400: #AB47BC,
+        purple500: #9C27B0,
+        purple600: #8E24AA,
+        purple700: #7B1FA2,
+        purple800: #6A1B9A,
+        purple900: #4A148C,
+        deep_purple50: #EDE7F6,
+        deep_purple100: #D1C4E9,
+        deep_purple200: #B39DDB,
+        deep_purple300: #9575CD,
+        deep_purple400: #7E57C2,
+        deep_purple500: #673AB7,
+        deep_purple600: #5E35B1,
+        deep_purple700: #512DA8,
+        deep_purple800: #4527A0,
+        deep_purple900: #311B92,
+        indigo50: #E8EAF6,
+        indigo100: #C5CAE9,
+        indigo200: #9FA8DA,
+        indigo300: #7986CB,
+        indigo400: #5C6BC0,
+        indigo500: #3F51B5,
+        indigo600: #3949AB,
+        indigo700: #303F9F,
+        indigo800: #283593,
+        indigo900: #1A237E,
+        blue50: #E3F2FD,
+        blue100: #BBDEFB,
+        blue200: #90CAF9,
+        blue300: #64B5F6,
+        blue400: #42A5F5,
+        blue500: #2196F3,
+        blue600: #1E88E5,
+        blue700: #1976D2,
+        blue800: #1565C0,
+        blue900: #0D47A1,
+        light_blue50: #E1F5FE,
+        light_blue100: #B3E5FC,
+        light_blue200: #81D4FA,
+        light_blue300: #4FC3F7,
+        light_blue400: #29B6F6,
+        light_blue500: #03A9F4,
+        light_blue600: #039BE5,
+        light_blue700: #0288D1,
+        light_blue800: #0277BD,
+        light_blue900: #01579B,
+        cyan50: #E0F7FA,
+        cyan100: #B2EBF2,
+        cyan200: #80DEEA,
+        cyan300: #4DD0E1,
+        cyan400: #26C6DA,
+        cyan500: #00BCD4,
+        cyan600: #00ACC1,
+        cyan700: #0097A7,
+        cyan800: #00838F,
+        cyan900: #006064,
+        teal50: #E0F2F1,
+        teal100: #B2DFDB,
+        teal200: #80CBC4,
+        teal300: #4DB6AC,
+        teal400: #26A69A,
+        teal500: #009688,
+        teal600: #00897B,
+        teal700: #00796B,
+        teal800: #00695C,
+        teal900: #004D40,
+        green50: #E8F5E9,
+        green100: #C8E6C9,
+        green200: #A5D6A7,
+        green300: #81C784,
+        green400: #66BB6A,
+        green500: #4CAF50,
+        green600: #43A047,
+        green700: #388E3C,
+        green800: #2E7D32,
+        green900: #1B5E20,
+        light_green50: #F1F8E9,
+        light_green100: #DCEDC8,
+        light_green200: #C5E1A5,
+        light_green300: #AED581,
+        light_green400: #9CCC65,
+        light_green500: #8BC34A,
+        light_green600: #7CB342,
+        light_green700: #689F38,
+        light_green800: #558B2F,
+        light_green900: #33691E,
+        lime50: #F9FBE7,
+        lime100: #F0F4C3,
+        lime200: #E6EE9C,
+        lime300: #DCE775,
+        lime400: #D4E157,
+        lime500: #CDDC39,
+        lime600: #C0CA33,
+        lime700: #AFB42B,
+        lime800: #9E9D24,
+        lime900: #827717,
+        yellow50: #FFFDE7,
+        yellow100: #FFF9C4,
+        yellow200: #FFF59D,
+        yellow300: #FFF176,
+        yellow400: #FFEE58,
+        yellow500: #FFEB3B,
+        yellow600: #FDD835,
+        yellow700: #FBC02D,
+        yellow800: #F9A825,
+        yellow900: #F57F17,
+        amber50: #FFF8E1,
+        amber100: #FFECB3,
+        amber200: #FFE082,
+        amber300: #FFD54F,
+        amber400: #FFCA28,
+        amber500: #FFC107,
+        amber600: #FFB300,
+        amber700: #FFA000,
+        amber800: #FF8F00,
+        amber900: #FF6F00,
+        orange50: #FFF3E0,
+        orange100: #FFE0B2,
+        orange200: #FFCC80,
+        orange300: #FFB74D,
+        orange400: #FFA726,
+        orange500: #FF9800,
+        orange600: #FB8C00,
+        orange700: #F57C00,
+        orange800: #EF6C00,
+        orange900: #E65100,
+        deep_orange50: #FBE9E7,
+        deep_orange100: #FFCCBC,
+        deep_orange200: #FFAB91,
+        deep_orange300: #FF8A65,
+        deep_orange400: #FF7043,
+        deep_orange500: #FF5722,
+        deep_orange600: #F4511E,
+        deep_orange700: #E64A19,
+        deep_orange800: #D84315,
+        deep_orange900: #BF360C,
+        brown50: #EFEBE9,
+        brown100: #D7CCC8,
+        brown200: #BCAAA4,
+        brown300: #A1887F,
+        brown400: #8D6E63,
+        brown500: #795548,
+        brown600: #6D4C41,
+        brown700: #5D4037,
+        brown800: #4E342E,
+        brown900: #3E2723,
+        grey50: #FAFAFA,
+        grey100: #F5F5F5,
+        grey200: #EEEEEE,
+        grey300: #E0E0E0,
+        grey400: #BDBDBD,
+        grey500: #9E9E9E,
+        grey600: #757575,
+        grey700: #616161,
+        grey800: #424242,
+        grey900: #212121,
+        blue_grey50: #ECEFF1,
+        blue_grey100: #CFD8DC,
+        blue_grey200: #B0BEC5,
+        blue_grey300: #90A4AE,
+        blue_grey400: #78909C,
+        blue_grey500: #607D8B,
+        blue_grey600: #546E7A,
+        blue_grey700: #455A64,
+        blue_grey800: #37474F,
+        blue_grey900: #263238,
+);
+$color_names: 'red', 'pink', 'purple', 'deep_purple', 'indigo', 'blue', 'light_blue', 'cyan', 'teal', 'green',
+'light_green', 'lime', 'yellow', 'amber', 'orange', 'deep_orange', 'brown', 'grey', 'blue_grey';
+
+$red50: #FFEBEE;
+$red100: #FFCDD2;
+$red200: #EF9A9A;
+$red300: #E57373;
+$red400: #EF5350;
+$red500: #F44336;
+$red600: #E53935;
+$red700: #D32F2F;
+$red800: #C62828;
+$red900: #B71C1C;
+$pink50: #FCE4EC;
+$pink100: #F8BBD0;
+$pink200: #F48FB1;
+$pink300: #F06292;
+$pink400: #EC407A;
+$pink500: #E91E63;
+$pink600: #D81B60;
+$pink700: #C2185B;
+$pink800: #AD1457;
+$pink900: #880E4F;
+$purple50: #F3E5F5;
+$purple100: #E1BEE7;
+$purple200: #CE93D8;
+$purple300: #BA68C8;
+$purple400: #AB47BC;
+$purple500: #9C27B0;
+$purple600: #8E24AA;
+$purple700: #7B1FA2;
+$purple800: #6A1B9A;
+$purple900: #4A148C;
+$deep_purple50: #EDE7F6;
+$deep_purple100: #D1C4E9;
+$deep_purple200: #B39DDB;
+$deep_purple300: #9575CD;
+$deep_purple400: #7E57C2;
+$deep_purple500: #673AB7;
+$deep_purple600: #5E35B1;
+$deep_purple700: #512DA8;
+$deep_purple800: #4527A0;
+$deep_purple900: #311B92;
+$indigo50: #E8EAF6;
+$indigo100: #C5CAE9;
+$indigo200: #9FA8DA;
+$indigo300: #7986CB;
+$indigo400: #5C6BC0;
+$indigo500: #3F51B5;
+$indigo600: #3949AB;
+$indigo700: #303F9F;
+$indigo800: #283593;
+$indigo900: #1A237E;
+$blue50: #E3F2FD;
+$blue100: #BBDEFB;
+$blue200: #90CAF9;
+$blue300: #64B5F6;
+$blue400: #42A5F5;
+$blue500: #2196F3;
+$blue600: #1E88E5;
+$blue700: #1976D2;
+$blue800: #1565C0;
+$blue900: #0D47A1;
+$light_blue50: #E1F5FE;
+$light_blue100: #B3E5FC;
+$light_blue200: #81D4FA;
+$light_blue300: #4FC3F7;
+$light_blue400: #29B6F6;
+$light_blue500: #03A9F4;
+$light_blue600: #039BE5;
+$light_blue700: #0288D1;
+$light_blue800: #0277BD;
+$light_blue900: #01579B;
+$cyan50: #E0F7FA;
+$cyan100: #B2EBF2;
+$cyan200: #80DEEA;
+$cyan300: #4DD0E1;
+$cyan400: #26C6DA;
+$cyan500: #00BCD4;
+$cyan600: #00ACC1;
+$cyan700: #0097A7;
+$cyan800: #00838F;
+$cyan900: #006064;
+$teal50: #E0F2F1;
+$teal100: #B2DFDB;
+$teal200: #80CBC4;
+$teal300: #4DB6AC;
+$teal400: #26A69A;
+$teal500: #009688;
+$teal600: #00897B;
+$teal700: #00796B;
+$teal800: #00695C;
+$teal900: #004D40;
+$green50: #E8F5E9;
+$green100: #C8E6C9;
+$green200: #A5D6A7;
+$green300: #81C784;
+$green400: #66BB6A;
+$green500: #4CAF50;
+$green600: #43A047;
+$green700: #388E3C;
+$green800: #2E7D32;
+$green900: #1B5E20;
+$light_green50: #F1F8E9;
+$light_green100: #DCEDC8;
+$light_green200: #C5E1A5;
+$light_green300: #AED581;
+$light_green400: #9CCC65;
+$light_green500: #8BC34A;
+$light_green600: #7cb342;
+$light_green700: #689F38;
+$light_green800: #558B2F;
+$light_green900: #33691E;
+$lime50: #F9FBE7;
+$lime100: #F0F4C3;
+$lime200: #E6EE9C;
+$lime300: #DCE775;
+$lime400: #D4E157;
+$lime500: #CDDC39;
+$lime600: #C0CA33;
+$lime700: #AFB42B;
+$lime800: #9E9D24;
+$lime900: #827717;
+$yellow50: #FFFDE7;
+$yellow100: #FFF9C4;
+$yellow200: #FFF59D;
+$yellow300: #FFF176;
+$yellow400: #FFEE58;
+$yellow500: #FFEB3B;
+$yellow600: #FDD835;
+$yellow700: #FBC02D;
+$yellow800: #F9A825;
+$yellow900: #F57F17;
+$amber50: #FFF8E1;
+$amber100: #FFECB3;
+$amber200: #FFE082;
+$amber300: #FFD54F;
+$amber400: #FFCA28;
+$amber500: #FFC107;
+$amber600: #FFB300;
+$amber700: #FFA000;
+$amber800: #FF8F00;
+$amber900: #FF6F00;
+$orange50: #FFF3E0;
+$orange100: #FFE0B2;
+$orange200: #FFCC80;
+$orange300: #FFB74D;
+$orange400: #FFA726;
+$orange500: #FF9800;
+$orange600: #FB8C00;
+$orange700: #F57C00;
+$orange800: #EF6C00;
+$orange900: #E65100;
+$deep_orange50: #FBE9E7;
+$deep_orange100: #FFCCBC;
+$deep_orange200: #FFAB91;
+$deep_orange300: #FF8A65;
+$deep_orange400: #FF7043;
+$deep_orange500: #FF5722;
+$deep_orange600: #F4511E;
+$deep_orange700: #E64A19;
+$deep_orange800: #D84315;
+$deep_orange900: #BF360C;
+$brown50: #EFEBE9;
+$brown100: #D7CCC8;
+$brown200: #BCAAA4;
+$brown300: #A1887F;
+$brown400: #8D6E63;
+$brown500: #795548;
+$brown600: #6D4C41;
+$brown700: #5D4037;
+$brown800: #4E342E;
+$brown900: #3E2723;
+$grey50: #FAFAFA;
+$grey100: #F5F5F5;
+$grey200: #EEEEEE;
+$grey300: #E0E0E0;
+$grey400: #BDBDBD;
+$grey500: #9E9E9E;
+$grey600: #757575;
+$grey700: #616161;
+$grey800: #424242;
+$grey900: #212121;
+$blue_grey50: #ECEFF1;
+$blue_grey100: #CFD8DC;
+$blue_grey200: #B0BEC5;
+$blue_grey300: #90A4AE;
+$blue_grey400: #78909C;
+$blue_grey500: #607D8B;
+$blue_grey600: #546E7A;
+$blue_grey700: #455A64;
+$blue_grey800: #37474F;
+$blue_grey900: #263238;
+
+$buttonfonts: Roboto, Helvetica, Arial, Sans-Serif;
+
+/*************************************************************
+  buttons
+*************************************************************/
+
+.btn-group .btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  color: #4c4c4c;
+  padding: 8px 10px 8px 10px;
+  border-bottom: solid 2px;
+}
+
+.btn-group .btn-default:hover, .btn-group .btn-default:focus, .btn-group .btn-default:active, .btn-group .btn.active {
+  border-color: $med-gray;
+  box-shadow: none;
+  background: #f0f0f0;
+  border-bottom: solid 2px #14a9c9;
+}
+
+.mpbtn {
+  color: $white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: .95px;
+  font-family: $buttonfonts;
+  line-height: 16px;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.29), inset 0px 1px 1px 0px rgba(255,255,255,0.50);
+  border-radius: 2px;
+  padding: 12px 20px 12px 20px;
+  min-width: 130px;
+  min-height: 35px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.mpbtn:hover {
+  color: $white;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.29);
+
+}
+
+.btn-orange {
+  @extend .mpbtn;
+  background-image: linear-gradient(-180deg, #FDAC28 0%, #DA9119 100%);
+  border: 1px solid #C88516;
+}
+
+.btn-orange:hover {
+  @extend .mpbtn:hover;
+  background: #DE951B;
+}
+
+.btn-grey {
+  @extend .mpbtn;
+  background-image: linear-gradient(-180deg, #F5F6F6 0%, #E1E1E1 100%);
+  border: 1px solid #DDDDDD;
+  color: #868686;
+}
+
+.btn-grey:hover {
+  @extend .mpbtn:hover;
+  background: #E8E8E8;
+  color: #868686;
+}
+
+.btn-blue {
+  @extend .mpbtn;
+  background-image: linear-gradient(-180deg, #2FC2E1 0%, #219BB5 100%);
+  border: 1px solid #229EB8;
+}
+
+.btn-blue:hover {
+  @extend .mpbtn:hover;
+  background: #229EB8;
+}
+
+.btn-green {
+  @extend .mpbtn;
+  background-image: linear-gradient(-180deg, #95CF45 0%, #76AC2B 100%);
+border: 1px solid #6A972C;
+}
+
+.btn-green:hover {
+  @extend .mpbtn:hover;
+  background: #70A12C;
+  text-decoration: none;
+}
+
+.btn-red {
+  @extend .mpbtn;
+  background-image: linear-gradient(-180deg, #DC2138 0%, #A21022 100%);
+  border: 1px solid #8E202E;
+}
+
+.btn-red:hover {
+  @extend .mpbtn:hover;
+  background: #B41428;
+}
+
+.csv {
+  @extend .btn-grey;
+  font-size: 14px;
+  padding: 8px 12px 8px 12px;
+  margin: 20px 0 0 10px;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  line-height: 39px;
+}
+
+.csv:hover {
+  @extend .btn-grey:hover;
+  color: $mp-green;
+}
+
+.small-text-link {
+  font-size: 13px;
+  color: $text-gray;
+  text-decoration: underline;
+  margin-left: 12px;
+}
+
+.small-text-link:hover {
+  color: $mp-green;
+}
+
+// Elements from UI Kit
+
+.btn-mp-common {
+  font-size: 14px;
+  font-family: $buttonfonts;
+  vertical-align: center;
+  letter-spacing: 0.97px;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16);
+  text-align: center;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.btn-mp {
+  @extend .btn-mp-common;
+  color: $white;
+  padding: 10px 20px 10px 20px;
+  min-width: 130px;
+  min-height: 40px;
+  line-height: 21px;
+  border-radius: 2px;
+}
+
+.btn-sm-mp {
+  @extend .btn-mp-common;
+  float: right;
+  border-radius: 2px;
+  color: $white !important;
+  margin-left: 15px;
+  min-width: 120px;
+  padding: 7px 15px 7px 15px;
+}
+
+.btn-icon-mp {
+  @extend .btn-sm-mp;
+  float: left;
+  padding: 6px 8px 6px 8px;
+  min-width: 30px;
+}
+
+.btn-mp-link {
+  text-decoration: none;
+  color: $white;
+}
+
+.btn-mp:hover {
+  cursor: pointer;
+}
+
+.btn-mp-green {
+  @extend .btn-mp;
+  border: 1px solid #156E81;
+  background: $mp-green linear-gradient(-235deg, $mp-green 2%, $mp-green-hl 100%);
+}
+
+.btn-mp-green:link {
+  @extend .btn-mp-link;
+}
+
+.btn-mp-green:hover {
+  @extend .btn-mp;
+  background: $mp-green-hl;
+  border: 1px solid #156E81;
+}
+
+.btn-mporange {
+  @extend .btn-mp;
+  border: 1px solid #C88516;
+  background: $orange linear-gradient(-180deg, #FFAE29 0%, #D99119 100%);
+}
+
+.btn-mporange:link {
+  @extend .btn-mp-link;
+}
+
+.btn-mporange:hover {
+  @extend .btn-mp;
+  background: #DE951B;
+  border: 1px solid #C88516;
+}
+
+.btn-mpgreen {
+  @extend .btn-mp;
+  border: 1px solid #39944B;
+  background: $green linear-gradient(-180deg, #52C96A 0%, #4BA146 96%);
+}
+
+.btn-mpgreen:link {
+  @extend .btn-mp-link;
+}
+
+.btn-mpgreen:hover {
+  @extend .btn-mp;
+  background: #4BA146;
+  border: 1px solid #39944B;
+}
+
+.mpdarkgray {
+  background-image: linear-gradient(-180deg, #939393 0%, #626262 100%);
+  border: 1px solid #545454;
+}
+
+.mpdarkgray-hover {
+  background: #626262;
+}
+
+.mpgray {
+  background-image: linear-gradient(-180deg, #F5F6F6 0%, #E1E1E1 100%);
+  border: 1px solid #DDDDDD;
+}
+
+.mpgray-hover {
+  background: #E8E8E8;
+}
+
+.mporange {
+  border: 1px solid #C88516;
+  background: $orange linear-gradient(-180deg, #FFAE29 0%, #D99119 100%);
+}
+
+.mporange-hover {
+  background: #DE951B;
+  border: 1px solid #C88516;
+}
+
+.btn-sm-mporange {
+  @extend .btn-sm-mp;
+  @extend .mporange;
+}
+
+.btn-sm-mporange:link {
+  @extend .btn-mp-link;
+}
+
+.btn-sm-mporange:hover {
+  @extend .btn-sm-mp;
+  @extend .mporange-hover;
+}
+
+.btn-icon-mpgray {
+  @extend .btn-icon-mp;
+  @extend .mpgray;
+}
+
+.btn-icon-mpgray:link {
+  @extend .btn-mp-link;
+}
+
+.btn-icon-mpgray:hover {
+  @extend .btn-icon-mp;
+  @extend .mpgray-hover;
+}
+
+.btn-mpgray {
+  @extend .btn-mp;
+  border: 1px solid #9C9C9C;
+  background: #9C9C9C linear-gradient(-180deg, #CCCCCC 0%, #9C9C9C 100%);
+}
+
+.btn-mpgray:hover {
+  @extend .btn-mp;
+  background: #A2A2A2;
+  border: 1px solid #9C9C9C;
+}
+
+.btn-mpgray:disabled, .btn:disabled, .btn-mporange:disabled, .btn-sm-mporange:disabled,
+.btn-icon-mpgray:disabled, .btn-mpgray:disabled, .btn-blue:disabled, .btn-grey:disabled {
+  background-image: linear-gradient(-180deg, #F5F6F6 0%, #E1E1E1 100%);
+  border: 1px solid #EAEAEA;
+  color: rgb(188, 188, 188) !important;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
