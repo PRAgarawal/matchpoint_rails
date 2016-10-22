@@ -5,11 +5,9 @@ class MatchMailer < ApplicationMailer
     User.current_user = user
     @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff).order(match_date: :asc).to_a
     @friend_matches = Match.available_from_friends.to_a
-    if @friend_matches.count > 0
-      @court_matches = Match.available_on_courts.where('matches.id NOT IN (?)', @friend_matches.pluck(:id)).to_a
-    else
-      @court_matches = Match.available_on_courts.to_a
-    end
+    @court_matches = Match.available_on_courts
+                         .where.not(matches: { id: @friend_matches.pluck(:id) })
+                         .to_a
 
     if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
       @first_name = user.first_name
