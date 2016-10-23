@@ -19,7 +19,7 @@
   <div class="row">
     <div data-ng-repeat="match in matches" class="match">
       <div class="match-date">
-        <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}</span>
+        <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}</span>
       </div>
       <div class="match-court">
         {{match.court.name}}

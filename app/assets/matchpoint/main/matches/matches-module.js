@@ -1,4 +1,4 @@
-var matchesModule = angular.module('MatchesModule', ['ngSanitize']);
+var matchesModule = angular.module('MatchesModule', ['ngSanitize', 'angularMoment']);
 
 matchesModule.config(['$routeProvider',
   function ($routeProvider) {
@@ -39,6 +39,10 @@ function openMatchJoinedModal($scope, resources, $modal, match) {
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
+
+  ctrl.timezone = function(match) {
+      return /\((.*)\)/.exec(new Date(match.match_date).toString())[1];
+  }
 
   ctrl.getMatches = function() {
     $scope.matches = [];
