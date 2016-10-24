@@ -1,4 +1,4 @@
-var matchesModule = angular.module('MatchesModule', ['ngSanitize', 'angularMoment']);
+var matchesModule = angular.module('MatchesModule', ['ngSanitize']);
 
 matchesModule.config(['$routeProvider',
   function ($routeProvider) {

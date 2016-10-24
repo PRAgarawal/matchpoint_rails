@@ -36,6 +36,6 @@ class MatchMailer < ApplicationMailer
     @friend = user
     @to_user_name = to_user.first_name
     @match_type = match.is_singles ? 'singles' : 'doubles'
-    mail(to: to_user.email, subject: "Update to your Singles match on #{match.match_date.in_time_zone('America/Chicago').strftime('%a, %b %-d at %-l:%M %p %Z')}")
+    mail(to: to_user.email, subject: "Update to your Singles match on #{match.formatted_match_date}")
   end
 end
