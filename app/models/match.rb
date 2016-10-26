@@ -80,6 +80,6 @@ class Match < ApplicationRecord
   end
 
   def formatted_match_date
-    return self.match_date.in_time_zone('America/Chicago').strftime('%a, %b %-d at %-l:%M %p')
+    return self.match_date.in_time_zone('America/Chicago').strftime('%a, %b %-d at %-l:%M %p %Z')
   end
 end

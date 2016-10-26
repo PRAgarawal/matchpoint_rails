@@ -40,6 +40,10 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
   var ctrl = this;
   $scope.matchType = matchType;
 
+  ctrl.timezone = function(match) {
+      return /\((.*)\)/.exec(new Date(match.match_date).toString())[1];
+  }
+
   ctrl.getMatches = function() {
     $scope.matches = [];
     resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
