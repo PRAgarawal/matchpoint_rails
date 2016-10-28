@@ -55,6 +55,7 @@ courtsModule.controller('JoinCourtModalController',
       ctrl.joinCourt = function(court) {
         resources.all('courts/join/' + court.id).customPOST().then(function () {
           mixPanelEvts.joinCourt(court);
+          $scope.user.has_joined_courts = true;
           $modalInstance.close('success');
         });
       };

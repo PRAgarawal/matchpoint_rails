@@ -8,7 +8,7 @@
           Welcome, {{user.first_name}}<br />
           Friend Code: {{user.invite_code}}
         </div>
-        <ul>
+        <ul data-ng-if="user.has_joined_courts">
           <li class="lg-nav top-nav-block">
             <a class="top-nav-link" href='#/match_requests'>
               MATCH REQUESTS
@@ -43,6 +43,10 @@
             <a href="/users/sign_out" data-method="delete">Sign Out</a>
           </li>
         </ul>
+
+        <h4 data-ng-if="!user.has_joined_courts" class="join-court">
+          Please join a court to get started with Match Point.
+        </h4>
       </div>
     </div>
   </div>

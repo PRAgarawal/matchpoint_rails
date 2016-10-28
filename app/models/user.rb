@@ -111,4 +111,8 @@ class User < ApplicationRecord
   def ui_skill
     return (self.skill.to_i/2.0).round(1)
   end
+
+  def has_joined_courts
+    return self.courts.count > 0
+  end
 end

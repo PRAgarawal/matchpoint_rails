@@ -4,7 +4,7 @@
   <%= stylesheet_link_tag "application", :media => 'all' %>
 <% end %>
 
-<div data-ng-init="user = <%= current_user.to_json %>">
+<div data-ng-init="user = <%= current_user.to_json(methods: [:has_joined_courts]) %>">
 </div>
 
 <ng-include src="'main/index/index.html'"></ng-include>

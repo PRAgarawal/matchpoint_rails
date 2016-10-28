@@ -64,6 +64,12 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 
 matchesModule.controller('MatchRequestsListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
+      if (!$scope.user.has_joined_courts) {
+        // The match requests page is the default view right now, so redirect users to force
+        // joining a court if they haven't yet.
+        // TODO: Make the "home" page just the buttons to select various other pages
+        resources.location.path('courts')
+      }
       mixPanelEvts.navigateMatchRequests();
       var ctrl = this;
 

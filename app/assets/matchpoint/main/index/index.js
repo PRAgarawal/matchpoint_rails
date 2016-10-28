@@ -15,7 +15,7 @@ matchpoint = angular.module('matchpointApp', [
 matchpoint.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/match_requests'
       });
 }]);
 
