@@ -33,3 +33,34 @@
 .all-background {
   background-color: $light-green50;
 }
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.extra-links {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0 1em 0;
+  flex-wrap: wrap;
+  font-style: italic;
+
+  a {
+    margin: 0 .5em 0 .5em;
+  }
+}
+
+.field {
+  margin-top: 1em;
+}
+
+.accept-terms {
+  margin: 1em .5em .8em .5em;
+}
+
+.home-header {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+}

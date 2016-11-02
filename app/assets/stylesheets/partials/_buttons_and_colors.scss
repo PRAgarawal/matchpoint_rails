@@ -668,6 +668,16 @@ border: 1px solid #6A972C;
   border: 1px solid #C88516;
 }
 
+.mpgreen {
+  border: 1px solid #39944B;
+  background: $green linear-gradient(-180deg, #52C96A 0%, #4BA146 96%);
+}
+
+.mpgreen-hover {
+  background: #4BA146;
+  border: 1px solid #39944B;
+}
+
 .btn-sm-mporange {
   @extend .btn-sm-mp;
   @extend .mporange;
@@ -680,6 +690,20 @@ border: 1px solid #6A972C;
 .btn-sm-mporange:hover {
   @extend .btn-sm-mp;
   @extend .mporange-hover;
+}
+
+.btn-sm-mpgreen {
+  @extend .btn-sm-mp;
+  @extend .mpgreen;
+}
+
+.btn-sm-mpgreen:link {
+  @extend .btn-mp-link;
+}
+
+.btn-sm-mpgreen:hover {
+  @extend .btn-sm-mp;
+  @extend .mpgreen-hover;
 }
 
 .btn-icon-mpgray {
@@ -709,7 +733,7 @@ border: 1px solid #6A972C;
 }
 
 .btn-mpgray:disabled, .btn:disabled, .btn-mporange:disabled, .btn-sm-mporange:disabled,
-.btn-icon-mpgray:disabled, .btn-mpgray:disabled, .btn-blue:disabled, .btn-grey:disabled {
+.btn-icon-mpgray:disabled, .btn-mpgray:disabled, .btn-blue:disabled, .btn-grey:disabled, .btn-sm-mpgreen:disabled {
   background-image: linear-gradient(-180deg, #F5F6F6 0%, #E1E1E1 100%);
   border: 1px solid #EAEAEA;
   color: rgb(188, 188, 188) !important;

@@ -1,34 +1,35 @@
 <% content_for :css do %>
-  <%= stylesheet_link_tag "home" %>
+  <%= stylesheet_link_tag 'home' %>
 <% end %>
 
-<h2>Sign up</h2>
+<h2 class="home-header">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :friend_code %><br />
-    <%= f.text_field :invited_by_code, autofocus: true %>
+    <%= f.text_field :invited_by_code, autofocus: true, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: 'form-control' %>
   </div>
 
-  <p><%= f.label :skill %><br />
-    <select name="user[skill]" id="user_skill">
+  <div class="field">
+    <%= f.label :skill %><br />
+    <select name="user[skill]" id="user_skill" class="form-control">
       <option value="" selected="selected">Please select</option>
       <option value="2">1.0</option>
       <option value="3">1.5</option>
@@ -44,28 +45,30 @@
       <option value="13">6.5</option>
       <option value="14">7.0</option>
     </select>
-  </p>
+  </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
   </div>
 
-  <p>
+  <p class="accept-terms">
     By clicking "Sign Up", you agree to our <a href="/terms_of_service.html" target="_blank">Terms of Service</a>, <a href="/privacy_policy.html" target="_blank">Privacy Policy</a>, and <a href="/copyright_policy.html" target="_blank">Copyright/IP Policy</a>.
   </p>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit 'Sign up', class: 'btn-sm-mpgreen' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="extra-links">
+  <%= link_to 'Log in', new_session_path(resource_name) %>
+</div>
