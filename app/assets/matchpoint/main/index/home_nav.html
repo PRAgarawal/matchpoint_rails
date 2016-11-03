@@ -1,47 +1,39 @@
-<div class="nav fixed">
-  <div class="container-fluid">
-    <div class="menu col-md-8 col-sm-8 col-xs-10">
-      <div class="welcome-header">
-        Welcome, {{user.first_name}}<br />
-        Friend Code: {{user.invite_code}}
-      </div>
-
-      <ul>
-        <li class="lg-nav top-nav-block">
-          <a class="top-nav-link" href='#/match_requests'>
-            MATCH REQUESTS
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a class="top-nav-link" href='#/my_matches'>
-            MY MATCHES
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a class="top-nav-link" href='#/friends'>
-            FRIENDS
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a class="top-nav-link" href='#/courts'>
-            COURTS
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a class="top-nav-link" href='#/past_matches'>
-            PAST MATCHES
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a class="top-nav-link" href='mailto:sri@matchpoint.us' onclick="mixPanelEvts.navigateSendFeedback()">
-            SEND FEEDBACK
-          </a>
-        </li>
-        <li class="top-nav-block">
-          <a href="/users/sign_out" data-method="delete">Sign Out</a>
-        </li>
-      </ul>
-
-    </div>
+<div class="home-nav container-fluid">
+  <div class="welcome-header">
+    Welcome, {{user.first_name}}<br />
+    Friend Code: {{user.invite_code}}
   </div>
+
+  <ul class="remove-spacing">
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='#/match_requests'>
+        MATCH REQUESTS
+      </a>
+    </li>
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='#/my_matches'>
+        MY MATCHES
+      </a>
+    </li>
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='#/friends'>
+        FRIENDS
+      </a>
+    </li>
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='#/courts'>
+        COURTS
+      </a>
+    </li>
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='#/past_matches'>
+        PAST MATCHES
+      </a>
+    </li>
+    <li class="top-nav-block">
+      <a class="top-nav-link" href='mailto:sri@matchpoint.us' onclick="mixPanelEvts.navigateSendFeedback()">
+        SEND FEEDBACK
+      </a>
+    </li>
+  </ul>
 </div>

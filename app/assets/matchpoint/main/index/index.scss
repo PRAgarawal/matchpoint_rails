@@ -1,13 +1,24 @@
-/*Variables*/
-$nav_height: 60px;
-$sm_menu_height: 40px;
+.home-nav {
+  ul {
+    list-style: none;
+  }
 
-.nav {
+  .welcome-header {
+    margin-top: 1.5em;
+    text-align: center;
+  }
+
   .top-nav-block {
+    background: $mp-green;
+    border: 3px solid $green300;
+    text-align: center;
+    margin: 1em 0 1em 0;
+    border-radius: 3px;
+    padding: .2em 0 .2em 0;
 
-    &:hover, &.active {
+    &:hover {
       background: $mp-green-hl;
-      border-bottom: 3px solid $green300;
+      border: 3px solid $green900;
     }
   }
 
@@ -16,14 +27,17 @@ $sm_menu_height: 40px;
     font-size: 17px;
     letter-spacing: .6px;
     &:hover,
-    &:visited,
-    &:active {
+    &:visited {
       text-decoration: none;
     }
   }
 
-  .remove_spacing {
+  .remove-spacing {
     padding: 0;
     margin: 0;
   }
+}
+
+.sign-out-link {
+  text-align: center;
 }
