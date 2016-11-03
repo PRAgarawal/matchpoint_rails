@@ -5,6 +5,7 @@ matchpoint = angular.module('matchpointApp', [
   'angular.filter',
   'ui.bootstrap',
   'restangular',
+  'HomeModule',
   'FriendsModule',
   'CourtsModule',
   'MatchesModule',
@@ -15,7 +16,7 @@ matchpoint = angular.module('matchpointApp', [
 matchpoint.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
       otherwise({
-        redirectTo: '/match_requests'
+        redirectTo: '/'
       });
 }]);
 
@@ -38,4 +39,23 @@ matchpoint.config(['$provide', function ($provide) {
 
     return $delegate;
   });
+}]);
+
+var homeModule = angular.module('HomeModule', ['ngSanitize']);
+
+homeModule.config(['$routeProvider',
+  function ($routeProvider) {
+    $routeProvider.
+    when('/', {
+      templateUrl: 'main/index/home_nav.html',
+      controller: 'HomeNavController as ctrl'
+    });
+  }]);
+
+homeModule.controller('HomeNavController', ['$scope', 'resources', function ($scope, resources) {
+  if (!$scope.user.has_joined_courts) {
+    // This is the home page (default view). Redirect users to force joining a court if
+    // they haven't yet.
+    resources.location.path('courts')
+  }
 }]);
