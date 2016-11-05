@@ -1,23 +1,17 @@
-<div class="friends col-md-offset-1 col-md-10">
+<div class="friends">
   <div class="row page-title">
     <h3>FRIENDS</h3>
   </div>
 
-  <div class="col-md-4">
-    <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showAddFriendDialog()">
-      Add friend
-    </button>
-  </div>
-
-  <div data-ng-repeat="friend in friends" class="friend">
-    <div class="friend-name">
-      {{friend.first_name + ' ' + friend.last_name}}
+  <div data-ng-repeat="friend in friends" class="friend-container">
+    <div class="friend-info">
+      <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
+      <span>Skill level {{(friend.skill / 2).toFixed(1)}}</span>
     </div>
-    <div class="friend-skill">
-      {{(friend.skill / 2).toFixed(1)}}
-    </div>
-    <div class="friend-remove" data-ng-click="ctrl.removeFriend(friend, false)">
-      Remove Friend
+    <div class="friend-links">
+      <a href="javascript:;" class="friend-remove" data-ng-click="ctrl.removeFriend(friend, false)">
+        Remove Friend
+      </a>
     </div>
   </div>
 
@@ -38,5 +32,11 @@
         Decline
       </div>
     </div>
+  </div>
+
+  <div class="center-btn">
+    <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showAddFriendDialog()">
+      Add friend
+    </button>
   </div>
 </div>

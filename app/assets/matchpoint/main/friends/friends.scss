@@ -2,3 +2,24 @@
   display: flex;
   justify-content: space-between;
 }
+
+.friend-container {
+  padding: 1em;
+  background: white;
+  margin-bottom: 1em;
+
+  .friend-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .friend-name {
+    font-weight: bold;
+  }
+
+  .friend-links {
+    padding-top: .5em;
+    display: flex;
+    justify-content: space-between;
+  }
+}
