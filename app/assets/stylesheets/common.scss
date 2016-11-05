@@ -22,9 +22,8 @@
 }
 
 .center-btn {
-  max-width: 150px;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .page-title {

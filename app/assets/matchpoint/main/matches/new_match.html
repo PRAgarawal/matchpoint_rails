@@ -6,7 +6,7 @@
   <div class="form-group">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <label for="matchDate">Date</label>
         <input type="date" class="form-control" id="matchDate" name="matchDate"
                data-ng-model="match.match_date" placeholder="Date">
@@ -14,8 +14,8 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
-        <select id="time" data-ng-model="match.match_time">
+      <div class="col-md-12">
+        <select id="time" data-ng-model="match.match_time" class="form-control">
           <option value="">- Time -</option>
           <option value="0">12:00 AM</option>
           <option value="1">12:30 AM</option>
@@ -70,7 +70,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <select id="location" class="form-control" data-ng-model="match.court_id"
                 data-ng-options="court.id as court.name for court in courts">
           <option value="">- Location -</option>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <select id="gameType" class="form-control" data-ng-model="match.is_singles">
           <option value="">- Game Type -</option>
           <option value="true">Singles</option>
@@ -88,9 +88,11 @@
       </div>
     </div>
 
+    <br/>
+
     <div class="row">
       <div class="center-btn">
-        <button class="btn-mp-green" data-ng-click="ctrl.createMatch()">Submit</button>
+        <button class="btn-sm-mpgreen" data-ng-click="ctrl.createMatch()">Submit</button>
       </div>
     </div>
 

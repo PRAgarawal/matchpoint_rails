@@ -21,6 +21,10 @@ matchesModule.config(['$routeProvider',
     });
   }]);
 
+function isMatchFull(match) {
+  return (match.is_singles && match.users.length == 2) || (match.users.length == 4);
+}
+
 function openMatchJoinedModal($scope, resources, $modal, match) {
   $modal.open({
     templateUrl: 'main/matches/match_joined_modal.html',
@@ -49,6 +53,21 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
     resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
       $scope.matches = matches;
     });
+  };
+
+  ctrl.getNumEmptySlots = function(match) {
+    var numAvailable = 2 * (match.is_singles ? 1 : 2);
+    return new Array(numAvailable - match.users.length);
+  };
+
+  ctrl.getMatchStatus = function(match) {
+    if ($scope.matchType == 'requests') {
+      return '';
+    } else if ($scope.matchType == 'my_matches') {
+      return isMatchFull(match) ? 'full' : 'pending';
+    } else if ($scope.matchType == 'past_matches') {
+      return isMatchFull(match) ? 'completed' : 'expired';
+    }
   };
 
   ctrl.goToMatchRequestDetailPage = function(id) {

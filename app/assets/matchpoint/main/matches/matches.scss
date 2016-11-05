@@ -1,4 +1,40 @@
 .matches {
+  .match {
+    background: white;
+    border-radius: 3px;
+    margin-bottom: 1em;
+  }
+
+  .match-info {
+    padding: 0 1em 1em 1em;
+  }
+
+  .completed, .expired, .pending, .full, .blank {
+    background: 1em solid $mp-green;
+    text-transform: capitalize;
+    color: white;
+    padding-left: .5em;
+    margin-bottom: .4em;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  .completed {
+    background: $blue400;
+  }
+
+  .expired {
+    background: $red700;
+  }
+
+  .pending {
+    background: $yellow700;
+  }
+
+  .full, .blank {
+    background: $mp-green;
+  }
+
   .match-date {
     font-weight: bold;
   }
@@ -7,8 +43,37 @@
     font-style: italic;
   }
 
+  .user-none {
+    color: $red700;
+  }
+
   .no-matches {
     text-align: center;
     margin-bottom: 1em;
+  }
+
+  .match-users {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    border: 1px solid $mp-green;
+    padding: .3em 0;
+    margin-top: .4em;
+  }
+
+  .match-user {
+    width: 50%;
+    text-align: center;
+  }
+
+  .match-links {
+    padding-top: .5em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .match-court {
+    display: flex;
+    justify-content: space-between;
   }
 }

@@ -5,33 +5,39 @@
 
   <div class="row">
     <div data-ng-repeat="match in matches" class="match">
-      <div class="match-date">
-        <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}</span>
+      <div data-ng-class="ctrl.getMatchStatus(match) ? ctrl.getMatchStatus(match) : 'blank'">
+        {{ctrl.getMatchStatus(match)}}
       </div>
-      <div class="match-court">
-        {{match.court.name}}
-      </div>
-      <div class="match-type">
-        {{match.is_singles ? "Singles" : "Doubles"}}
-      </div>
-      <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
-        <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
-        <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
-      </div>
-      <div data-ng-if="matchType == 'my_matches'">
-        <a href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)" class="leave-btn">
-          Leave match
-        </a>
-      </div>
-      <div data-ng-if="matchType == 'requests'">
-        <a href="#/match_requests" data-ng-click="ctrl.joinMatch(match)" class="join-btn">
-          Join
-        </a>
-      </div>
-      <div data-ng-if="matchType == 'my_matches'">
-        <a href="#/chats/{{match.chat.id}}/{{match.id}}" class="messages-btn">
-          Messages
-        </a>
+      <div class="match-info">
+        <div class="match-date">
+          <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}</span>
+        </div>
+        <div class="match-court">
+          <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
+        </div>
+        <div class="match-users">
+          <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
+            <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
+            <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
+          </div>
+          <div data-ng-repeat="i in ctrl.getNumEmptySlots(match) track by $index" class="match-user">
+            <span class="user-none">--</span>
+          </div>
+        </div>
+        <div class="match-links" data-ng-if="matchType != 'past_matches'">
+          <a data-ng-if="matchType == 'my_matches'" href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)" class="leave-btn">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Leave match
+          </a>
+          <a data-ng-if="matchType == 'requests'" href="#/match_requests" data-ng-click="ctrl.joinMatch(match)" class="join-btn">
+            <span class="glyphicon glyphicon-check"></span>
+            Join
+          </a>
+          <a data-ng-if="matchType == 'my_matches'" href="#/chats/{{match.chat.id}}/{{match.id}}" class="messages-btn">
+            <span class="glyphicon glyphicon-comment"></span>
+            Messages
+          </a>
+        </div>
       </div>
     </div>
 
@@ -40,9 +46,11 @@
     </div>
   </div>
 
-  <div data-ng-if="matchType == 'requests'">
-    <a href="#/new_match" class="btn-sm-mpgreen">
-      Create Match Request
-    </a>
+  <div data-ng-if="matchType == 'requests'" class="row">
+    <div class="center-btn">
+      <a href="#/new_match" class="btn-sm-mpgreen">
+        Create Match Request
+      </a>
+    </div>
   </div>
 </div>

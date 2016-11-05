@@ -18,7 +18,7 @@ function mixPanelFriendInfo(friend) {
 
 function mixPanelIsMatchFull(match, beforeLeave) {
   var userCount = beforeLeave ? match.users.length : match.users.length + 1;
-  return (match.is_singles &&userCount == 2) || (userCount == 4);
+  return (match.is_singles && userCount == 2) || (userCount == 4);
 }
 
 var mixPanelEvts = {
