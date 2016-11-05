@@ -1,22 +1,3 @@
-<!--TODO:remove this once we add styling-->
-<style type>
-    span.match-date {
-        font-weight: bold;
-    }
-    span.user-name {
-        font-style: italic;
-    }
-    span.user-skill {
-        font-style: italic;
-    }
-    span.group-chat {
-        font-weight: bold;
-    }
-    span.group-chat-name {
-        font-style: italic;
-    }
-</style>
-
 <div class="chats col-md-offset-1 col-md-10">
   <div class="row page-title">
     <div class="msg-match-date">
@@ -33,15 +14,15 @@
       <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
     </div>
   </div>
-  <button type="button" data-ng-click="ctrl.leaveMatch()" class="leave-btn">
+  <div class="center-btn">
+    <button type="button" data-ng-click="ctrl.leaveMatch()" class="btn-sm-mporange">
+      <span class="glyphicon glyphicon-log-out"></span>
       Leave match
-  </button>
-
-  <br>
-  <br>
+    </button>
+  </div>
 
   <div>
-      <span class="group-chat">Group Chat:</span>
+    <span class="chat-header">Group Chat:</span>
   </div>
 
   <div class="row">
