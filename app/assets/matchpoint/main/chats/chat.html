@@ -35,7 +35,7 @@
 
     <div data-ng-repeat="message in messages | orderBy: created_at : true" data-ng-class="message.user.id == user.id ? 'self-sender' : 'other-sender'">
       <p data-ng-if="ctrl.shouldShowName(message)" data-ng-click="ctrl.showUserModal(message.user)" class="chat-user-name">
-          {{message.user.first_name + ': '}}<br/>
+          {{message.user.first_name}}<br/>
       </p>
       <p class="message-body">
         {{message.body}}
