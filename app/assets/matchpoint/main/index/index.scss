@@ -12,9 +12,10 @@
     background: $mp-green;
     border: 3px solid $green300;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
     margin: 1em 0 1em 0;
     border-radius: 3px;
-    padding: .2em 0 .2em 0;
 
     &:hover {
       background: $mp-green-hl;
@@ -23,9 +24,12 @@
   }
 
   .top-nav-link {
+    display: block;
     color: #fff;
     font-size: 17px;
-    letter-spacing: .6px;
+    width: 100%;
+    padding: .4em 0 .4em 0;
+
     &:hover,
     &:visited {
       text-decoration: none;
@@ -38,6 +42,16 @@
   }
 }
 
-.sign-out-link {
-  text-align: center;
+.main-links {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  z-index: 1;
+
+  a {
+    margin-left: .8em;
+    &:visited, &:active {
+      text-decoration: none;
+    }
+  }
 }

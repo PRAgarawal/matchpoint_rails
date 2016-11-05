@@ -1,0 +1,14 @@
+.matches {
+  .match-date {
+    font-weight: bold;
+  }
+
+  .user-name, .user-skill {
+    font-style: italic;
+  }
+
+  .no-matches {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+}

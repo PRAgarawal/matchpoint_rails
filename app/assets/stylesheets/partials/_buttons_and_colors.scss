@@ -634,7 +634,7 @@ border: 1px solid #6A972C;
   @extend .btn-mp-link;
 }
 
-.btn-mpgreen:hover {
+.btn-mpgreen:hover, .btn-mpgreen:active {
   @extend .btn-mp;
   background: #4BA146;
   border: 1px solid #39944B;
