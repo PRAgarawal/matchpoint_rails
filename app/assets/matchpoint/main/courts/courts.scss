@@ -1,0 +1,23 @@
+.courts {
+  
+}
+
+.court-info {
+  padding: 1em;
+  background: white;
+  margin-bottom: 1em;
+
+  .court-name {
+    font-weight: bold;
+  }
+
+  .court-links {
+    padding-top: .5em;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.green-bg {
+  background: $light-green50;
+}
