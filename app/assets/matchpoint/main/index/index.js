@@ -52,10 +52,23 @@ homeModule.config(['$routeProvider',
     });
   }]);
 
-homeModule.controller('HomeNavController', ['$scope', 'resources', function ($scope, resources) {
-  if (!$scope.user.has_joined_courts) {
-    // This is the home page (default view). Redirect users to force joining a court if
-    // they haven't yet.
-    resources.location.path('courts')
-  }
-}]);
+homeModule.controller('HomeNavController',
+    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
+      var ctrl = this;
+
+      if (!$scope.user.has_joined_courts) {
+        // This is the home page (default view). Redirect users to force joining a court if
+        // they haven't yet.
+        resources.location.path('courts')
+      }
+
+      ctrl.showInviteFriendDialog = function () {
+        $modal.open({
+          templateUrl: 'main/friends/invite_friend_modal.html',
+          controller: 'InviteFriendModalController as ctrl',
+          'size': 'md',
+          'scope': $scope,
+          'resources': resources
+        });
+      };
+    }]);

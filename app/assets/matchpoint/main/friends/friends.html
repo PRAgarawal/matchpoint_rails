@@ -3,17 +3,10 @@
     <h3>FRIENDS</h3>
   </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <button type="button" class="add-friend" data-ng-click="ctrl.showAddFriendDialog()">
-        Add friend
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button type="button" class="invite-friend" data-ng-click="ctrl.showInviteFriendDialog()">
-        Invite friend
-      </button>
-    </div>
+  <div class="col-md-4">
+    <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showAddFriendDialog()">
+      Add friend
+    </button>
   </div>
 
   <div data-ng-repeat="friend in friends" class="friend">

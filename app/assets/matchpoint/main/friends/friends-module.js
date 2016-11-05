@@ -39,16 +39,6 @@ friendsModule.controller('FriendsListController',
       }
       getFriendsAndRequests();
 
-      ctrl.showInviteFriendDialog = function () {
-        $modal.open({
-          templateUrl: 'main/friends/invite_friend_modal.html',
-          controller: 'InviteFriendModalController as ctrl',
-          'size': 'md',
-          'scope': $scope,
-          'resources': resources
-        });
-      };
-
       ctrl.showAddFriendDialog = function () {
         $modal.open({
           templateUrl: 'main/friends/add_friend_modal.html',
