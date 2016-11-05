@@ -1,24 +1,27 @@
-<div class="chats col-md-offset-1 col-md-10">
+<div class="chats">
   <div class="row page-title">
-    <div class="msg-match-date">
-      <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}</span>
+    <div class="match-container">
+      <div class="match-info">
+        <div class="match-date">
+          {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}
+        </div>
+        <div class="match-court">
+          <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
+        </div>
+        <div class="match-users">
+          <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
+            <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
+            <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
+          </div>
+        </div>
+        <div class="match-links">
+          <a href="javascript:;" data-ng-click="ctrl.leaveMatch()">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Leave match
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="msg-match-court">
-      {{match.court.name}}
-    </div>
-    <div class="match-type">
-      {{match.is_singles ? "Singles" : "Doubles"}}
-    </div>
-    <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
-      <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
-      <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
-    </div>
-  </div>
-  <div class="center-btn">
-    <button type="button" data-ng-click="ctrl.leaveMatch()" class="btn-sm-mporange">
-      <span class="glyphicon glyphicon-log-out"></span>
-      Leave match
-    </button>
   </div>
 
   <div>
@@ -26,7 +29,7 @@
   </div>
 
   <div class="row">
-    <div data-ng-repeat="message in messages | orderBy: created_at : true" class="message">
+    <div data-ng-repeat="message in messages | orderBy: created_at : true" data-ng-class="message">
       <div class="message-sender" data-ng-click="ctrl.showUserModal(message.user)">
         <span class="group-chat-name">
             {{message.user.first_name + ': '}}

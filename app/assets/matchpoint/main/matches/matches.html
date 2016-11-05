@@ -1,16 +1,16 @@
-<div class="matches col-md-offset-1 col-md-10">
+<div class="matches">
   <div class="row page-title">
     <h3>{{pageTitle}}</h3>
   </div>
 
   <div class="row">
-    <div data-ng-repeat="match in matches" class="match">
+    <div data-ng-repeat="match in matches" class="match-container">
       <div data-ng-class="ctrl.getMatchStatus(match) ? ctrl.getMatchStatus(match) : 'blank'">
         {{ctrl.getMatchStatus(match)}}
       </div>
       <div class="match-info">
         <div class="match-date">
-          <span class="match-date">{{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}</span>
+          {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}
         </div>
         <div class="match-court">
           <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
@@ -25,15 +25,15 @@
           </div>
         </div>
         <div class="match-links" data-ng-if="matchType != 'past_matches'">
-          <a data-ng-if="matchType == 'my_matches'" href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)" class="leave-btn">
+          <a data-ng-if="matchType == 'my_matches'" href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)">
             <span class="glyphicon glyphicon-log-out"></span>
             Leave match
           </a>
-          <a data-ng-if="matchType == 'requests'" href="#/match_requests" data-ng-click="ctrl.joinMatch(match)" class="join-btn">
+          <a data-ng-if="matchType == 'requests'" href="#/match_requests" data-ng-click="ctrl.joinMatch(match)">
             <span class="glyphicon glyphicon-check"></span>
             Join
           </a>
-          <a data-ng-if="matchType == 'my_matches'" href="#/chats/{{match.chat.id}}/{{match.id}}" class="messages-btn">
+          <a data-ng-if="matchType == 'my_matches'" href="#/chats/{{match.chat.id}}/{{match.id}}">
             <span class="glyphicon glyphicon-comment"></span>
             Messages
           </a>
