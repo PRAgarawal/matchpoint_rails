@@ -45,6 +45,12 @@ chatsModule.controller('ChatController',
           resources.location.path('my_matches');
         });
       };
-
+      
+      ctrl.shouldShowName = function(message) {
+        var i = $scope.messages.indexOf(message);
+        var previousMessage = i < $scope.messages.length - 1 ? $scope.messages[i+1] : {user_id: -1};
+        return (message.user_id != $scope.user.id) && (previousMessage.user_id != message.user_id);
+      };
+      
       getMessages();
     }]);

@@ -1,3 +1,5 @@
+$message-radius: 12px;
+
 .chats {
   .page-title {
     margin-top: 2.5em;
@@ -8,8 +10,10 @@
     font-weight: bold;
   }
 
-  .user-name {
-    font-style: italic;
+  .chat-user-name {
+    font-size: .9em;
+    color: grey;
+    padding: 1em 0 0 1em;
   }
 
   .user-skill {
@@ -20,11 +24,32 @@
     font-weight: bold;
   }
 
-  .group-chat-name {
-    font-style: italic;
-  }
-
   .match-container {
     padding-top: .7em;
+  }
+
+  .chat-container {
+    background: white;
+    border-bottom: 1em solid white;
+  }
+
+  .message-body {
+    background-color: #e5e4e3;
+    color: inherit;
+    border-radius: $message-radius;
+    padding: .5em 1em .5em 1em;
+    margin-left: 1em;
+    display: inline-block;
+  }
+
+  .self-sender {
+    display: flex;
+    justify-content: flex-end;
+
+    .message-body {
+      background-color: $mp-green;
+      color: white;
+      margin: 1em 1em 0 0;
+    }
   }
 }
