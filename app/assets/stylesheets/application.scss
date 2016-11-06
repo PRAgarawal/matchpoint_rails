@@ -33,4 +33,8 @@
 
 .all-background {
   background-color: $light-green50;
+
+  .main-container {
+    padding: 0;
+  }
 }

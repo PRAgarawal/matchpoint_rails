@@ -1,6 +1,6 @@
 <div class="friends">
   <div class="row page-title">
-    <h3>FRIENDS</h3>
+    <h3>Friends</h3>
   </div>
 
   <div data-ng-repeat="friend in friends" class="friend-container">
@@ -10,6 +10,7 @@
     </div>
     <div class="friend-links">
       <a href="javascript:;" class="friend-remove" data-ng-click="ctrl.removeFriend(friend, false)">
+        <span class="glyphicon glyphicon-remove"></span>
         Remove Friend
       </a>
     </div>
@@ -18,18 +19,20 @@
   <div data-ng-if="friendRequests.length > 0">
     <h4>Requests waiting for your approval</h4>
 
-    <div data-ng-repeat="friend in friendRequests" class="friendRequest">
-      <div class="request-name">
-        {{friend.first_name + ' ' + friend.last_name}}
+    <div data-ng-repeat="friend in friendRequests" class="friend-container">
+      <div class="friend-info">
+        <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
+        <span>{{(friend.skill / 2).toFixed(1)}}</span>
       </div>
-      <div class="request-skill">
-        {{(friend.skill / 2).toFixed(1)}}
-      </div>
-      <div class="request-accept" data-ng-click="ctrl.acceptRequest(friend)">
-        Accept
-      </div>
-      <div class="request-remove" data-ng-click="ctrl.removeFriend(friend, true)">
-        Decline
+      <div class="friend-links">
+        <a href="javascript:;" data-ng-click="ctrl.acceptRequest(friend)">
+          <span class="glyphicon glyphicon-plus"></span>
+          Accept
+        </a>
+        <a href="javascript:;" data-ng-click="ctrl.removeFriend(friend, true)">
+          <span class="glyphicon glyphicon-minus"></span>
+          Decline
+        </a>
       </div>
     </div>
   </div>

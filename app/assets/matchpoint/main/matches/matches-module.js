@@ -88,7 +88,7 @@ matchesModule.controller('MatchRequestsListController',
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'requests');
 
-      $scope.pageTitle = 'MATCH REQUESTS';
+      $scope.pageTitle = 'Match Requests';
 
       ctrl.joinMatch = function (match, joinMethod) {
         resources.all('matches/join/' + match.id).customPOST().then(function () {
@@ -112,7 +112,7 @@ matchesModule.controller('MyMatchesListController',
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'my_matches');
 
-      $scope.pageTitle = 'MY MATCHES';
+      $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
         resources.all('matches/leave/' + match.id).customDELETE().then(function () {
@@ -127,7 +127,7 @@ matchesModule.controller('PastMatchesListController',
       mixPanelEvts.navigatePastMatches();
       BaseMatchesListController.call(this, $scope, $modal, resources, 'past_matches');
 
-      $scope.pageTitle = 'PAST MATCHES';
+      $scope.pageTitle = 'Past Matches';
     }]);
 
 matchesModule.controller('NewMatchRequestsController',
