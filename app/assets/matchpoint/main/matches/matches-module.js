@@ -107,7 +107,7 @@ matchesModule.controller('MatchRequestsListController',
 
 matchesModule.controller('MyMatchesListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
-      mixPanelEvts.navigateMyMatches()
+      mixPanelEvts.navigateMyMatches();
       var ctrl = this;
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'my_matches');

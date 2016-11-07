@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+      :registrations => 'registrations'
+  }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#index'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
       delete 'destroy_friendship/:friend_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
     end
   end
+
   resources :matches do
     collection do
       post 'join/:match_id', to: 'matches#join', as: 'join'

@@ -4,7 +4,7 @@
   }
 
   .welcome-header {
-    margin-top: 1.5em;
+    margin-top: -1em;
     text-align: center;
   }
 
@@ -43,22 +43,15 @@
 }
 
 .main-links {
-  position: absolute;
-  top: 7px;
-  right: -10px;
-  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
 
   a {
-    margin-left: .8em;
-    &:visited, &:active {
-      text-decoration: none;
+    color: $mp-green;
+    font-size: 1.2em;
+    &:hover {
+      color: $mp-green-hl;
     }
   }
-}
-
-.main-links-left {
-  position: absolute;
-  top: 7px;
-  left: -10px;
-  z-index: 1;
 }

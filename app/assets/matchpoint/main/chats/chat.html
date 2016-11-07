@@ -1,31 +1,29 @@
 <div class="chats">
-  <div class="row page-title">
-    <div class="match-container">
-      <div class="match-info">
-        <div class="match-date">
-          {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}
+  <div class="match-container">
+    <div class="match-info">
+      <div class="match-date">
+        {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}
+      </div>
+      <div class="match-court">
+        <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
+      </div>
+      <div class="match-users">
+        <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
+          <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
+          <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
         </div>
-        <div class="match-court">
-          <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
-        </div>
-        <div class="match-users">
-          <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
-            <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
-            <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
-          </div>
-        </div>
-        <div class="match-links">
-          <a href="javascript:;" data-ng-click="ctrl.leaveMatch()">
-            <span class="glyphicon glyphicon-log-out"></span>
-            Leave match
-          </a>
-        </div>
+      </div>
+      <div class="match-links">
+        <a href="javascript:;" data-ng-click="ctrl.leaveMatch()">
+          <span class="glyphicon glyphicon-log-out"></span>
+          Leave match
+        </a>
       </div>
     </div>
   </div>
 
   <div class="chat-header">
-    Group Chat:
+    Group Chat
   </div>
 
   <div class="chat-container">

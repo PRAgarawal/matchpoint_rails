@@ -11,6 +11,10 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
     ]
   end
 
+  def permitted_attributes_for_update
+    permitted_attributes
+  end
+
   def show?
     true
   end

@@ -22,15 +22,22 @@ $message-radius: 12px;
 
   .chat-header {
     font-weight: bold;
+    text-align: center;
   }
 
   .match-container {
+    margin-top: .5em;
     padding-top: .7em;
   }
 
   .chat-container {
     background: white;
     border-bottom: 1em solid white;
+    margin-top: .5em;
+
+    // TODO: Once infinite scroll with chats is implemented
+    //max-height: 700px;
+    //overflow: scroll;
   }
 
   .no-messages {
@@ -43,7 +50,7 @@ $message-radius: 12px;
     border-radius: $message-radius;
     padding: .5em 1em .5em 1em;
     margin-left: 1em;
-    margin-right: 5em;
+    margin-right: 15%;
     display: inline-block;
   }
 
@@ -54,7 +61,7 @@ $message-radius: 12px;
     .message-body {
       background-color: $mp-green;
       color: white;
-      margin: 1em 1em 0 5em;
+      margin: 1em 1em 0 15%;
     }
   }
 }
