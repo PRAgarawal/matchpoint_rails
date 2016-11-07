@@ -106,7 +106,7 @@ matchesModule.controller('MatchRequestsListController',
     }]);
 
 matchesModule.controller('MyMatchesListController',
-    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
+    ['$scope', '$modal', 'resources', 'matchpointModals', function ($scope, $modal, resources, matchpointModals) {
       mixPanelEvts.navigateMyMatches();
       var ctrl = this;
 
@@ -115,10 +115,13 @@ matchesModule.controller('MyMatchesListController',
       $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
-        resources.all('matches/leave/' + match.id).customDELETE().then(function () {
-          mixPanelEvts.leaveMatch(match, 'from_my_matches');
-          ctrl.getMatches();
-        });
+          matchpointModals.genericConfirmation(function() {
+              resources.all('matches/leave/' + match.id).customDELETE().
+                  then(function () {
+                    mixPanelEvts.leaveMatch(match, 'from_my_matches');
+                    ctrl.getMatches();
+              });
+          }, "leave this match", "Confirm", "Yes");
       };
     }]);
 
