@@ -83,13 +83,13 @@ class User < ApplicationRecord
 
   def set_invited_by_id
     if self.invited_by_id.nil?
-      inviter = User.find_by(invite_code: self.invited_by_code)
+      inviter = User.find_by(invite_code: self.invited_by_code.upcase)
       self.invited_by_id = inviter.try(:id)
     end
   end
 
   def is_not_root_user?
-    return self.invited_by_code != ENV['ROOT_INVITE_CODE']
+    return !ENV['ROOT_INVITE_CODE'].downcase.split(',').include?(self.invited_by_code.downcase)
   end
 
   def is_friend_code_signup?
