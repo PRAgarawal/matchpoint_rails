@@ -1,4 +1,8 @@
-<h2>Change your password</h2>
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'home' %>
+<% end %>
+
+<h3 class="home-header">Change your password</h3>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -9,17 +13,23 @@
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
 
+  <br />
+
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit "Change my password", class: 'btn-sm-mpgreen' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="extra-links">
+  <%= link_to 'Log in', new_session_path(resource_name) %>
+  |
+  <%= link_to 'Sign up', new_registration_path(resource_name) %>
+</div>
