@@ -50,6 +50,7 @@
   a {
     color: $mp-green;
     font-size: 1.2em;
+    z-index: 1;
     &:hover {
       color: $mp-green-hl;
     }
