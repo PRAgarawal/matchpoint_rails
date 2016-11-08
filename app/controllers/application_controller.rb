@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [
-        :first_name, :last_name, :email, :password, :password_confirmation, :invited_by_code, :skill])
+        :first_name, :last_name, :email, :password, :password_confirmation, :invited_by_code, :skill, :gender])
     devise_parameter_sanitizer.permit(:sign_in, keys: [
         :email, :password, :remember_me])
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name, :skill, :password, :password_confirmation, :invitation_token])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:first_name, :last_name, :skill, :gender, :password, :password_confirmation, :invitation_token])
   end
 
   def set_csrf_cookie_for_ng

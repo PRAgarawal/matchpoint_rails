@@ -28,7 +28,16 @@
   </div>
 
   <div class="field">
-    <%= f.label :skill %><br />
+    <%= f.label :gender %>
+    <select name="user[gender]" id="user_gender" class="form-control">
+      <option value="" selected="selected">Please select</option>
+      <option value="true">Male</option>
+      <option value="false">Female</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= f.label :skill %>
     <select name="user[skill]" id="user_skill" class="form-control">
       <option value="" selected="selected">Please select</option>
       <option value="2">1.0</option>

@@ -17,6 +17,8 @@ class User < ApplicationRecord
        message: "check email format"}, length: {maximum: 255}
   validates :skill, presence: true, inclusion: {in: 2..14}
   validates :invited_by_id, presence: true, if: :is_not_root_user?
+  # Using "is_male" has too many potential UI issues, so for `gender`, true if male, false if female
+  validates :gender, inclusion: {in: [true, false]}
 
   before_create :create_invite_code
   after_create :create_friendship, if: :is_friend_code_signup?
@@ -83,13 +85,13 @@ class User < ApplicationRecord
 
   def set_invited_by_id
     if self.invited_by_id.nil?
-      inviter = User.find_by(invite_code: self.invited_by_code.upcase)
+      inviter = User.find_by(invite_code: self.invited_by_code.to_s.upcase)
       self.invited_by_id = inviter.try(:id)
     end
   end
 
   def is_not_root_user?
-    return !ENV['ROOT_INVITE_CODE'].downcase.split(',').include?(self.invited_by_code.downcase)
+    return !ENV['ROOT_INVITE_CODE'].upcase.to_s.split(',').include?(self.invited_by_code.to_s.upcase)
   end
 
   def is_friend_code_signup?

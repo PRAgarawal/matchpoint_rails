@@ -14,6 +14,15 @@
   <p><%= f.label :last_name %><br />
   <%= f.text_field :last_name, class: 'form-control' %></p>
 
+  <div class="field">
+    <label for="user_gender">Gender</label><br />
+    <select name="user[gender]" id="user_gender" class="form-control">
+      <option value="" selected="selected">Please select</option>
+      <option value="true">Male</option>
+      <option value="false">Female</option>
+    </select>
+  </div>
+
   <p><%= f.label :skill %><br />
   <select name="user[skill]" id="user_skill" class="form-control">
     <option value="" selected="selected">Please select</option>
