@@ -40,6 +40,17 @@ function openMatchJoinedModal($scope, resources, $modal, match) {
   });
 }
 
+function leaveMatchModal(match) {
+    matchpointModals.genericConfirmation(function() {
+        resources.all('matches/leave/' + match.id).customDELETE().
+        then(function () {
+            mixPanelEvts.leaveMatch(match, 'from_my_matches');
+            ctrl.getMatches();
+        });
+    }, "leave this match", "Confirm", "Yes");
+
+}
+
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   $scope.matchType = matchType;
@@ -106,7 +117,7 @@ matchesModule.controller('MatchRequestsListController',
     }]);
 
 matchesModule.controller('MyMatchesListController',
-    ['$scope', '$modal', 'resources', 'matchpointModals', function ($scope, $modal, resources, matchpointModals) {
+    ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
       mixPanelEvts.navigateMyMatches();
       var ctrl = this;
 
@@ -115,13 +126,7 @@ matchesModule.controller('MyMatchesListController',
       $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
-          matchpointModals.genericConfirmation(function() {
-              resources.all('matches/leave/' + match.id).customDELETE().
-                  then(function () {
-                    mixPanelEvts.leaveMatch(match, 'from_my_matches');
-                    ctrl.getMatches();
-              });
-          }, "leave this match", "Confirm", "Yes");
+          leaveMatchModal(match);
       };
     }]);
 
