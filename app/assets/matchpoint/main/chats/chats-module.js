@@ -10,7 +10,7 @@ chatsModule.config(['$routeProvider',
   }]);
 
 chatsModule.controller('ChatController',
-    ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
+    ['$scope', 'resources', '$modal', 'matchpointModals', function ($scope, resources, $modal, matchpointModals) {
       var ctrl = this;
       var chatId = resources.routeParams.chatId;
       $scope.message = {chat_id: chatId};
@@ -40,9 +40,8 @@ chatsModule.controller('ChatController',
       };
 
       ctrl.leaveMatch = function () {
-        resources.all('matches/leave/' + $scope.match.id).customDELETE().then(function () {
-          mixPanelEvts.leaveMatch($scope.match, 'from_match_detail');
-          resources.location.path('my_matches');
+        leaveMatchModal(matchpointModals, resources, ctrl, $scope.match, 'from_match_detail', function(){
+            resources.location.path('my_matches');
         });
       };
       
