@@ -40,15 +40,11 @@ function openMatchJoinedModal($scope, resources, $modal, match) {
   });
 }
 
-function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage) {
+function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, callback) {
     matchpointModals.genericConfirmation(function() {
         resources.all('matches/leave/' + match.id).customDELETE().
         then(function () {
             mixPanelEvts.leaveMatch(match, mpMessage);
-            if (mpMessage == 'from_my_matches')
-                ctrl.getMatches();
-            else if (mpMessage == 'from_match_detail')
-                resources.location.path('my_matches');
         });
     }, "leave this match", "Confirm", "Yes");
 
@@ -129,7 +125,9 @@ matchesModule.controller('MyMatchesListController',
       $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
-          leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches');
+          leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches', function(){
+              ctrl.getMatches();
+          });
       };
     }]);
 

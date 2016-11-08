@@ -40,7 +40,9 @@ chatsModule.controller('ChatController',
       };
 
       ctrl.leaveMatch = function () {
-        leaveMatchModal(matchpointModals, resources, ctrl, $scope.match, 'from_match_detail');
+        leaveMatchModal(matchpointModals, resources, ctrl, $scope.match, 'from_match_detail', function(){
+            resources.location.path('my_matches');
+        });
       };
       
       ctrl.shouldShowName = function(message) {
