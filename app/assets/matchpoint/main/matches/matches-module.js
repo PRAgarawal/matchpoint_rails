@@ -45,9 +45,9 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
         resources.all('matches/leave/' + match.id).customDELETE().
         then(function () {
             mixPanelEvts.leaveMatch(match, mpMessage);
+            callback();
         });
     }, "leave this match", "Confirm", "Yes");
-
 }
 
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
