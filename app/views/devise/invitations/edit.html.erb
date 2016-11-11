@@ -2,7 +2,7 @@
   <%= stylesheet_link_tag 'home' %>
 <% end %>
 
-<h3 class="home-header"><%= t 'devise.invitations.edit.header' %></h3>
+<img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>

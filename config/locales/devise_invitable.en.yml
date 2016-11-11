@@ -14,7 +14,7 @@ en:
         submit_button: "Send an invitation"
       edit:
         header: "Create your account"
-        submit_button: "Submit"
+        submit_button: "Create account"
     mailer:
       invitation_instructions:
         subject: "You've been invited to join Match Point!"
