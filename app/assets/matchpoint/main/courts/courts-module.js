@@ -6,6 +6,10 @@ courtsModule.config(['$routeProvider',
     when('/courts', {
       templateUrl: 'main/courts/courts.html',
       controller: 'CourtsListController as ctrl'
+    }).
+    when('/courts/new', {
+      templateUrl: 'main/courts/new_court.html',
+      controller: 'NewCourtController as ctrl'
     });
   }]);
 
@@ -13,8 +17,7 @@ courtsModule.controller('CourtsListController',
     ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
       mixPanelEvts.navigateCourts();
       var ctrl = this;
-      ctrl.NUM_AVAIL_COURTS = 3; //TODO: hopefully won't need this soon, but keep it updated for now
-      
+
       function getCourts() {
         resources.all('courts?joined=true').getList().then(function (courts) {
           $scope.userCourts = courts;
@@ -43,6 +46,12 @@ courtsModule.controller('CourtsListController',
       };
 
       getCourts();
+    }]);
+
+courtsModule.controller('NewCourtController',
+    ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
+      mixPanelEvts.navigateCourts();
+      var ctrl = this;
     }]);
 
 courtsModule.controller('JoinCourtModalController',

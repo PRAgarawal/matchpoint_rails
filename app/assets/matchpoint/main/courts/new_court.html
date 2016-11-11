@@ -1,0 +1,26 @@
+<div class="new-court col-md-offset-1 col-md-10">
+  <div class="row page-title">
+    <h3>Request a New Court</h3>
+  </div>
+
+  <label for="matchDate">Date</label>
+  <input type="date" class="form-control" id="matchDate" name="matchDate"
+         data-ng-model="match.match_date" placeholder="Date">
+
+  <select id="location" class="form-control" data-ng-model="match.court_id"
+          data-ng-options="court.id as court.name for court in courts">
+    <option value="">- Location -</option>
+  </select>
+
+  <select id="gameType" class="form-control" data-ng-model="match.is_singles">
+    <option value="">- Game Type -</option>
+    <option value="true">Singles</option>
+    <option value="false">Doubles</option>
+  </select>
+
+  <br/>
+
+  <div class="center-btn">
+    <button class="btn-sm-mpgreen" data-ng-click="ctrl.createMatch()">Submit</button>
+  </div>
+</div>
