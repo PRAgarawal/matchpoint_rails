@@ -3,10 +3,8 @@
 </div>
 <div class="modal-body">
   <div data-ng-repeat="court in courts" class="court-info green-bg">
-    <div class="court-name">
-      {{court.name}}
-    </div>
     <div class="court-address">
+      <span class="court-name">{{court.name}}</span>
       {{court.postal_address.street}}<br />
       {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
     </div>

@@ -10,15 +10,12 @@
   padding: 1em;
   background: white;
   margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
 
   .court-name {
     font-weight: bold;
-  }
-
-  .court-links {
-    padding-top: .5em;
-    display: flex;
-    justify-content: space-between;
+    display: block;
   }
 }
 
