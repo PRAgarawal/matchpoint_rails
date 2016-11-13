@@ -49,9 +49,18 @@ courtsModule.controller('CourtsListController',
     }]);
 
 courtsModule.controller('NewCourtController',
-    ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
-      mixPanelEvts.navigateCourts();
+    ['$scope', 'resources', 'matchpointModals', function ($scope, resources, matchpointModals) {
+      mixPanelEvts.navigateRequestCourt();
       var ctrl = this;
+      $scope.court = {requested_by_id: $scope.user.id, postal_address: {}};
+      
+      ctrl.createCourt = function() {
+        resources.all('courts').post($scope.court).then(function (court) {
+          mixPanelEvts.courtRequestSubmit();
+          matchpointModals.genericConfirmation(null, "Thanks for your submission! We'll notify you as soon as your court is available on Match Point.", "Court request received!", "OK", true);
+          resources.location.path('courts');
+        });
+      }
     }]);
 
 courtsModule.controller('JoinCourtModalController',

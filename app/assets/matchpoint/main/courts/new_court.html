@@ -3,24 +3,37 @@
     <h3>Request a New Court</h3>
   </div>
 
-  <label for="matchDate">Date</label>
-  <input type="date" class="form-control" id="matchDate" name="matchDate"
-         data-ng-model="match.match_date" placeholder="Date">
+  <div class="form-group">
+    <label for="courtName">Name</label>
+    <input type="text" class="form-control" id="courtName" name="courtName"
+           data-ng-model="court.name" placeholder="Court name">
+  </div>
 
-  <select id="location" class="form-control" data-ng-model="match.court_id"
-          data-ng-options="court.id as court.name for court in courts">
-    <option value="">- Location -</option>
-  </select>
+  <div class="form-group">
+    <label for="street">Address</label>
+    <input type="text" class="form-control" id="street" name="street"
+           data-ng-model="court.postal_address.street" placeholder="Street address">
+  </div>
 
-  <select id="gameType" class="form-control" data-ng-model="match.is_singles">
-    <option value="">- Game Type -</option>
-    <option value="true">Singles</option>
-    <option value="false">Doubles</option>
-  </select>
+  <div class="form-group"><div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city"
+           data-ng-model="court.postal_address.city" placeholder="City">
+  </div>
 
-  <br/>
+  <div class="form-group">
+    <label for="state">State</label>
+    <input type="text" class="form-control" id="state" name="state"
+           data-ng-model="court.postal_address.state" placeholder="State">
+  </div>
+
+  <div class="form-group">
+    <label for="zip">Zip code</label>
+    <input type="text" class="form-control" id="zip" name="zip"
+           data-ng-model="court.postal_address.zip" placeholder="Zip code">
+  </div>
 
   <div class="center-btn">
-    <button class="btn-sm-mpgreen" data-ng-click="ctrl.createMatch()">Submit</button>
+    <button class="btn-sm-mpgreen" data-ng-click="ctrl.createCourt()">Submit</button>
   </div>
 </div>

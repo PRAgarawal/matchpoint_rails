@@ -38,8 +38,20 @@ var mixPanelEvts = {
   navigateCourts: function() {
     mixpanel.track("Navigate 'Courts'");
   },
+  navigateRequestCourt: function() {
+    mixpanel.track("Navigate 'Request a New Court'");
+  },
   navigateSendFeedback: function() {
     mixpanel.track("Navigate 'Send Feedback'");
+  },
+  navigateSettings: function() {
+    mixpanel.track("Navigate 'Settings'");
+  },
+  navigateChangePassword: function() {
+    mixpanel.track("Navigate 'Change Password'");
+  },
+  navigateHome: function() {
+    mixpanel.track("Navigate 'Home'");
   },
   // --------- FRIEND EVENTS ---------
   addFriend: function(friendFinder) {
@@ -121,5 +133,11 @@ var mixPanelEvts = {
   },
   matchChatView: function(match) {
     mixpanel.track("Match chat view", mixPanelMatchInfo(match));
+  },
+  courtRequestSubmit: function() {
+    mixpanel.track("Court request submit");
+  },
+  changePassword: function() {
+    mixpanel.track("Password change");
   }
 };

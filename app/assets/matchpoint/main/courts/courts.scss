@@ -23,5 +23,8 @@
   background: $light-green50;
 }
 
-.suggest-new-court {
+.new-court {
+  .page-title h3 {
+    margin-top: -.7em;
+  }
 }

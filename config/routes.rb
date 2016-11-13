@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
     end
   end
-  resources :courts, only: [:index] do
+  resources :courts, only: [:index, :create, :update] do
     collection do
       post 'join/:court_id', to: 'courts#join', as: 'join'
       delete 'leave/:court_id', to: 'courts#leave', as: 'leave'

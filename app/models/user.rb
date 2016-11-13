@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :chats, through: :chat_users
   has_many :courts, through: :court_users
   has_many :court_matches, through: :courts, source: :matches, class_name: 'Match'
+  has_many :requested_courts, class_name: 'Court', foreign_key: 'requested_by_id'
 
   scope :friends, -> { where(Friendable.where_friend_clause(User.current_user.id)) }
 
@@ -116,5 +117,9 @@ class User < ApplicationRecord
 
   def has_joined_courts
     return self.courts.count > 0
+  end
+
+  def is_admin
+    return self.email == 'sri@matchpoint.us'
   end
 end

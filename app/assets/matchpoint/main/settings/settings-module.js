@@ -4,7 +4,8 @@ settingsModule.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
     when('/settings', {
-      templateUrl: 'main/settings/settings.html'
+      templateUrl: 'main/settings/settings.html',
+      controller: 'SettingsController as ctrl'
     }).
     when('/change_password', {
       templateUrl: 'main/settings/change_password.html',
@@ -12,8 +13,14 @@ settingsModule.config(['$routeProvider',
     });
   }]);
 
+settingsModule.controller('SettingsController',
+    ['$scope', function ($scope) {
+      mixPanelEvts.navigateSettings();
+    }]);
+
 settingsModule.controller('ChangePasswordController',
     ['$scope', 'resources', 'matchpointModals', function ($scope, resources, matchpointModals) {
+      mixPanelEvts.navigateChangePassword();
       var ctrl = this;
 
       ctrl.save = function () {
@@ -22,6 +29,7 @@ settingsModule.controller('ChangePasswordController',
         // must be present and correct to make changes
         // This is also the only way to change a password
         resources.one('users').customPUT({user: $scope.user}).then(function () {
+          mixPanelEvts.changePassword();
           matchpointModals.genericConfirmation(null, "Password changed", "Success", "OK", true);
         });
       };
