@@ -1,8 +1,7 @@
-<!DOCTYPE html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<!DOCTYPE html>
 
-<!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
-<!--[if gt IE 9]><html lang="en"><![endif]-->
-<% content_for :head do %>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -35,7 +34,7 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
   <!-- end Mixpanel -->
 
   <%= yield :javascript_head %>
-<% end %>
+</head>
 
 <%= yield :head %>
 
