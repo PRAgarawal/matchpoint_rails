@@ -116,7 +116,7 @@ class User < ApplicationRecord
   end
 
   def has_joined_courts
-    return self.courts.count > 0
+    return self.courts.count > 0 || self.requested_courts.count > 0
   end
 
   def is_admin
