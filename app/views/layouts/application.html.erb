@@ -2,7 +2,7 @@
 
 <!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
 <!--[if gt IE 9]><html lang="en"><![endif]-->
-<head>
+<% content_for :head do %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -35,7 +35,9 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
   <!-- end Mixpanel -->
 
   <%= yield :javascript_head %>
-</head>
+<% end %>
+
+<%= yield :head %>
 
 <body ng-app='matchpointApp' class="all-background">
 <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10 main-container">
