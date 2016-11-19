@@ -38,3 +38,7 @@
   |
   <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
 </div>
+
+<script>
+  mixpanel.track("Navigate 'Login'");
+</script>
