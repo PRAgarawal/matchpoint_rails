@@ -16,7 +16,7 @@ class User < ApplicationRecord
       {with: VALID_EMAIL_REGEX,
        message: "check email format"}, length: {maximum: 255}
   validates :skill, presence: true, inclusion: {in: 2..14}
-  validates :invited_by_id, presence: true, if: :is_not_root_user?
+  # validates :invited_by_id, presence: true, if: :is_not_root_user?
   # Using "is_male" has too many potential UI issues, so for `gender`, true if male, false if female
   validates :gender, inclusion: {in: [true, false]}
 
