@@ -95,8 +95,10 @@ class User < ApplicationRecord
     return !ENV['ROOT_INVITE_CODE'].upcase.to_s.split(',').include?(self.invited_by_code.to_s.upcase)
   end
 
+  DEFAULT_INVITE_CODE = 'INIT'
+
   def is_friend_code_signup?
-    return is_not_root_user? && self.invited_by_id.nil?
+    return is_not_root_user? && self.invited_by_id.nil? && self.invited_by_code != DEFAULT_INVITE_CODE && self.invited_by_code.present?
   end
 
   def friend_status(user = User.current_user)
