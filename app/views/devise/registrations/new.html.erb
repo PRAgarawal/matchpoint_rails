@@ -73,8 +73,14 @@
   </div>
 <% end %>
 
-<div class="extra-links">
-  <%= link_to 'Log in', new_session_path(resource_name) %>
+<div class="alternate-action">
+  <div class="action-type">
+    Already registered?
+  </div>
+
+  <div class="center-btn">
+    <%= link_to 'Log in', new_session_path(resource_name), class: 'btn-sm-mporange' %>
+  </div>
 </div>
 
 <script>

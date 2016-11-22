@@ -1,8 +1,8 @@
 /*************************************************************
   Colors
 *************************************************************/
-$mp-green: #449d44;
-$mp-green-hl: #2E7D32;
+$mp-green: #13904B;
+$mp-green-hl: #03803B;
 
 $purple: #884d9f;
 $green: #95CF45;
@@ -571,8 +571,8 @@ border: 1px solid #6A972C;
   float: right;
   border-radius: 2px;
   color: $white !important;
-  min-width: 120px;
   padding: 7px 15px 7px 15px;
+  width: 100%;
 }
 
 .btn-icon-mp {

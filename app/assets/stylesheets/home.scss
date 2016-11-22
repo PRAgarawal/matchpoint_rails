@@ -47,7 +47,7 @@
   font-style: italic;
   font-weight: bold;
 
-  a {
+  a.text-links {
     margin: 0 .5em 0 .5em;
   }
 }
@@ -65,4 +65,20 @@
   margin: 1em auto 1em auto;
   width: 40%;
   z-index: -1;
+}
+
+.password-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alternate-action {
+  margin-bottom: 2em;
+
+  .action-type {
+    text-align: center;
+    font-style: italic;
+    margin-top: .7em;
+    margin-bottom: .3em;
+  }
 }
