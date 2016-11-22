@@ -7,6 +7,7 @@ class Court < ApplicationRecord
   belongs_to :requester, class_name: 'User', foreign_key: 'requested_by_id'
 
   after_create :notify_admin
+  before_create :mark_as_confirmed
 
   scope :not_joined, -> {
     where(is_confirmed: true)
@@ -19,5 +20,10 @@ class Court < ApplicationRecord
   # Let Sri know when a court is created
   def notify_admin
 
+  end
+  
+  # TODO: Remove this (maybe?) once Sri can approve
+  def mark_as_confirmed
+    self.is_confirmed = true
   end
 end
