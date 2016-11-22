@@ -3,6 +3,12 @@
     <h3>Friends</h3>
   </div>
 
+  <div class="center-btn">
+    <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showAddFriendDialog()">
+      Add friend
+    </button>
+  </div>
+
   <div data-ng-repeat="friend in friends" class="friend-container">
     <div class="friend-info">
       <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
@@ -37,9 +43,4 @@
     </div>
   </div>
 
-  <div class="center-btn">
-    <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showAddFriendDialog()">
-      Add friend
-    </button>
-  </div>
 </div>
