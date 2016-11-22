@@ -57,7 +57,7 @@ courtsModule.controller('NewCourtController',
       ctrl.createCourt = function() {
         resources.all('courts').post($scope.court).then(function (court) {
           mixPanelEvts.courtRequestSubmit();
-          matchpointModals.genericConfirmation(null, "Thanks for your submission! We'll notify you as soon as your court is available on Match Point.", "Court request received!", "OK", true);
+          matchpointModals.genericConfirmation(null, "Thanks for your submission! The court is now available to be joined by any user and matches can be scheduled there.", "Court request received!", "OK", true);
           $scope.user.has_joined_courts = true;
           resources.location.path('courts');
         });
