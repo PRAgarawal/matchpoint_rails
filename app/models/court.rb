@@ -24,6 +24,6 @@ class Court < ApplicationRecord
   
   # TODO: Remove this (maybe?) once Sri can approve
   def mark_as_confirmed
-    self.is_confirmed = true
+    self.is_confirmed = true if self.try(:is_confirmed) != nil
   end
 end
