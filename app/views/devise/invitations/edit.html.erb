@@ -53,4 +53,8 @@
   <div class="actions">
     <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn-sm-mpgreen' %>
   </div>
+
+  <script>
+    mixpanel.track("Navigate 'Invite Sign Up'");
+  </script>
 <% end %>
