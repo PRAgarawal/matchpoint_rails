@@ -43,11 +43,8 @@
   </p>
 
   <% if f.object.class.require_password_on_accepting %>
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password, class: 'form-control' %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, class: 'form-control' %></p>
+    <p><%= f.label :password %><br />
+    <%= f.password_field :password, class: 'form-control' %></p>
   <% end %>
 
   <div class="actions">
