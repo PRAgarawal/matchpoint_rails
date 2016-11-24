@@ -15,7 +15,7 @@
     <div data-ng-repeat="court in userCourts" class="court-info">
       <div class="court-address">
         <span class="court-name">{{court.name}}</span>
-        <span ng-show="court.postal_address.street != null">{{court.postal_address.street}}<br />
+        <span data-ng-if="court.postal_address.street != null">{{court.postal_address.street}}<br />
         {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
         </span>
       </div>

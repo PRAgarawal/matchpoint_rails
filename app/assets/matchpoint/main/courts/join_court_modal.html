@@ -2,15 +2,15 @@
   <h3 class="modal-title">Join a new court</h3>
 </div>
 <div class="modal-body">
-  <div data-ng-repeat="court in courts" class="court-info green-bg">
+  <div data-ng-repeat="court in courts" class="court-info green-bg" data-ng-click="ctrl.joinCourt(court)">
     <div class="court-address">
       <span class="court-name">{{court.name}}</span>
-      <span ng-show="court.postal_address.street != null">{{court.postal_address.street}}<br />
+      <span data-ng-if="court.postal_address.street != null">{{court.postal_address.street}}<br />
       {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
       </span>
     </div>
     <div class="court-links">
-      <a href="javascript:;" data-ng-click="ctrl.joinCourt(court)">
+      <a href="javascript:;">
         <span class="glyphicon glyphicon-check"></span>
         Join
       </a>
