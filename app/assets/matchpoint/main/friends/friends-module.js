@@ -70,6 +70,16 @@ friendsModule.controller('FriendsListController',
               getFriendsAndRequests();
             });
       };
+
+      ctrl.showInviteFriendDialog = function () {
+        $modal.open({
+          templateUrl: 'main/friends/invite_friend_modal.html',
+          controller: 'InviteFriendModalController as ctrl',
+          'size': 'md',
+          'scope': $scope,
+          'resources': resources
+        });
+      };
     }]);
 
 friendsModule.controller('InviteFriendModalController',

@@ -3,6 +3,10 @@
     <h3>Friends</h3>
   </div>
 
+  <div data-ng-if="friends.length == 0 && friendRequests.length == 0" class="no-friends">
+    Looks like you have no friends. <span class="emoji">😢</span> No matter what, we still like you...
+  </div>
+
   <div data-ng-repeat="friend in friends" class="friend-container">
     <div class="friend-info">
       <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
@@ -35,6 +39,12 @@
         </a>
       </div>
     </div>
+  </div>
+
+  <div class="center-btn">
+    <a href="javascript:;" data-ng-click="ctrl.showInviteFriendDialog()" class="btn-sm-mpgreen">
+      Invite Friends
+    </a>
   </div>
 
 </div>
