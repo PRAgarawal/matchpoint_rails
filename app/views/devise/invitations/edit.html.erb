@@ -8,14 +8,14 @@
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
 
-  <p><%= f.label :first_name %><br />
+  <p><%= f.label :first_name %>
   <%= f.text_field :first_name, class: 'form-control' %></p>
 
-  <p><%= f.label :last_name %><br />
+  <p><%= f.label :last_name %>
   <%= f.text_field :last_name, class: 'form-control' %></p>
 
   <div class="field">
-    <label for="user_gender">Gender</label><br />
+    <label for="user_gender">Gender</label>
     <select name="user[gender]" id="user_gender" class="form-control">
       <option value="" selected="selected">Please select</option>
       <option value="true">Male</option>
@@ -23,7 +23,7 @@
     </select>
   </div>
 
-  <p><%= f.label :skill %><br />
+  <p><%= f.label :skill %>
   <select name="user[skill]" id="user_skill" class="form-control">
     <option value="" selected="selected">Please select</option>
     <option value="2">1.0</option>
@@ -43,7 +43,7 @@
   </p>
 
   <% if f.object.class.require_password_on_accepting %>
-    <p><%= f.label :password %><br />
+    <p><%= f.label :password %>
     <%= f.password_field :password, class: 'form-control' %></p>
   <% end %>
 

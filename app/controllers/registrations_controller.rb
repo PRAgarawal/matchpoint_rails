@@ -1,9 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
+  # GET /resource/sign_up?invited_by_code=abcdef
+  def new
+    super do |resource|
+      resource.invited_by_code = params[:invited_by_code]
+    end
+  end
+
   def update
     super do |resource|
       if resource.errors.present?
         render :json => {errors: resource.errors}, :status => :bad_request
-        return
       end
     end
   end

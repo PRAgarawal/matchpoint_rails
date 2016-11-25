@@ -23,7 +23,6 @@ class User < ApplicationRecord
   before_create :create_invite_code
   after_create :create_friendship, if: :is_friend_code_signup?
   after_invitation_accepted :create_friendship
-  before_validation :set_invited_by_id
 
   has_many :messages
   has_many :match_users
@@ -79,6 +78,7 @@ class User < ApplicationRecord
   end
 
   def create_friendship
+    self.set_invited_by_id
     if Friendship.friendship_for_friend(self.id, self.invited_by_id).nil?
       Friendship.create!(friend_id: self.id, user_id: self.invited_by_id, is_confirmed: true)
     end
@@ -87,7 +87,7 @@ class User < ApplicationRecord
   def set_invited_by_id
     if self.invited_by_id.nil?
       inviter = User.find_by(invite_code: self.invited_by_code.to_s.upcase)
-      self.invited_by_id = inviter.try(:id)
+      update_attributes!(invited_by_id: inviter.try(:id))
     end
   end
 
