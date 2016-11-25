@@ -1,12 +1,15 @@
 var friendsModule = angular.module('FriendsModule', ['ngSanitize']);
 
-friendsModule.config(['$routeProvider',
-  function ($routeProvider) {
+friendsModule.config(['$routeProvider', '$compileProvider',
+  function ($routeProvider, $compileProvider) {
     $routeProvider.
     when('/friends', {
       templateUrl: 'main/friends/friends.html',
       controller: 'FriendsListController as ctrl'
-    })
+    });
+
+    $compileProvider
+        .aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|sms):/);
   }]);
 
 function openUserInfoModal(user, $modal, $scope, resources) {
@@ -86,6 +89,10 @@ friendsModule.controller('InviteFriendModalController',
     ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
       var ctrl = this;
       $scope.data = {};
+      $scope.inviteUrl = EXTERNAL_URL + '/users/sign_up?invite_code=' + $scope.user.invite_code;
+      var smsBody = 'I just joined Match Point to make it easier for us to schedule tennis matches. Use this link to sign up and become my friend: ' + $scope.inviteUrl;
+      var bodyParamChar = getMobileOperatingSystem() === 'iOS' ? '&' : '?';
+      $scope.smsInviteLink = bodyParamChar + 'body=' + encodeURIComponent(smsBody);
       
       ctrl.inviteFriend = function () {
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
@@ -95,6 +102,8 @@ friendsModule.controller('InviteFriendModalController',
               matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
             })
       };
+
+      ctrl.isOnMobile = function() { return getMobileOperatingSystem() };
       
       ctrl.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);

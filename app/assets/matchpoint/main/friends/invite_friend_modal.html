@@ -10,6 +10,14 @@
     <input type="text" class="form-control" id="email" name="email"
            data-ng-model="data.email" placeholder="Enter the person's email">
   </div>
+
+  <div data-ng-if="ctrl.isOnMobile()" class="alternate-invite">
+    You can also <a href="sms:{{smsInviteLink}}">click here to send a text</a> to your friends with a link to sign up.
+  </div>
+  <div data-ng-if="!ctrl.isOnMobile()" class="alternate-invite">
+    You can also just send the following URL however you'd like to friends you want to invite:<br />
+    <a href="{{inviteUrl}}">{{inviteUrl}}</a>
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn-mp-green" data-ng-click="ctrl.inviteFriend()">Send invite</button>

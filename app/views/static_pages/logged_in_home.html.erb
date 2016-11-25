@@ -34,6 +34,10 @@
   mixpanel.track("Login successful");
 </script>
 
+<script>
+  var EXTERNAL_URL = '<%= ENV['EXTERNAL_URL'] %>';
+</script>
+
 <% content_for :javascript do %>
   <%= javascript_include_tag "main_app" %>
 <% end %>
