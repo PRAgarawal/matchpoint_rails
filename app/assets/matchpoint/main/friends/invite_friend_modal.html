@@ -2,24 +2,35 @@
   <h3 class="modal-title">Invite</h3>
 </div>
 <div class="modal-body">
-  <div class="invite-prompt">
-    We'll send the person an email with a link to join Match Point. When they accept, they'll
-    be added to your friend list.
-  </div>
-  <div class="friend-email">
-    <input type="text" class="form-control" id="email" name="email"
-           data-ng-model="data.email" placeholder="Enter the person's email">
+  <div data-ng-if="data.emailSelected">
+    <div class="invite-prompt">
+      We'll send your friend an email with a link to join Match Point. When they accept, they'll
+      be added to your friend list.
+    </div>
+    <div class="friend-email">
+      <input type="text" class="form-control" id="email" name="email"
+             data-ng-model="data.email" placeholder="Enter your friend's email">
+    </div>
   </div>
 
-  <div data-ng-if="ctrl.isOnMobile()" class="alternate-invite">
-    You can also <a href="sms:{{smsInviteLink}}">click here to send a text</a> to your friends with a link to sign up.
-  </div>
-  <div data-ng-if="!ctrl.isOnMobile()" class="alternate-invite">
-    You can also just send the following URL however you'd like to friends you want to invite:<br />
-    <a href="{{inviteUrl}}">{{inviteUrl}}</a>
+  <div data-ng-if="!data.emailSelected" class="invite-options">
+    <a data-ng-if="ctrl.isOnMobile()" href="sms:{{smsInviteLink}}" class="btn-sm-mporange">
+      Text
+    </a>
+    <a href="javascript:;" class="btn-sm-mpgreen" data-ng-click="data.emailSelected=true">
+      Email
+    </a>
+    <p class="invite-or">
+      or
+    </p>
+    <div class="alternate-invite">
+      Copy the below URL to send:<br />
+      <a href="{{inviteUrl}}">{{inviteUrl}}</a>
+    </div>
   </div>
 </div>
-<div class="modal-footer">
+
+<div data-ng-if="data.emailSelected" class="modal-footer">
   <button class="btn-mp-green" data-ng-click="ctrl.inviteFriend()">Send invite</button>
   <button class="btn-grey" data-ng-click="ctrl.cancel()">Close</button>
 </div>

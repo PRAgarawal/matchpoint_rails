@@ -25,6 +25,10 @@
   }
 }
 
+.friend-email {
+  margin-top: 1em;
+}
+
 .friends {
   .no-friends {
     text-align: center;
@@ -32,7 +36,19 @@
   }
 }
 
-.alternate-invite {
-  margin-top: 1em;
-  font-weight: bold;
+.invite-options {
+  a {
+    margin-bottom: 1em;
+  }
+
+  .invite-or {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .alternate-invite {
+    text-align: center;
+    margin-top: 1em;
+    font-weight: bold;
+  }
 }
