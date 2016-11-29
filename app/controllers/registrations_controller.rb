@@ -2,7 +2,12 @@ class RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up?invited_by_code=abcdef
   def new
     super do |resource|
-      resource.invited_by_code = params[:invited_by_code]
+      if session[:invited_by_code].present?
+        resource.invited_by_code = session[:invited_by_code]
+      else
+        session[:invited_by_code] = resource.invited_by_code = params[:invited_by_code]
+      end
+      @invited_by_code = session[:invited_by_code]
     end
   end
 

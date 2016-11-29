@@ -99,5 +99,11 @@
 </div>
 
 <script>
-  mixpanel.track("Navigate 'Sign Up'", {"Source": "Website"});
+  mixpanel.track("Navigate 'Sign Up'",
+<% if @invited_by_code.present? %>
+      {"Source": "Invite"}
+<% else %>
+      {"Source": "Website"}
+<% end %>
+  );
 </script>
