@@ -14,7 +14,7 @@
   </div>
 
   <div data-ng-if="!data.emailSelected" class="invite-options">
-    <a data-ng-if="ctrl.isOnMobile()" href="sms:{{smsInviteLink}}" class="btn-sm-mporange">
+    <a data-ng-if="ctrl.isOnMobile()" href="sms:{{smsInviteLink}}" class="btn-sm-mporange" onclick="mixPanelEvts.textInvite()">
       Text
     </a>
     <a href="javascript:;" class="btn-sm-mpgreen" data-ng-click="data.emailSelected=true">

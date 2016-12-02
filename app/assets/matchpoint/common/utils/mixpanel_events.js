@@ -69,12 +69,6 @@ var mixPanelEvts = {
     mixpanel.track("Friend request send", friend);
     mixpanel.people.increment('friends_invited');
   },
-  inviteFriend: function(friendEmail) {
-    mixpanel.track("New friend invite", {
-      'friend': friendEmail
-    });
-    mixpanel.people.increment('new_friends_invited');
-  },
   friendRequestAccept: function(friend) {
     mixpanel.track("Friend request accept", mixPanelFriendInfo(friend));
   },
@@ -83,6 +77,20 @@ var mixPanelEvts = {
   },
   friendRemove: function(friend) {
     mixpanel.track("Friend remove", mixPanelFriendInfo(friend));
+  },
+
+  // --------- INVITE EVENTS ---------
+  textInvite: function() {
+    mixpanel.track("Text invite");
+  },
+  navigateInvite: function() {
+    mixpanel.track("Navigate 'Invite'");
+  },
+  emailInvite: function(friendEmail) {
+    mixpanel.track("New friend invite", {
+      'friend': friendEmail
+    });
+    mixpanel.people.increment('new_friends_invited');
   },
 
   // --------- COURT EVENTS ---------

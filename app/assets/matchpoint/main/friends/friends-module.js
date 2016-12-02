@@ -87,6 +87,8 @@ friendsModule.controller('FriendsListController',
 
 friendsModule.controller('InviteFriendModalController',
     ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
+      mixPanelEvts.navigateInvite();
+
       var ctrl = this;
       $scope.data = {};
       $scope.inviteUrl = EXTERNAL_URL + '/users/sign_up?invited_by_code=' + $scope.user.invite_code;
@@ -94,10 +96,10 @@ friendsModule.controller('InviteFriendModalController',
       var bodyParamChar = getMobileOperatingSystem() === 'iOS' ? '&' : '?';
       $scope.smsInviteLink = bodyParamChar + 'body=' + encodeURIComponent(smsBody);
       
-      ctrl.inviteFriend = function () {
+      ctrl.emailInvite = function () {
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
             .then(function () {
-              mixPanelEvts.inviteFriend($scope.data.email);
+              mixPanelEvts.emailInvite($scope.data.email);
               $modalInstance.dismiss('cancel');
               matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
             })
