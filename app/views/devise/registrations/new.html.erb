@@ -2,7 +2,16 @@
   <%= stylesheet_link_tag 'home' %>
 <% end %>
 
-<img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
+<% if @court_code.present? %>
+  <img class="logo-header" src="<%= image_path "#{@court_code}_logo.png" %>">
+  <div class="powered-by">
+    Powered By
+  </div>
+  <img class="logo-header-sm" src="<%= image_path 'mp_logo.png' %>">
+<% else %>
+  <img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
+<% end %>
+
 
 <p class="description">
   Match Point is the place to schedule tennis matches with friends and meet new players in your area!
@@ -89,15 +98,19 @@
   </div>
 <% end %>
 
-<div class="alternate-action">
-  <div class="action-type">
-    Already registered?
-  </div>
+<% if @court_code.nil? %>
+  <div class="alternate-action">
+    <div class="action-type">
+      Already registered?
+    </div>
 
-  <div class="center-btn">
-    <%= link_to 'Log in', new_session_path(resource_name), class: 'btn-sm-mporange' %>
+    <div class="center-btn">
+      <%= link_to 'Log in', new_session_path(resource_name), class: 'btn-sm-mporange' %>
+    </div>
   </div>
-</div>
+<% else %>
+  <br />
+<% end %>
 
 <script>
   mixpanel.track("Navigate 'Sign Up'",

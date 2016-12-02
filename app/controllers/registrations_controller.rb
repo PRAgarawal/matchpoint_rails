@@ -9,12 +9,8 @@ class RegistrationsController < Devise::RegistrationsController
       end
       @invited_by_code = session[:invited_by_code]
 
-      if session[:court_code].present?
-        resource.court_code = session[:court_code]
-      else
-        session[:court_code] = resource.court_code = params[:court_code]
-      end
-      @court_code = session[:court_code]
+      resource.court_code = params[:court_code]
+      @court_code = resource.court_code
     end
   end
 

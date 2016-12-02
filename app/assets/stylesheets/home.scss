@@ -73,6 +73,11 @@
   z-index: -1;
 }
 
+.logo-header-sm {
+  @extend .logo-header;
+  width: 25%;
+}
+
 .password-label {
   display: flex;
   justify-content: space-between;
