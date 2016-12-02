@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include Friendable
 
   # This is a hack-y way to allow us to use a Friendship model for authorization in the UserPolicy
-  attr_accessor :friendship_to_authorize
+  attr_accessor :friendship_to_authorize, :court_code
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :gender, inclusion: {in: [true, false]}
 
   before_create :create_invite_code
+  after_create :join_court, if: :is_court_code_signup?
   after_create :create_friendship, if: :is_friend_code_signup?
   after_invitation_accepted :create_friendship
 
@@ -101,6 +102,10 @@ class User < ApplicationRecord
     return is_not_root_user? && self.invited_by_id.nil? && self.invited_by_code != DEFAULT_INVITE_CODE && self.invited_by_code.present?
   end
 
+  def is_court_code_signup?
+    return Court.find_by(court_code: self.court_code).present?
+  end
+
   def friend_status(user = User.current_user)
     if !user.all_friends.include?(self)
       return 'no_friendship'
@@ -123,5 +128,10 @@ class User < ApplicationRecord
 
   def is_admin
     return self.email == 'sri@matchpoint.us'
+  end
+
+  def join_court
+    court = Court.find_by(court_code: self.court_code)
+    CourtUser.create(court_id: court.id, user_id: self.id)
   end
 end
