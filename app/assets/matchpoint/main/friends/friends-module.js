@@ -96,7 +96,7 @@ friendsModule.controller('InviteFriendModalController',
       var bodyParamChar = getMobileOperatingSystem() === 'iOS' ? '&' : '?';
       $scope.smsInviteLink = bodyParamChar + 'body=' + encodeURIComponent(smsBody);
       
-      ctrl.emailInvite = function () {
+      ctrl.inviteFriend = function () {
         resources.one('users/invite_friend/' + $scope.data.email).customPOST()
             .then(function () {
               mixPanelEvts.emailInvite($scope.data.email);
