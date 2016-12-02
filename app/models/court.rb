@@ -6,7 +6,6 @@ class Court < ApplicationRecord
   has_many :matches
   belongs_to :requester, class_name: 'User', foreign_key: 'requested_by_id'
 
-  after_create :notify_admin
   after_create :set_court_code
   before_create :mark_as_confirmed
 
@@ -18,11 +17,6 @@ class Court < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
 
-  # Let Sri know when a court is created
-  def notify_admin
-
-  end
-  
   # TODO: Remove this (maybe?) once Sri can approve
   def mark_as_confirmed
     self.is_confirmed = true if self.try(:is_confirmed) != nil
