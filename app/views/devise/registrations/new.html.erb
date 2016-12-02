@@ -3,11 +3,13 @@
 <% end %>
 
 <% if @court_code.present? %>
-  <img class="logo-header" src="<%= image_path "#{@court_code}_logo.png" %>">
-  <div class="powered-by">
-    Powered By
+  <div class="tennis-center-logo-container">
+    <img class="logo-header-sm" src="<%= image_path "#{@court_code}_logo.png" %>">
+    <div class="powered-by">
+      Powered By:
+    </div>
+    <img class="logo-header-sm" src="<%= image_path 'mp_logo.png' %>">
   </div>
-  <img class="logo-header-sm" src="<%= image_path 'mp_logo.png' %>">
 <% else %>
   <img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
 <% end %>

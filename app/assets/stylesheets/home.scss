@@ -70,12 +70,24 @@
   display: block;
   margin: 1em auto 1em auto;
   width: 40%;
-  z-index: -1;
 }
 
 .logo-header-sm {
-  @extend .logo-header;
-  width: 25%;
+  display: inline-block;
+  width: 40%;
+}
+
+.powered-by {
+  width: 17%;
+  text-align: center;
+  font-style: italic;
+  font-size: .8em;
+  display: inline-block;
+}
+
+.tennis-center-logo-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .password-label {
