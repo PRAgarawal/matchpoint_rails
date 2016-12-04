@@ -3,6 +3,12 @@
     <h3>{{pageTitle}}</h3>
   </div>
 
+  <div data-ng-if="matchType == 'requests'" class="center-btn">
+    <a href="#/new_match" class="btn-sm-mpgreen">
+      Create Match Request
+    </a>
+  </div>
+
   <div data-ng-repeat="match in matches" class="match-container">
     <div data-ng-class="ctrl.getMatchStatus(match) ? ctrl.getMatchStatus(match) : 'blank'">
       {{ctrl.getMatchStatus(match)}}
@@ -50,9 +56,4 @@
     You haven’t joined or created any matches. Try <a href="#/match_requests">viewing match requests</a>.
   </div>
 
-  <div data-ng-if="matchType == 'requests'" class="center-btn">
-    <a href="#/new_match" class="btn-sm-mpgreen">
-      Create Match Request
-    </a>
-  </div>
 </div>
