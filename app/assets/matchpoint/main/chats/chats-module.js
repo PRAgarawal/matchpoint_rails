@@ -20,6 +20,10 @@ chatsModule.controller('ChatController',
         $scope.match = match;
       });
 
+      ctrl.timezone = function(match) {
+        return /\((.*)\)/.exec(new Date(match.match_date).toString())[1];
+      };
+
       function getMessages() {
         resources.all('messages?chat_id=' + chatId).getList().then(function (messages) {
           $scope.messages = messages;
