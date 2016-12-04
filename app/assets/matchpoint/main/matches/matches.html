@@ -47,7 +47,7 @@
     You haven’t joined or created any matches. Try <a href="#/match_requests">viewing match requests</a>.
   </div>
 
-  <div class="center-btn">
+  <div data-ng-if="matchType == 'requests'" class="center-btn">
     <a href="#/new_match" class="btn-sm-mpgreen">
       Create Match Request
     </a>
