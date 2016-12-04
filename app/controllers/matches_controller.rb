@@ -13,7 +13,7 @@ class MatchesController < RestfulController
     elsif get_my_matches == 'true'
       scope = current_user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff)
     elsif get_past_matches == 'true'
-      scope = current_user.matches.where('matches.match_date < ?', DateHelper.today_cutoff)
+      scope = Match.filter_past_matches(scope)
       sort_order = :desc
     end
 

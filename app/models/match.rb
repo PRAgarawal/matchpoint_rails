@@ -67,6 +67,15 @@ class Match < ApplicationRecord
         .order(match_date: :asc)
   end
 
+  def self.filter_past_matches(scope)
+    return scope.joins('INNER JOIN match_users match_users ON match_users.match_id = matches.id')
+         .group('matches.id')
+         .where('matches.match_date < ?', Time.now)
+         .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) = 1',
+                 User.current_user.id)
+         .having('COUNT(match_users.id) = (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)')
+  end
+
   def get_player_list
     players = ''
     player_count = self.users.count
