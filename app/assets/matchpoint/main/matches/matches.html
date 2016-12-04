@@ -9,7 +9,10 @@
     </div>
     <div class="match-info">
       <div class="match-date">
-        {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}
+        {{match.match_date | date:'fullDate'}}
+      </div>
+      <div class="match-date">
+        {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}
       </div>
       <div class="match-court">
         <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>

@@ -1,8 +1,14 @@
 <div class="chats">
+  <div class="row page-title">
+    <h3>Match Details</h3>
+  </div>
   <div class="match-container">
     <div class="match-info">
       <div class="match-date">
-        {{match.match_date | date:'fullDate'}} at {{match.match_date | date:'shortTime'}}
+        {{match.match_date | date:'fullDate'}}
+      </div>
+      <div class="match-date">
+        {{match.match_date | date:'shortTime'}} {{ctrl.timezone(match)}}
       </div>
       <div class="match-court">
         <span>{{match.court.name}}</span><span>{{match.is_singles ? "Singles" : "Doubles"}}</span>
