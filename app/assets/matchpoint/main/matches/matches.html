@@ -3,6 +3,13 @@
     <h3>{{pageTitle}}</h3>
   </div>
 
+  <div data-ng-if="matches.length == 0 && matchType == 'requests'" class="no-matches">
+    You have no match requests at this time. Try <a href="#/friends">adding friends</a> or <a href="#/courts">joining more courts</a>.
+  </div>
+  <div data-ng-if="matches.length == 0 && matchType == 'my_matches'" class="no-matches">
+    You haven’t joined or created any matches. Try <a href="#/match_requests">viewing match requests</a>.
+  </div>
+
   <div data-ng-if="matchType == 'requests'" class="center-btn">
     <a href="#/new_match" class="btn-sm-mpgreen">
       Create Match Request
@@ -47,13 +54,6 @@
         </a>
       </div>
     </div>
-  </div>
-
-  <div data-ng-if="matches.length == 0 && matchType == 'requests'" class="no-matches">
-    You have no match requests at this time. Try <a href="#/friends">adding friends</a> or <a href="#/courts">joining more courts</a>.
-  </div>
-  <div data-ng-if="matches.length == 0 && matchType == 'my_matches'" class="no-matches">
-    You haven’t joined or created any matches. Try <a href="#/match_requests">viewing match requests</a>.
   </div>
 
 </div>
