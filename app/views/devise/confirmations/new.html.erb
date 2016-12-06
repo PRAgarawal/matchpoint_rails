@@ -4,7 +4,7 @@
 
 <img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
 
-<h3 align="center">Resend confirmation instructions</h3>
+<p>Enter your email address below to resend the email to confirm your email address.</p>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
@@ -20,4 +20,6 @@
 <% end %>
 
 <br /><br />
+<div align="center">
 <%= render "devise/shared/links" %>
+</div>
