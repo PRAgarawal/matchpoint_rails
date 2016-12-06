@@ -88,11 +88,10 @@
 <% if @court_code.nil? %>
   <div class="alternate-action">
     <div class="action-type">
-      Already registered?
     </div>
 
     <div class="center-btn">
-      <%= link_to 'Log in', new_session_path(resource_name), class: 'btn-sm-mporange' %>
+      <%= link_to 'I already have an account', new_session_path(resource_name), class: 'btn-sm-default' %>
     </div>
   </div>
 <% else %>
@@ -108,3 +107,9 @@
 <% end %>
   );
 </script>
+
+<hr>
+
+<p class="accept-terms">
+  2016 Match Point Technologies LLC <a href="mailto:contact@matchpoint.us">Contact us</a>
+</p>
