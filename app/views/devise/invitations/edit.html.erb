@@ -40,24 +40,25 @@
     </select>
   </div>
 
-  <p><%= f.label :skill %>
-  <select name="user[skill]" id="user_skill" class="form-control">
-    <option value="" selected="selected">Please select</option>
-    <option value="2">1.0</option>
-    <option value="3">1.5</option>
-    <option value="4">2.0</option>
-    <option value="5">2.5</option>
-    <option value="6">3.0</option>
-    <option value="7">3.5</option>
-    <option value="8">4.0</option>
-    <option value="9">4.5</option>
-    <option value="10">5.0</option>
-    <option value="11">5.5</option>
-    <option value="12">6.0</option>
-    <option value="13">6.5</option>
-    <option value="14">7.0</option>
-  </select>
-  </p>
+  <div>
+    <%= f.label :skill %>
+    <select name="user[skill]" id="user_skill" class="form-control">
+      <option value="" selected="selected">Please select</option>
+      <option value="2">1.0</option>
+      <option value="3">1.5</option>
+      <option value="4">2.0</option>
+      <option value="5">2.5</option>
+      <option value="6">3.0</option>
+      <option value="7">3.5</option>
+      <option value="8">4.0</option>
+      <option value="9">4.5</option>
+      <option value="10">5.0</option>
+      <option value="11">5.5</option>
+      <option value="12">6.0</option>
+      <option value="13">6.5</option>
+      <option value="14">7.0</option>
+    </select>
+  </div>
 
   <% if f.object.class.require_password_on_accepting %>
     <p><%= f.label :password %>
@@ -67,6 +68,8 @@
   <div class="actions">
     <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn-sm-mpgreen' %>
   </div>
+
+  <br />
 
   <script>
     mixpanel.track("Navigate 'Sign Up'", {"Source": "Invite"});
