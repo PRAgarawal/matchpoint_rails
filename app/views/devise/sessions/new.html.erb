@@ -38,14 +38,19 @@
 
 <div class="alternate-action">
   <div class="action-type">
-    Not yet a member?
   </div>
 
   <div class="center-btn">
-    <%= link_to 'Sign up', new_registration_path(resource_name), class: 'btn-sm-mporange' %>
+    <%= link_to 'Create an account', new_registration_path(resource_name), class: 'btn-sm-default' %>
   </div>
 </div>
 
 <script>
   mixpanel.track("Navigate 'Login'");
 </script>
+
+<hr>
+
+<p class="accept-terms">
+  2016 Match Point Technologies LLC <a href="mailto:contact@matchpoint.us">Contact us</a>
+</p>
