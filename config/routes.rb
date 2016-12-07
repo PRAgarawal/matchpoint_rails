@@ -33,4 +33,5 @@ Rails.application.routes.draw do
 
   match '/asset/*path', to: 'assets#serve_main_asset', via: :get
   match '/main/*path', to: 'assets#serve_main_asset', via: :get
+  match '/unconfirmed_email/:user_id', to: 'static_pages#unconfirmed', via: :get
 end

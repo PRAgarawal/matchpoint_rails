@@ -1,4 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
+  def after_sign_up_path_for(resource)
+    "/unconfirmed_email/#{resource.id}"
+  end
+
+  def after_inactive_sign_up_path_for(resource)
+    "/unconfirmed_email/#{resource.id}"
+  end
+
   # GET /resource/sign_up?invited_by_code=abcdef
   def new
     super do |resource|

@@ -6,9 +6,8 @@ class User < ApplicationRecord
   attr_accessor :friendship_to_authorize, :court_code
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
-         :validatable
+  #  :lockable, :timeoutable and :omniauthable
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :first_name, presence: true, length: {maximum: 255}
   validates :last_name, presence: true, length: {maximum: 255}
@@ -133,5 +132,9 @@ class User < ApplicationRecord
   def join_court
     court = Court.find_by(court_code: self.court_code)
     CourtUser.create(court_id: court.id, user_id: self.id)
+  end
+
+  def full_name
+    return "#{self.first_name} #{self.last_name}"
   end
 end

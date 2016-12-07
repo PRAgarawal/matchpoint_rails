@@ -14,18 +14,9 @@
   <img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
 <% end %>
 
-
-<p class="description">
-  Schedule tennis matches with friends and meet new players in your area
-</p>
-
-<ul>
-  <li>Get a daily summary email listing all available match requests. No more annoying group texts.</li>
-  <li>Receive notifications that are relevant to matches you've joined.</li>
-  <li>Communicate without sharing your email address or phone number with others.</li>
-  <li>Schedule singles or doubles matches.</li>
-</ul>
-
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/3MxACF7YXRA" frameborder="0" allowfullscreen></iframe>
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -97,11 +88,10 @@
 <% if @court_code.nil? %>
   <div class="alternate-action">
     <div class="action-type">
-      Already registered?
     </div>
 
     <div class="center-btn">
-      <%= link_to 'Log in', new_session_path(resource_name), class: 'btn-sm-mporange' %>
+      <%= link_to 'I already have an account', new_session_path(resource_name), class: 'btn-sm-default' %>
     </div>
   </div>
 <% else %>
@@ -117,3 +107,9 @@
 <% end %>
   );
 </script>
+
+<hr>
+
+<p class="accept-terms">
+  2016 Match Point Technologies LLC <a href="mailto:contact@matchpoint.us">Contact us</a>
+</p>

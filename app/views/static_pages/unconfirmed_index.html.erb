@@ -1,6 +1,20 @@
-<p>You should receive an email from us soon with a link to verify your account.</p>
-<p>If you do not receive it within a few minutes, please make sure it is not in your spam folder.
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'home' %>
+<% end %>
+
+<img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
+
+<p class="confirmation-header">Welcome to Match Point! Just one more step...</p>
+
+<p>
+  You should receive a welcome email from us soon with a link to verify your account.
+  If you don't get it within a few minutes, please check your spam folder.
 </p>
-<p>Or you may
-  <a href="<%= ENV['EXTERNAL_URL'] %>/users/confirmation/new">click here to re-send it.</a>
-</p>
+
+<br />
+
+<% if @user.try(:courts).try(:count).to_i > 0 %>
+  <a href="<%= ENV['EXTERNAL_URL'] %>/users/sign_up" class="btn-sm-mpgreen">OK</a>
+<% else %>
+  <a href="<%= ENV['EXTERNAL_URL'] %>/users/confirmation/new" class="btn-sm-mpgreen">Resend Confirmation Email</a>
+<% end %>
