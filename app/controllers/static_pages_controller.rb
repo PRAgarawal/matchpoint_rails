@@ -14,6 +14,7 @@ class StaticPagesController < ApplicationController
   end
 
   def unconfirmed
+    @user = User.find_by(id: params[:user_id])
     render template: "static_pages/unconfirmed_index"
   end
 end

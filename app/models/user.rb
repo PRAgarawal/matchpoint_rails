@@ -133,4 +133,8 @@ class User < ApplicationRecord
     court = Court.find_by(court_code: self.court_code)
     CourtUser.create(court_id: court.id, user_id: self.id)
   end
+
+  def full_name
+    return "#{self.first_name} #{self.last_name}"
+  end
 end
