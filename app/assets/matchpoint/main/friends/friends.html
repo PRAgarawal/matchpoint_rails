@@ -7,6 +7,12 @@
     To add a friend click on a name in a match or invite your friends to join Match Point.
   </div>
 
+  <div class="center-btn">
+    <a href="javascript:;" data-ng-click="ctrl.showInviteFriendDialog()" class="btn-sm-mpgreen">
+      Invite Friends
+    </a>
+  </div>
+
   <div data-ng-repeat="friend in friends" class="friend-container">
     <div class="friend-info">
       <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
@@ -39,12 +45,6 @@
         </a>
       </div>
     </div>
-  </div>
-
-  <div class="center-btn">
-    <a href="javascript:;" data-ng-click="ctrl.showInviteFriendDialog()" class="btn-sm-mpgreen">
-      Invite Friends
-    </a>
   </div>
 
 </div>
