@@ -1,0 +1,164 @@
+<% content_for :css do %>
+    <%= stylesheet_link_tag 'index/main' %>
+    <%= stylesheet_link_tag 'index/devices' %>
+<% end %>
+
+<html>
+  <head>
+    <title>
+      Match Point
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/devices.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="container-lrg">
+        <div class="col-12 spread">
+          <div>
+            <a class="logo">
+              Match Point
+            </a>
+          </div>
+          <div>
+            <a class="nav-link login-btn" href="<%= new_session_path(User) %>">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-lrg flex">
+        <div class="col-6 centervertical">
+          <h1 class="heading">
+            Play tennis on your schedule
+          </h1>
+          <h2 class="paragraph ">
+            We're on the mission to change how tennis is organized. With Match Point you will be able to play at a convenient time and location that works for you.
+          </h2>
+          <div class="ctas">
+            <a class="ctas-button" href="<%= new_registration_path(User) %>">
+              Sign Up
+            </a>
+          </div>
+        </div>
+        <div class="col-6 sidedevices">
+          <div class="iphoneandroid">
+            <div class="iphone">
+              <div class="mask">
+                <img class="mask-img" src="<%= image_path 'index/Screenshot2.svg' %>">
+              </div>
+            </div>
+            <div class="android">
+              <div class="mask">
+                <img class="mask-img" src="<%= image_path 'index/Screenshot1.svg' %>">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="feature5">
+      <div class="container-sml text-center">
+        <div class="col-12">
+          <h3 class="heading">
+            Tennis Anytime and Anywhere
+          </h3>
+        </div>
+      </div>
+      <div class="container-lrg flex">
+        <div class="col-5 centervertical">
+          <div class="steps">
+            <h3 class="subheading">
+              Find Players Nearby
+            </h3>
+            <p class="paragraph">
+              Maybe you don't know enough tennis players or you want to play someone with a different style of play. Now you can grow your tennis circle.
+            </p>
+          </div>
+          <div class="steps">
+            <h3 class="subheading">
+              Communicate Easily
+            </h3>
+            <p class="paragraph">
+              No need to share a personal phone number. Forget about the group texts with your friends that you can never opt out of.
+            </p>
+          </div>
+          <div class="steps">
+            <h3 class="subheading">
+              Locate Courts Nearby
+            </h3>
+            <p class="paragraph">
+              Want to play close to home? Or how about close to work so you don't have to sit in rush hour traffic? We got you covered either way.
+            </p>
+          </div>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-6">
+          <div class="sidedevices">
+            <div class="iphoneandroid">
+              <div class="iphone">
+                <div class="mask">
+                  <img class="mask-img" src="<%= image_path 'index/IMG_4756.PNG' %>">
+                </div>
+              </div>
+              <div class="android">
+                <div class="mask">
+                  <img class="mask-img" src="<%= image_path 'index/screen.png' %>">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="container-sml text-center">
+        <div class="col-12">
+          <h5 class="heading">
+            Join a match today.
+          </h5>
+          <div class="ctas">
+            <a class="ctas-button" href="<%= new_registration_path(User) %>">
+              Sign Up
+            </a>
+            <a class="ctas-button-2" href="<%= new_session_path(User) %>">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-sml footer-nav">
+        <div class="col-12 text-center">
+          <div>
+            <a class="nav-link" href="http://twitter.com/getMatchPoint">
+              Twitter
+            </a>
+            <a class="nav-link" href="http://www.facebook.com/getmatchpoint/">
+              Facebook
+            </a>
+            <a class="nav-link" href="mailto:contact@matchpoint.us">
+              Contact
+            </a>
+            <a class="nav-link" href="/terms_of_service.html">
+              TOS
+            </a>
+            <a class="nav-link" href="/privacy_policy.html">
+              Privacy
+            </a>
+            <a class="nav-link" href="/copyright_policy.html">
+              Copyright
+            </a>
+          </div>
+          <br>
+          <div>
+            <span>
+              © 2016 Match Point Technologies LLC
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -38,7 +38,7 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
 
 <%= yield :head %>
 
-<body ng-app='matchpointApp' class="all-background">
+<body data-ng-app='matchpointApp' class="all-background">
 <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10 main-container">
   <%= yield %>
 </div>
