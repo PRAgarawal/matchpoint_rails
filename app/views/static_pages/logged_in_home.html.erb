@@ -19,7 +19,13 @@
       'friends_invited':     0,
       'courts':              0,
       'friends':             0,
-      'invited_by_code':    '<%= current_user.invited_by_code %>'
+      'invited_by_code':    '<%= current_user.invited_by_code %>',
+
+  <% if current_user.courts.count == 1 %>
+      'court_code':         '<%= current_user.courts.first.court_code %>'
+  <% else %>
+      'court_code':         ''
+  <% end %>
     });
   </script>
 <% end %>
