@@ -14,7 +14,7 @@
 <br />
 
 <% if @user.try(:courts).try(:count).to_i > 0 %>
-  <a href="<%= ENV['EXTERNAL_URL'] %>/users/sign_up" class="btn-sm-mpgreen">OK</a>
+  <a href="<%= ENV['EXTERNAL_URL'] %>/users/sign_up?court_code=<%= @user.courts.first.court_code %>" class="btn-sm-mpgreen">OK</a>
 <% else %>
   <a href="<%= ENV['EXTERNAL_URL'] %>/users/confirmation/new" class="btn-sm-mpgreen">Resend Confirmation Email</a>
 <% end %>
