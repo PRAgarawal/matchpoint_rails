@@ -8,15 +8,18 @@
     <div class="powered-by">
       POWERED BY
     </div>
-    <a href="/"><img class="logo-header-sm" src="<%= image_path 'mp_logo.png' %>"></a>
+    <img class="logo-header-sm" src="<%= image_path 'mp_logo.png' %>">
+  </div>
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3MxACF7YXRA" frameborder="0" allowfullscreen></iframe>
+  </div>
+<% elsif @invited_by_code.present? %>
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3MxACF7YXRA" frameborder="0" allowfullscreen></iframe>
   </div>
 <% else %>
-    <a href="/"><img class="logo-header" src="<%= image_path 'mp_logo.png' %>"></a>
+  <a href="/"><img class="logo-header" src="<%= image_path 'mp_logo.png' %>"></a>
 <% end %>
-
-<div class="video-container">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/3MxACF7YXRA" frameborder="0" allowfullscreen></iframe>
-</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
