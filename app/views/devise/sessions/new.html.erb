@@ -2,7 +2,7 @@
   <%= stylesheet_link_tag 'home' %>
 <% end %>
 
-<img class="logo-header" src="<%= image_path 'mp_logo.png' %>">
+<a href="/"><img class="logo-header" src="<%= image_path 'mp_logo.png' %>"></a>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
