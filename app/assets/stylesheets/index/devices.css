@@ -426,8 +426,8 @@
   .centerdevices .iphoneandroid .android {
     position: relative;
     display: inline-block;
-    vertical-align: top;
-    height: 440px;
+    vertical-align: bottom;
+    height: 411px;
     width: 220px;
     margin: 0 20px;
     left: inherit;
