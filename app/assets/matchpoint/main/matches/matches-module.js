@@ -149,6 +149,10 @@ matchesModule.controller('NewMatchRequestsController',
         $scope.courts = courts;
       });
 
+      ctrl.timezone = function(match) {
+          return /\((.*)\)/.exec(new Date().toString())[1];
+      };
+
       ctrl.createMatch = function() {
         $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
         resources.success_message(
