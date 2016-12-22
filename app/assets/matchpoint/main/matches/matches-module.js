@@ -149,7 +149,7 @@ matchesModule.controller('NewMatchRequestsController',
         $scope.courts = courts;
       });
 
-      ctrl.timezone = function(match) {
+      ctrl.timezone = function() {
           return /\((.*)\)/.exec(new Date().toString())[1];
       };
 
