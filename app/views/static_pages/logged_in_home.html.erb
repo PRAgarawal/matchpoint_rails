@@ -28,9 +28,9 @@
   mixpanel.register({email: "<%= current_user.email %>"});
 <% if current_user.sign_in_count == 1 %>
   mixpanel.track("Sign up successful", {
-    <% if current_user.invited_by_code != ""%>
+    <% if current_user.invited_by_id != nil %>
     'source': 'invite',
-    'invited_by_code': '<%= current_user.invited_by_code %>'
+    'invited_by_id': '<%= current_user.invited_by_id %>'
     <% elsif current_user.courts.count == 1 %>
     'source': 'iPad',
     'court_code':      '<%= current_user.courts.first.court_code %>'
