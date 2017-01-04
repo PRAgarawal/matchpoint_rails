@@ -28,11 +28,14 @@
   mixpanel.register({email: "<%= current_user.email %>"});
 <% if current_user.sign_in_count == 1 %>
   mixpanel.track("Sign up successful", {
-    'invited_by_code': '<%= current_user.invited_by_code %>',
-    <% if current_user.courts.count == 1 %>
+    <% if current_user.invited_by_code != ""%>
+    'source': 'invite',
+    'invited_by_code': '<%= current_user.invited_by_code %>'
+    <% elsif current_user.courts.count == 1 %>
+    'source': 'iPad',
     'court_code':      '<%= current_user.courts.first.court_code %>'
     <% else %>
-    'court_code':      ''
+    'source': 'homepage'
     <% end %>
   });
 <% current_user.update_attributes!(sign_in_count: 2) %>
