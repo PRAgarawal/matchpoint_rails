@@ -5,6 +5,8 @@ class FriendRequestMailer < ApplicationMailer
     @friend_name = "#{friend.first_name} #{friend.last_name}"
     @friend_first_name = friend.first_name
 
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1913}'
+
     mail(to: user.email, subject: "#{@friend_name} wants to be your friend on Match Point")
   end
 
@@ -16,6 +18,8 @@ class FriendRequestMailer < ApplicationMailer
     subject = @is_from_inviter ?
         "#{@friend_name} has accepted your invitation to join Match Point" :
         "#{@friend_name} has accepted your friend request on Match Point"
+
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1913}'
 
     mail(to: user.email, subject: subject)
   end

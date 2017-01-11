@@ -15,6 +15,8 @@ class ChatMailer < ApplicationMailer
     @text = message.body
     @url_ext = chat.id.to_s + '/' + match.id.to_s
 
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1915}'
+
     mail(to: recipient.email, subject: "Update to your #{match.is_singles ? 'singles' : 'doubles'} match on #{match.formatted_match_date}")
   end
 end

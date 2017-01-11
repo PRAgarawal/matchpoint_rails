@@ -9,6 +9,8 @@ class MatchMailer < ApplicationMailer
                          .where.not(matches: { id: @friend_matches.pluck(:id) })
                          .to_a
 
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1911}'
+
     if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
       @first_name = user.first_name
       mail(to: user.email, subject: "Your Daily Summary - #{Date.today.strftime('%a %b %-d, %Y')}")
@@ -36,6 +38,9 @@ class MatchMailer < ApplicationMailer
     @friend = user
     @to_user_name = to_user.first_name
     @match_type = match.is_singles ? 'singles' : 'doubles'
+
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1915}'
+
     mail(to: to_user.email, subject: "Update to your #{match.is_singles ? 'singles' : 'doubles'} match on #{match.formatted_match_date}")
   end
 end
