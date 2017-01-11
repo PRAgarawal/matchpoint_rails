@@ -36,6 +36,6 @@ class MatchMailer < ApplicationMailer
     @friend = user
     @to_user_name = to_user.first_name
     @match_type = match.is_singles ? 'singles' : 'doubles'
-    mail(to: to_user.email, subject: "Update to your Singles match on #{match.formatted_match_date}")
+    mail(to: to_user.email, subject: "Update to your #{match.is_singles ? 'singles' : 'doubles'} match on #{match.formatted_match_date}")
   end
 end
