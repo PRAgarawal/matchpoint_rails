@@ -11,9 +11,9 @@ class MatchMailer < ApplicationMailer
 
     headers['X-SMTPAPI'] = '{"asm_group_id": 1911}'
 
-    if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
+    if @friend_matches.count > 0 || @court_matches.count > 0
       @first_name = user.first_name
-      mail(to: user.email, subject: "Your Daily Summary - #{Date.today.strftime('%a %b %-d, %Y')}")
+      mail(to: user.email, subject: "New Matches - #{Date.today.strftime('%a %b %-d, %Y')}")
     end
   end
 
