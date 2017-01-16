@@ -47,7 +47,7 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
             mixPanelEvts.leaveMatch(match, mpMessage);
             callback();
         });
-    }, "leave this match", "Confirm", "Yes");
+    }, "leave this match? You will no longer be able to receive or send messages with others in this match.", "Confirm", "Yes");
 }
 
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {

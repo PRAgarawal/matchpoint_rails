@@ -90,7 +90,7 @@
       ['$scope', '$modalInstance', 'callback', 'message', 'title', 'buttonText', 'isInformational',
       function ($scope, $modalInstance, callback, message, title, buttonText, isInformational) {
         message = message ? message : "save these changes";
-        $scope.message = isInformational ? message : "Are you sure you want to " + message + "?";
+        $scope.message = isInformational ? message : "Are you sure you want to " + message;
         $scope.title = title ? title : "Confirm";
         $scope.buttonText = buttonText ? buttonText : "Submit";
         $scope.isInformational = isInformational;
