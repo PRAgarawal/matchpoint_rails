@@ -60,11 +60,16 @@ class Match < ApplicationRecord
     return scope.select('matches.*')
         .joins("INNER JOIN match_users #{match_users_alias} ON #{match_users_alias}.match_id = matches.id")
         .group('matches.id')
-        .where(created_at: (Time.now - 1.days)..Time.now)
+        .where('matches.match_date > ?', Time.now)
         .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) = 0',
                 User.current_user.id)
         .having("COUNT(#{match_users_alias}.id) < (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)")
         .order(match_date: :asc)
+  end
+
+  def self.filter_new_matches(scope, from_friends = false)
+    return self.filter_available_matches(scope, from_friends)
+               .where(created_at: (Time.now - 1.day)..Time.now)
   end
 
   def self.filter_past_matches(scope)
