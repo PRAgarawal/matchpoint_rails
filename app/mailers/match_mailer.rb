@@ -4,16 +4,16 @@ class MatchMailer < ApplicationMailer
   def daily_digest(user)
     User.current_user = user
     @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff).order(match_date: :asc).to_a
-    @friend_matches = Match.available_from_friends.to_a
-    @court_matches = Match.available_on_courts
+    @friend_matches = Match.new_from_friends.to_a
+    @court_matches = Match.new_on_courts
                          .where.not(matches: { id: @friend_matches.pluck(:id) })
                          .to_a
 
     headers['X-SMTPAPI'] = '{"asm_group_id": 1911}'
 
-    if @my_matches.count > 0 || @friend_matches.count > 0 || @court_matches.count > 0
+    if @friend_matches.count > 0 || @court_matches.count > 0
       @first_name = user.first_name
-      mail(to: user.email, subject: "Your Daily Summary - #{Date.today.strftime('%a %b %-d, %Y')}")
+      mail(to: user.email, subject: "New Matches - #{Date.today.strftime('%a %b %-d, %Y')}")
     end
   end
 

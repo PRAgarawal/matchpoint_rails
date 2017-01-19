@@ -18,7 +18,7 @@ class Match < ApplicationRecord
         .where('match_users.user_id IN (?)', User.friends.pluck(:id).push(User.current_user.id))
         .distinct
   }
-  scope :available_from_friends, -> { Match.filter_available_matches(from_friends, true) }
+  scope :new_from_friends, -> { Match.filter_new_matches(from_friends, true) }
   # All public matches at the current user's courts
   scope :on_courts, -> {
     joins(:court)
@@ -26,7 +26,7 @@ class Match < ApplicationRecord
                    " = #{User.current_user.id}")
         .where(is_friends_only: false)
         .distinct }
-  scope :available_on_courts, -> { Match.filter_available_matches(on_courts) }
+  scope :new_on_courts, -> { Match.filter_new_matches(on_courts) }
   # Union of the above two, including all matches visible to the user
   scope :available, -> { union_scope(from_friends, on_courts) }
 
@@ -60,11 +60,16 @@ class Match < ApplicationRecord
     return scope.select('matches.*')
         .joins("INNER JOIN match_users #{match_users_alias} ON #{match_users_alias}.match_id = matches.id")
         .group('matches.id')
-        .where('matches.match_date >= ?', Time.now)
+        .where('matches.match_date > ?', Time.now)
         .having('MAX(CASE WHEN match_users.user_id = ? THEN 1 ELSE 0 END) = 0',
                 User.current_user.id)
         .having("COUNT(#{match_users_alias}.id) < (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)")
         .order(match_date: :asc)
+  end
+
+  def self.filter_new_matches(scope, from_friends = false)
+    return self.filter_available_matches(scope, from_friends)
+               .where(created_at: (Time.now - 1.day)..Time.now)
   end
 
   def self.filter_past_matches(scope)
