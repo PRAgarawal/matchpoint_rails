@@ -141,6 +141,7 @@ matchesModule.controller('PastMatchesListController',
 
 matchesModule.controller('NewMatchRequestsController',
     ['$scope', 'resources', function ($scope, resources) {
+      mixPanelEvts.navigateCreateMatch();
       var ctrl = this;
 
       $scope.match = {};

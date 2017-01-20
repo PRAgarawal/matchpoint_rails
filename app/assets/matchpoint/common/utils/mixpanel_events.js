@@ -32,6 +32,9 @@ var mixPanelEvts = {
   navigateMatchRequests: function() {
     mixpanel.track("Navigate 'Match Requests'");
   },
+  navigateCreateMatch: function() {
+    mixpanel.track("Navigate 'Create Match'")
+  },
   navigatePastMatches: function() {
     mixpanel.track("Navigate 'Past Matches'");
   },
