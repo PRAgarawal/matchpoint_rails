@@ -8,7 +8,7 @@
   <meta property="og:url" content="<%= ENV['EXTERNAL_URL']%>" />
   <meta property="og:title" content="Match Point" />
   <meta property="og:image" content="<%= ENV['EXTERNAL_URL']%><%= image_path 'fb_logo.png' %>" />
-  <meta property="og:description" content="Find tennis players in your area and play any time you want!" />
+  <meta property="og:description" content="Find tennis players in your area and play on your schedule." />
   <link rel="icon"
         type="image/png"
         href="<%= asset_path 'favicon.ico' %>">
@@ -39,6 +39,24 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
 <%= yield :head %>
 
 <body data-ng-app='matchpointApp' class="all-background">
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '253842408386816',
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10 main-container">
   <%= yield %>
 </div>
