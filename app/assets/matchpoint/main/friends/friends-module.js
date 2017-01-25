@@ -101,7 +101,7 @@ friendsModule.controller('InviteFriendModalController',
             .then(function () {
               mixPanelEvts.emailInvite($scope.data.email);
               $modalInstance.dismiss('cancel');
-              matchpointModals.genericConfirmation(null, "Invite sent!", "Success", "OK", true)
+              matchpointModals.genericConfirmation(null, "Invite sent! You will be notified when this person signs up.", "Success", "OK", true)
             })
       };
 
@@ -120,7 +120,7 @@ friendsModule.controller('AddFriendModalController',
             .then(function () {
               mixPanelEvts.addFriend($scope.data.friendFinder);
               $modalInstance.dismiss('cancel');
-              matchpointModals.genericConfirmation(null, "Friend request sent!", "Success", "OK", true);
+              matchpointModals.genericConfirmation(null, "Friend request sent! You will be notified when the friend request is accepted.", "Success", "OK", true);
             });
       };
 
