@@ -145,8 +145,10 @@ var mixPanelEvts = {
   matchChatView: function(match) {
     mixpanel.track("Match chat view", mixPanelMatchInfo(match));
   },
-  courtRequestSubmit: function() {
-    mixpanel.track("Court request submit");
+  courtRequestSubmit: function(court) {
+    mixpanel.track("Court request submit", {
+      'court_name': court.name
+    });
   },
   changePassword: function() {
     mixpanel.track("Password change");
