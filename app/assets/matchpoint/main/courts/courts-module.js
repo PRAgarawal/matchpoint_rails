@@ -20,7 +20,9 @@ courtsModule.controller('CourtsListController',
       $scope.data = {};
 
       $scope.$watch('data.is_dfw', function(newIsDfw, oldIsDfw) {
-        $scope.user.is_dfw = newIsDfw;
+        if (newIsDfw !== undefined) {
+          $scope.user.is_dfw = newIsDfw;
+        }
       });
 
       function getCourts() {
