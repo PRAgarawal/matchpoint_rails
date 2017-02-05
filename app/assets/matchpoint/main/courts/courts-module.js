@@ -17,6 +17,11 @@ courtsModule.controller('CourtsListController',
     ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
       mixPanelEvts.navigateCourts();
       var ctrl = this;
+      $scope.data = {};
+
+      $scope.$watch('data.is_dfw', function(newIsDfw, oldIsDfw) {
+        $scope.user.is_dfw = newIsDfw;
+      });
 
       function getCourts() {
         resources.all('courts?joined=true').getList().then(function (courts) {
@@ -55,6 +60,7 @@ courtsModule.controller('NewCourtController',
       $scope.court = {requested_by_id: $scope.user.id, postal_address: {}};
       
       ctrl.createCourt = function() {
+        $scope.court.is_dfw = $scope.user.is_dfw;
         resources.all('courts').post($scope.court).then(function (court) {
           mixPanelEvts.courtRequestSubmit($scope.court);
           matchpointModals.genericConfirmation(null, "Thanks for your submission! The court is now available to be joined by any user and matches can be scheduled there.", "Court request received!", "OK", true);
@@ -67,7 +73,7 @@ courtsModule.controller('JoinCourtModalController',
     ['$scope', '$modalInstance', 'resources', function ($scope, $modalInstance, resources) {
       var ctrl = this;
 
-      resources.all('courts?joined=false').getList().then(function (courts) {
+      resources.all('courts?joined=false&is_dfw=' + $scope.user.is_dfw).getList().then(function (courts) {
         $scope.courts = courts;
       });
 

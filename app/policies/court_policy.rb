@@ -11,7 +11,7 @@ class CourtPolicy < Struct.new(:user, :court)
 
   def permitted_attributes_for_create
     return [
-        :id, :name, :requested_by_id,
+        :id, :name, :requested_by_id, :is_dfw,
         postal_address_attributes: [
             :id, :street, :state, :city, :zip
         ]
@@ -27,7 +27,7 @@ class CourtPolicy < Struct.new(:user, :court)
   end
 
   def update?
-    # Only Sri can update courts (or mark them as confirmed)
+    # [Maybe?] Only Sri can update courts (or mark them as confirmed)
     user.is_admin
   end
 

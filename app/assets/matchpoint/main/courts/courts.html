@@ -1,6 +1,17 @@
 <div class="courts">
-  <div data-ng-if="!user.has_joined_courts" class="join-court">
-    Please join a court to get started with Match Point. You will see match requests based on the courts that you have joined.
+  <div data-ng-if="!user.has_joined_courts">
+    <div class="join-court">
+      Please join a court to get started with Match Point. You will see match requests based on the courts that you have joined.
+    </div>
+
+    <div class="form-group" data-ng-if="data.is_dfw === undefined">
+      <br />
+      <select id="gameType" class="form-control" data-ng-model="data.is_dfw">
+        <option value="">- Select your metro area -</option>
+        <option value="true">Dallas-Fort Worth</option>
+        <option value="false">Los Angeles</option>
+      </select>
+    </div>
   </div>
 
   <div class="row page-title">
@@ -11,7 +22,7 @@
     Match requests shown are based on the courts you join. <a href="#/match_requests">View current match requests</a>.
   </div>
 
-  <div class="center-btn">
+  <div class="center-btn" data-ng-if="data.is_dfw !== undefined || user.has_joined_courts">
     <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.showJoinCourtDialog()">
       Join new court
     </button>

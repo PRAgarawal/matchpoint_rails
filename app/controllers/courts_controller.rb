@@ -1,9 +1,10 @@
 class CourtsController < RestfulController
+  include StringHelper
   #TODO: Figure out why I can't extend IndexOnlyRestfulController here
 
   def index_scope(scope)
     get_joined_courts = params[:joined]
-    get_unconfirmed_courts = params[:unconfirmed]
+    get_unconfirmed = params[:unconfirmed]
 
     if get_joined_courts == "true"
       scope = current_user.courts
@@ -11,6 +12,10 @@ class CourtsController < RestfulController
       scope = Court.not_joined
     elsif get_unconfirmed == "true"
       scope = scope.where(is_confirmed: false)
+    end
+
+    if params[:is_dfw].present?
+      scope = scope.where(is_dfw: to_boolean(params[:is_dfw]))
     end
 
     return scope.includes(:postal_address)

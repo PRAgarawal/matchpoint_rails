@@ -7,7 +7,7 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
 
   def permitted_attributes
     return [
-        :id, :first_name, :last_name, :email, :phone, :password, :password_confirmation, :gender
+        :id, :first_name, :last_name, :email, :phone, :password, :password_confirmation, :gender, :is_dfw
     ]
   end
 
