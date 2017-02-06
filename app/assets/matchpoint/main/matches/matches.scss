@@ -59,6 +59,9 @@
     .match-user {
       width: 50%;
       text-align: center;
+      &:hover {
+        color: $mp-green-hl;
+      }
     }
 
     .match-date {
