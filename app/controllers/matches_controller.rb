@@ -48,11 +48,10 @@ class MatchesController < RestfulController
 
   def render_records(matches)
     render json: matches, include: [
-        # court: {only: [:id, :name]},
-        # chat: {only: [:id]},
-        # match_users: {only: [:user_id, :is_winner]},
-        :court, :chat, :match_users,
-        users: {only: [:id, :first_name, :last_name, :skill]}
+        {court: {only: [:id, :name]}},
+        {chat: {only: [:id]}},
+        {match_users: {only: [:user_id, :is_winner]}},
+        {users: {only: [:id, :first_name, :last_name, :skill]}}
     ]
   end
 
