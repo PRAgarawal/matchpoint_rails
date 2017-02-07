@@ -129,6 +129,7 @@ friendsModule.controller('AddFriendModalController',
 
 friendsModule.controller('UserInfoModalController',
     ['$scope', '$modalInstance', 'resources', 'userId', function ($scope, $modalInstance, resources, userId) {
+      mixPanelEvts.navigateUserProfile();
       var ctrl = this;
 
       resources.one('users/' + userId).get().then(function (user) {

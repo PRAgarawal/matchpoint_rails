@@ -56,6 +56,9 @@ var mixPanelEvts = {
   navigateHome: function() {
     mixpanel.track("Navigate 'Home'");
   },
+  navigateUserProfile: function() {
+    mixpanel.track("Navigate 'User Profile'");
+  },
   // --------- FRIEND EVENTS ---------
   addFriend: function(friendFinder) {
     var friend = {};
