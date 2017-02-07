@@ -8,10 +8,16 @@
       <a href="/#/change_password">Change password</a>
     </div>
     <div>
-      <a href="/users/sign_out" data-method="delete">
+      <a href="/users/sign_out" data-method="delete" onclick="signout()">
         <span class="glyphicon glyphicon-log-out"></span>
         Sign out
       </a>
     </div>
   </div>
 </div>
+
+<script>
+  function signout(){
+    mixpanel.reset()
+  }
+</script>

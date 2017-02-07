@@ -36,16 +36,25 @@
         {{court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}
         </span>
       </div>
-      <div class="court-links">
-        <a href="javascript:;" data-ng-click="ctrl.leaveCourt(court)">
-          <span class="glyphicon glyphicon-log-out"></span>
-          Leave
-        </a>
-        <!--COMING SOON!-->
-        <!--<a href="#/match_requests?court={{court.id}}">-->
-          <!--<span class="glyphicon glyphicon-search"></span>-->
-          <!--View matches-->
-        <!--</a>-->
+      <div>
+        <div class="court-links">
+          <a href="javascript:;" data-ng-click="ctrl.leaveCourt(court)">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Leave
+          </a>
+          <!--COMING SOON!-->
+          <!--<a href="#/match_requests?court={{court.id}}">-->
+            <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--View matches-->
+          <!--</a>-->
+        </div>
+        <br>
+        <div class="court-links" data-ng-if="court.postal_address.street != null">
+          <a href="http://maps.google.com/?q= + {{court.postal_address.street + ', ' + court.postal_address.city + ', ' + court.postal_address.state + ' ' + court.postal_address.zip}}" target="_blank">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            Map
+          </a>
+        </div>
       </div>
     </div>
   </div>
