@@ -33,7 +33,7 @@
       <div class="match-users">
         <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
           <span class="glyphicon glyphicon-user"></span>
-          <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
+          <span class="user-name" data-ng-class="ctrl.isWinner(match, user) ? 'winning-user' : ''">{{user.first_name + " " + user.last_name}}</span>
           <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
         </div>
         <div data-ng-repeat="i in ctrl.getNumEmptySlots(match) track by $index" class="match-user">

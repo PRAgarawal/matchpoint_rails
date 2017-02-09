@@ -9,13 +9,27 @@
     </div>
 
     <div class="winner-checkbox">
-      <input type="checkbox" value="{{users[0].id}}" id="winnerCheckbox1" data-ng-click="ctrl.setWinner(users[0])">
+      <input type="checkbox" value="score.winner_0" id="winnerCheckbox1" data-ng-click="ctrl.setWinner(match.users[0])" data-ng-model="match.users[0]">
       <label for="winnerCheckbox1">{{users[0].first_name + users[0].last_name}}</label>
     </div>
 
     <div class="winner-checkbox">
-      <input type="checkbox" value="{{users[1].id}}" id="winnerCheckbox2" data-ng-click="ctrl.setWinner(users[1])">
+      <input type="checkbox" value="score.winner_0" id="winnerCheckbox2" data-ng-click="ctrl.setWinner(users[1])">
       <label for="winnerCheckbox2">{{users[1].first_name + users[1].last_name}}</label>
+    </div>
+  </div>
+
+  <div class="set-row">
+    <div class="player-label">
+      Player
+    </div>
+
+    <div class="player">
+      {{winningPlayer}}
+    </div>
+
+    <div class="player">
+      {{losingPlayer}}
     </div>
   </div>
 

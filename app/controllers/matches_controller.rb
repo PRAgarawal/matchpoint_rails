@@ -34,6 +34,9 @@ class MatchesController < RestfulController
     end
   end
 
+  def score
+  end
+
   protected
 
   def update_match_membership

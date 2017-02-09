@@ -29,6 +29,11 @@ function isMatchFull(match) {
   return (match.is_singles && match.users.length == 2) || (match.users.length == 4);
 }
 
+function isNoScore(match) {
+  return (match.match_users.length > 0) && (match.match_users[0].is_winner === null);
+}
+
+
 function openMatchJoinedModal($scope, resources, $modal, match) {
   $modal.open({
     templateUrl: 'main/matches/match_joined_modal.html',
@@ -98,7 +103,16 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 
   ctrl.canRecordScore = function(match) {
     var matchDate = new Date(match.match_date);
-    return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match);
+    return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
+  };
+
+  ctrl.isWinner = function(match, user) {
+    for(var i = 0; i < match.match_users.length; i++) {
+      if (match.match_users[i].user_id == user.id && match.match_users[i].is_winner) {
+        return true;
+      }
+    }
+    return false;
   };
 
   ctrl.getMatches();
@@ -176,6 +190,34 @@ matchesModule.controller('NewMatchRequestsController',
               mixPanelEvts.createMatch(match);
               resources.location.path('my_matches');
               return false;
+            });
+      };
+
+      return ctrl;
+    }]);
+
+matchesModule.controller('MatchScoreController',
+    ['$scope', 'resources', function ($scope, resources) {
+      mixPanelEvts.navigateRecordScore();
+      var ctrl = this;
+
+      $scope.score = {winner: {}, loser: {}};
+
+      resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
+        mixPanelEvts.matchChatView(match);
+        $scope.match = match;
+      });
+
+      ctrl.setWinner = function(user) {
+
+      };
+
+      ctrl.submitScore = function() {
+        $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
+        resources.success_message(
+            resources.all('matches/score/' + match.id).customPOST($scope.score), "Match score submitted").
+            then(function () {
+              mixPanelEvts.scoreSubmitted(match);
             });
       };
 
