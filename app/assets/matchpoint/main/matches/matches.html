@@ -40,8 +40,12 @@
           <span class="user-none">--</span>
         </div>
       </div>
-      <div class="match-links" data-ng-if="matchType != 'past_matches'">
-        <a data-ng-if="matchType == 'my_matches'" href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)">
+      <div class="match-links" data-ng-if="matchType != 'past_matches' || ctrl.canRecordScore(match)">
+        <a data-ng-if="ctrl.canRecordScore(match)" href="#/match_score/{{match.id}}">
+          <span class="glyphicon glyphicon-pencil"></span>
+          Record score
+        </a>
+        <a data-ng-if="matchType == 'my_matches' && !ctrl.canRecordScore(match)" href="#/my_matches" data-ng-click="ctrl.leaveMatch(match)">
           <span class="glyphicon glyphicon-log-out"></span>
           Leave match
         </a>

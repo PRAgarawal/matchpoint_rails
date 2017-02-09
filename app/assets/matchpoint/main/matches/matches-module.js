@@ -18,6 +18,10 @@ matchesModule.config(['$routeProvider',
     when('/new_match', {
       templateUrl: 'main/matches/new_match.html',
       controller: 'NewMatchRequestsController as ctrl'
+    }).
+    when('/match_score/:matchId', {
+      templateUrl: 'main/matches/match_score.html',
+      controller: 'MatchScoreController as ctrl'
     });
   }]);
 
@@ -52,6 +56,10 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
 
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
+  var TWO_DAYS_AGO = -48*60*60*1000;
+  var TWO_HOURS_AGO = -2*60*60*1000;
+  var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
+  var latest = new Date((new Date()).getTime() + TWO_HOURS_AGO);
   $scope.matchType = matchType;
 
   ctrl.timezone = function(match) {
@@ -86,6 +94,11 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 
   ctrl.showUserModal = function(user) {
     openUserInfoModal(user, $modal, $scope, resources);
+  };
+
+  ctrl.canRecordScore = function(match) {
+    var matchDate = new Date(match.match_date);
+    return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match);
   };
 
   ctrl.getMatches();
@@ -126,10 +139,10 @@ matchesModule.controller('MyMatchesListController',
       $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
-          leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches', function(){
-              ctrl.getMatches();
+        leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches', function(){
+          ctrl.getMatches();
           });
-      };
+        };
     }]);
 
 matchesModule.controller('PastMatchesListController',

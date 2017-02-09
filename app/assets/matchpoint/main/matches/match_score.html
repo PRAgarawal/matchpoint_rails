@@ -1,84 +1,145 @@
 <div class="new-match new-match col-md-offset-1 col-md-10">
   <div class="page-title">
-    <h3>Create Match Request</h3>
+    <h3>Report Score</h3>
   </div>
 
-  <div class="form-group">
-    <label for="matchDate">Date</label>
-    <input type="date" class="form-control" id="matchDate" name="matchDate"
-           data-ng-model="match.match_date" placeholder="Date">
+  <div class="winner-row">
+    <div class="winner header">
+      <label>Select winner</label>
+    </div>
+
+    <div class="winner-checkbox">
+      <input type="checkbox" value="{{users[0].id}}" id="winnerCheckbox1" data-ng-click="ctrl.setWinner(users[0])">
+      <label for="winnerCheckbox1">{{users[0].first_name + users[0].last_name}}</label>
+    </div>
+
+    <div class="winner-checkbox">
+      <input type="checkbox" value="{{users[1].id}}" id="winnerCheckbox2" data-ng-click="ctrl.setWinner(users[1])">
+      <label for="winnerCheckbox2">{{users[1].first_name + users[1].last_name}}</label>
+    </div>
   </div>
 
-  <div class="form-group">
-    <select id="time" data-ng-model="match.match_time" class="form-control">
-      <option value="">- Time in {{ctrl.timezone()}} -</option>
-      <option value="0">12:00 AM</option>
-      <option value="1">12:30 AM</option>
-      <option value="2">1:00 AM</option>
-      <option value="3">1:30 AM</option>
-      <option value="4">2:00 AM</option>
-      <option value="5">2:30 AM</option>
-      <option value="6">3:00 AM</option>
-      <option value="7">3:30 AM</option>
-      <option value="8">4:00 AM</option>
-      <option value="9">4:30 AM</option>
-      <option value="10">5:00 AM</option>
-      <option value="11">5:30 AM</option>
-      <option value="12">6:00 AM</option>
-      <option value="13">6:30 AM</option>
-      <option value="14">7:00 AM</option>
-      <option value="15">7:30 AM</option>
-      <option value="16">8:00 AM</option>
-      <option value="17">8:30 AM</option>
-      <option value="18">9:00 AM</option>
-      <option value="19">9:30 AM</option>
-      <option value="20">10:00 AM</option>
-      <option value="21">10:30 AM</option>
-      <option value="22">11:00 AM</option>
-      <option value="23">11:30 AM</option>
-      <option value="24">12:00 PM</option>
-      <option value="25">12:30 PM</option>
-      <option value="26">1:00 PM</option>
-      <option value="27">1:30 PM</option>
-      <option value="28">2:00 PM</option>
-      <option value="29">2:30 PM</option>
-      <option value="30">3:00 PM</option>
-      <option value="31">3:30 PM</option>
-      <option value="32">4:00 PM</option>
-      <option value="33">4:30 PM</option>
-      <option value="34">5:00 PM</option>
-      <option value="35">5:30 PM</option>
-      <option value="36">6:00 PM</option>
-      <option value="37">6:30 PM</option>
-      <option value="38">7:00 PM</option>
-      <option value="39">7:30 PM</option>
-      <option value="40">8:00 PM</option>
-      <option value="41">8:30 PM</option>
-      <option value="42">9:00 PM</option>
-      <option value="43">9:30 PM</option>
-      <option value="44">10:00 PM</option>
-      <option value="45">10:30 PM</option>
-      <option value="46">11:00 PM</option>
-      <option value="47">11:30 PM</option>
-    </select>
+  <div class="set-row">
+    <div class="form-group">
+      <label>Set 1</label>
+    </div>
+
+    <div class="form-group">
+      <select id="winnerSet1" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <select id="loser_set_1" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
   </div>
 
-  <div class="form-group">
-    <select id="location" class="form-control" data-ng-model="match.court_id"
-            data-ng-options="court.id as court.name for court in courts">
-      <option value="">- Location -</option>
-    </select>
+  <div class="set-row">
+    <div class="form-group">
+      <label>Set 2 (if applicable)</label>
+    </div>
+
+    <div class="form-group">
+      <select id="winnerSet2" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <select id="loser_set_2" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
   </div>
 
-  <div class="form-group">
-    <select id="gameType" class="form-control" data-ng-model="match.is_singles">
-      <option value="">- Game Type -</option>
-      <option value="true">Singles</option>
-      <option value="false">Doubles</option>
-    </select>
+  <div class="set-row">
+    <div class="form-group">
+      <label>Set 3 (if applicable)</label>
+    </div>
+
+    <div class="form-group">
+      <select id="winnerSet3" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <select id="loser_set_3" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
   </div>
 
   <div class="center-btn">
-    <button class="btn-sm-mpgreen" data-ng-click="ctrl.createMatch()">Submit</button>
+    <button class="btn-sm-mpgreen" data-ng-click="ctrl.submitScore()">Submit</button>
   </div>
 </div>
