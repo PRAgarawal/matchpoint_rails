@@ -94,6 +94,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 matchesModule.controller('MatchRequestsListController',
     ['$scope', '$modal', 'resources', function ($scope, $modal, resources) {
       mixPanelEvts.navigateMatchRequests();
+      mixpanel.people.set({"Metro" : ($scope.user.is_dfw ? "DFW" : "LA")});
       var ctrl = this;
 
       BaseMatchesListController.call(this, $scope, $modal, resources, 'requests');

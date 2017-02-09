@@ -83,7 +83,6 @@ courtsModule.controller('JoinCourtModalController',
         resources.all('courts/join/' + court.id).customPOST().then(function () {
           mixPanelEvts.joinCourt(court);
           $scope.user.has_joined_courts = true;
-          mixpanel.people.set({"Metro" : ($scope.user.is_dfw ? "DFW" : "LA")});
           $modalInstance.close('success');
         });
       };
