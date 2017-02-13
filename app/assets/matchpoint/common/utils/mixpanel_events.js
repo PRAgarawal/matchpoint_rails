@@ -59,6 +59,9 @@ var mixPanelEvts = {
   navigateUserProfile: function() {
     mixpanel.track("Navigate 'User Profile'");
   },
+  navigateJoinCourt: function() {
+    mixpanel.track("Navigate 'Join Courts'");
+  },
   // --------- FRIEND EVENTS ---------
   addFriend: function(friendFinder) {
     var friend = {};

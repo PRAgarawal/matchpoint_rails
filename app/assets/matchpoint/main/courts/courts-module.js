@@ -35,6 +35,7 @@ courtsModule.controller('CourtsListController',
       }
       
       ctrl.showJoinCourtDialog = function () {
+        mixPanelEvts.navigateJoinCourt();
         $modal.open({
           templateUrl: 'main/courts/join_court_modal.html',
           controller: 'JoinCourtModalController as ctrl',
