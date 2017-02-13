@@ -1,45 +1,50 @@
-<div class="new-match new-match col-md-offset-1 col-md-10">
+<div class="new-match match-score col-md-offset-1 col-md-10">
   <div class="page-title">
     <h3>Report Score</h3>
   </div>
 
   <div class="winner-row">
-    <div class="winner header">
-      <label>Select winner</label>
+    <div class="score-header set-label winner-header">
+      Match winner
     </div>
 
     <div class="winner-checkbox">
-      <input type="checkbox" value="score.winner_0" id="winnerCheckbox1" data-ng-click="ctrl.setWinner(match.users[0])" data-ng-model="match.users[0]">
-      <label for="winnerCheckbox1">{{users[0].first_name + users[0].last_name}}</label>
+      <input type="radio" value="true" id="winner0" data-ng-model="score.isFirstUserWinner">
+      <label for="winner0">{{match.users[0].first_name + " " + match.users[0].last_name}}</label>
     </div>
 
     <div class="winner-checkbox">
-      <input type="checkbox" value="score.winner_0" id="winnerCheckbox2" data-ng-click="ctrl.setWinner(users[1])">
-      <label for="winnerCheckbox2">{{users[1].first_name + users[1].last_name}}</label>
+      <input type="radio" value="false" id="winner1" data-ng-model="score.isFirstUserWinner">
+      <label for="winner1">{{match.users[1].first_name + " " + match.users[1].last_name}}</label>
     </div>
   </div>
 
-  <div class="set-row">
-    <div class="player-label">
-      Player
+  <div class="score-header set-label">
+    Game totals
+  </div>
+
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
     </div>
 
-    <div class="player">
-      {{winningPlayer}}
+    <div class="col-md-4 col-xs-4 set-col player-header">
+      {{match.users[0].first_name + " " + match.users[0].last_name}}
     </div>
 
-    <div class="player">
-      {{losingPlayer}}
+    <div class="col-md-4 col-xs-4 set-col player-header">
+      {{match.users[1].first_name + " " + match.users[1].last_name}}
     </div>
   </div>
 
-  <div class="set-row">
-    <div class="form-group">
-      <label>Set 1</label>
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 1</p>
+      <p class="set-note">required</p>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="winnerSet1" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -55,8 +60,9 @@
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="loser_set_1" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -73,13 +79,15 @@
     </div>
   </div>
 
-  <div class="set-row">
-    <div class="form-group">
-      <label>Set 2 (if applicable)</label>
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 2</p>
+      <p class="set-note">(if applicable)</p>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="winnerSet2" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -95,8 +103,9 @@
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="loser_set_2" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -113,13 +122,15 @@
     </div>
   </div>
 
-  <div class="set-row">
-    <div class="form-group">
-      <label>Set 3 (if applicable)</label>
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 2</p>
+      <p class="set-note">(if applicable)</p>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="winnerSet3" data-ng-model="score.winner.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -135,8 +146,9 @@
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-4 col-xs-4 set-col">
       <select id="loser_set_3" data-ng-model="score.loser.set_1_total" class="form-control">
+        <option value="">--</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>

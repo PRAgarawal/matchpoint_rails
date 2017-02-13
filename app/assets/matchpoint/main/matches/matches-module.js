@@ -33,6 +33,12 @@ function isNoScore(match) {
   return (match.match_users.length > 0) && (match.match_users[0].is_winner === null);
 }
 
+var TWO_DAYS_AGO = -48*60*60*1000;
+var TWO_HOURS_AGO = -2*60*60*1000;
+function canRecordScore(match, oldest, latest) {
+  var matchDate = new Date(match.match_date);
+  return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
+}
 
 function openMatchJoinedModal($scope, resources, $modal, match) {
   $modal.open({
@@ -61,8 +67,6 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
 
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
-  var TWO_DAYS_AGO = -48*60*60*1000;
-  var TWO_HOURS_AGO = -2*60*60*1000;
   var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
   var latest = new Date((new Date()).getTime() + TWO_HOURS_AGO);
   $scope.matchType = matchType;
@@ -102,8 +106,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
   };
 
   ctrl.canRecordScore = function(match) {
-    var matchDate = new Date(match.match_date);
-    return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
+    return canRecordScore(match, oldest, latest);
   };
 
   ctrl.isWinner = function(match, user) {

@@ -20,6 +20,10 @@
         </div>
       </div>
       <div class="match-links">
+        <a data-ng-if="ctrl.canRecordScore(match)" href="#/match_score/{{match.id}}">
+          <span class="glyphicon glyphicon-pencil"></span>
+          Record score
+        </a>
         <a href="javascript:;" data-ng-click="ctrl.leaveMatch()">
           <span class="glyphicon glyphicon-log-out"></span>
           Leave match

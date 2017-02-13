@@ -91,3 +91,44 @@
     margin-top: -1em;
   }
 }
+
+.match-score {
+  .winner-header {
+    padding-bottom: .2em;
+  }
+
+  .score-header {
+    text-align: center;
+  }
+
+  .winner-checkbox {
+    width: 48%;
+    display: inline-block;
+    text-align: center;
+    label {
+      font-weight: normal;
+    }
+  }
+
+  .player-header {
+    text-align: center;
+  }
+
+  .set-note {
+    font-weight: normal;
+    font-size: .75em;
+  }
+
+  .set-label {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .match-set, .winner-row {
+    padding-bottom: .5em;
+  }
+
+  .set-col {
+    padding: .5em;
+  }
+}

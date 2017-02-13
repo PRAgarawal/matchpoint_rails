@@ -13,6 +13,8 @@ chatsModule.controller('ChatController',
     ['$scope', 'resources', '$modal', 'matchpointModals', function ($scope, resources, $modal, matchpointModals) {
       var ctrl = this;
       var chatId = resources.routeParams.chatId;
+      var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
+      var latest = new Date((new Date()).getTime() + TWO_HOURS_AGO);
       $scope.message = {chat_id: chatId};
 
       resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
@@ -53,6 +55,10 @@ chatsModule.controller('ChatController',
         var i = $scope.messages.indexOf(message);
         var previousMessage = i < $scope.messages.length - 1 ? $scope.messages[i+1] : {user_id: -1};
         return (message.user_id != $scope.user.id) && (previousMessage.user_id != message.user_id);
+      };
+
+      ctrl.canRecordScore = function(match) {
+        return canRecordScore(match, oldest, latest);
       };
       
       getMessages();
