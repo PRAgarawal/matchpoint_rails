@@ -38,4 +38,10 @@ class MatchPolicy < Struct.new(:user, :match)
     return true if match.nil?
     match.users.include?(user)
   end
+
+  def score?
+    # Can only record scores for singles matches that do not yet have a score
+    # TODO: Set a max score recording number on the match model
+    match.is_singles && match.users.include?(user) && (match.match_users.first.is_winner == nil)
+  end
 end

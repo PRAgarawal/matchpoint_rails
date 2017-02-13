@@ -35,6 +35,8 @@ class MatchesController < RestfulController
   end
 
   def score
+    authorize match, :score?
+    score = params[:score]
   end
 
   protected

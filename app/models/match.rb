@@ -2,6 +2,7 @@ class Match < ApplicationRecord
   include UnionScopable
 
   has_many :match_users
+  accepts_nested_attributes_for :match_users
   has_many :users, through: :match_users
   has_one :chat
   belongs_to :court
