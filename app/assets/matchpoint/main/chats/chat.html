@@ -2,6 +2,19 @@
   <div class="row page-title">
     <h3>Match Details</h3>
   </div>
+
+  <div data-ng-if="ctrl.winningUser(match)">
+    <div class="match-container">
+      <p class="winner-header">Winner: {{ctrl.winningUser(match)}}</p>
+      <p class="set-scores">
+        <span>Sets:</span>
+        <span data-ng-if="ctrl.set1Score()">{{ctrl.set1Score()}}</span>
+        <span data-ng-if="ctrl.set2Score()">| {{ctrl.set2Score()}}</span>
+        <span data-ng-if="ctrl.set3Score()">| {{ctrl.set3Score()}}</span>
+      </p>
+    </div>
+  </div>
+
   <div class="match-container">
     <div class="match-info">
       <div class="match-date">
@@ -32,23 +45,11 @@
     </div>
   </div>
 
-  <div data-ng-if="ctrl.winningUser(match)">
-    <div class="match-container">
-      <p class="winner-header">Winner: {{ctrl.winningUser(match)}}</p>
-      <p class="set-scores">
-        <span>Set scores:</span>
-        <span data-ng-if="ctrl.set1Score()">{{ctrl.set1Score()}}</span>
-        <span data-ng-if="ctrl.set2Score()">, {{ctrl.set2Score()}}</span>
-        <span data-ng-if="ctrl.set3Score()">, {{ctrl.set3Score()}}</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="chat-header">
-    Group Chat
-  </div>
-
   <div class="chat-container">
+    <div class="chat-header">
+      Group Chat
+    </div>
+
     <div data-ng-if="messages.length == 0" class="no-messages">
       No one has said anything yet...
     </div>
