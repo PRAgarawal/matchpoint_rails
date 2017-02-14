@@ -225,11 +225,14 @@ matchesModule.controller('MatchScoreController',
         }
         $scope.match.match_users[0].is_winner = $scope.match.isFirstUserWinner;
         $scope.match.match_users[1].is_winner = !$scope.match.isFirstUserWinner;
-        resources.success_message(
-            $scope.match.put(), "Match score submitted").
-            then(function () {
-              mixPanelEvts.scoreSubmitted(match);
-            });
+        $scope.match.put().then(function (match) {
+          mixPanelEvts.scoreSubmitted(match);
+        });
+        // resources.success_message(
+        //     $scope.match.put(), "Match score submitted").
+        //     then(function (match) {
+        //       mixPanelEvts.scoreSubmitted(match);
+        //     });
       };
 
       return ctrl;
