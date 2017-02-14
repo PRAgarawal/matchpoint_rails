@@ -36,6 +36,9 @@ function isNoScore(match) {
 var TWO_DAYS_AGO = -48*60*60*1000;
 var TWO_HOURS_AGO = -2*60*60*1000;
 function canRecordScore(match, oldest, latest) {
+  if (!match) {
+    return false;
+  }
   var matchDate = new Date(match.match_date);
   return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
 }
