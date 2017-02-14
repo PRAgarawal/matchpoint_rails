@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     collection do
       post 'join/:match_id', to: 'matches#join', as: 'join'
       delete 'leave/:match_id', to: 'matches#leave', as: 'leave'
-      post 'score/:match_id', to: 'matches#score', as: 'score'
     end
   end
   resources :courts, only: [:index, :create, :update] do

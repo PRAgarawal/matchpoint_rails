@@ -10,7 +10,18 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def permitted_attributes_for_update
-    [:id, :match_date]
+    # Can only record scores for singles matches that do not yet have a score
+    # TODO: Set a max score recording number on the match model
+    if match.is_singles && match.users.include?(user) && (match.match_users.first.is_winner == nil)
+      return [
+          :id, :match_date, match_users_attributes:
+          [
+              :id, :is_winner, :set_1_total, :set_2_total, :set_3_total
+          ]
+      ]
+    else
+      return [:id, :match_date]
+    end
   end
 
   def show?
@@ -37,11 +48,5 @@ class MatchPolicy < Struct.new(:user, :match)
   def leave?
     return true if match.nil?
     match.users.include?(user)
-  end
-
-  def score?
-    # Can only record scores for singles matches that do not yet have a score
-    # TODO: Set a max score recording number on the match model
-    match.is_singles && match.users.include?(user) && (match.match_users.first.is_winner == nil)
   end
 end

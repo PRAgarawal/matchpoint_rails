@@ -200,25 +200,33 @@ matchesModule.controller('NewMatchRequestsController',
     }]);
 
 matchesModule.controller('MatchScoreController',
-    ['$scope', 'resources', function ($scope, resources) {
+    ['$scope', 'resources', 'matchpointModals', function ($scope, resources, matchpointModals) {
       mixPanelEvts.navigateRecordScore();
       var ctrl = this;
-
-      $scope.score = {winner: {}, loser: {}};
 
       resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
         mixPanelEvts.matchChatView(match);
         $scope.match = match;
       });
 
-      ctrl.setWinner = function(user) {
+      function isInvalidScoreData() {
+        if ($scope.match.isFirstUserWinner === undefined || !($scope.match.match_users[0].set_1_total >= 0) || !($scope.match.match_users[1].set_1_total >= 0)) {
+          // User did not fill out all necessary match data
+          matchpointModals.error('You must select a winner and enter match totals', 'Invalid data');
+          return true;
+        }
 
-      };
+        return false;
+      }
 
       ctrl.submitScore = function() {
-        $scope.match.match_date = $scope.match.match_date.addHours($scope.match.match_time/2);
+        if (isInvalidScoreData()) {
+          return;
+        }
+        $scope.match.match_users[0].is_winner = $scope.match.isFirstUserWinner;
+        $scope.match.match_users[1].is_winner = !$scope.match.isFirstUserWinner;
         resources.success_message(
-            resources.all('matches/score/' + match.id).customPOST($scope.score), "Match score submitted").
+            $scope.match.put(), "Match score submitted").
             then(function () {
               mixPanelEvts.scoreSubmitted(match);
             });
