@@ -95,7 +95,6 @@ class Match < ApplicationRecord
   end
 
   def formatted_match_date
-    timezone = User.current_user.is_dfw ? 'America/Chicago' : 'America/Los_Angeles'
-    return self.match_date.in_time_zone(timezone).strftime('%a, %b %-d at %-l:%M %p %Z')
+    return self.match_date.in_time_zone(DateHelper.timezone).strftime('%a, %b %-d at %-l:%M %p %Z')
   end
 end

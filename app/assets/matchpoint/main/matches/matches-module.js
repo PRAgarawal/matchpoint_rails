@@ -231,7 +231,7 @@ matchesModule.controller('MatchScoreController',
         resources.all('matches/' + $scope.match.id).customPUT($scope.match).then(function (match) {
           mixPanelEvts.scoreSubmitted(match);
           matchpointModals.genericConfirmation(null, "Score submitted", "Success", "OK", true);
-          resources.location.path('chats/' + $scope.match.id);
+          resources.location.path('chats/' + $scope.chat.id + "/" + $scope.match.id);
         });
       };
 
