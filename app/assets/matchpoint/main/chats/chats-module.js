@@ -80,7 +80,7 @@ chatsModule.controller('ChatController',
         for (var i=0; i < $scope.match.users.length; i++) {
           var user = $scope.match.users[i]
           if (user.id == userId) {
-            return user.first_name;
+            return user.first_name + " " + user.last_name;
           }
         }
         return false;
@@ -103,21 +103,16 @@ chatsModule.controller('ChatController',
       function getSetScoreText(setNum) {
         var userScore0 = matchUser0['set_' + setNum + '_total'];
         var userScore1 = matchUser1['set_' + setNum + '_total'];
-        var winningUser, winningText;
 
         if (isNaN(userScore0) || isNaN(userScore1)) {
           return false;
         }
 
-        if (userScore0 >= userScore1) {
-          winningUser = getWinningUserName(matchUser0.user_id);
-          winningText = winningUser + " " + userScore0 + "-" + userScore1;
+        if (matchUser0.is_winner) {
+          return userScore0 + "-" + userScore1;
         } else {
-          winningUser = getWinningUserName(matchUser1.user_id);
-          winningText = winningUser + " " + userScore1 + "-" + userScore0;
+          return userScore1 + "-" + userScore0;
         }
-
-        return winningText;
       }
 
       ctrl.set1Score = function() {

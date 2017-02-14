@@ -7,10 +7,8 @@
     <div class="match-container">
       <p class="winner-header">Winner: {{ctrl.winningUser(match)}}</p>
       <p class="set-scores">
-        <span>Sets:</span>
-        <span data-ng-if="ctrl.set1Score()">{{ctrl.set1Score()}}</span>
-        <span data-ng-if="ctrl.set2Score()">| {{ctrl.set2Score()}}</span>
-        <span data-ng-if="ctrl.set3Score()">| {{ctrl.set3Score()}}</span>
+        <span>Score:</span>
+        <span data-ng-if="ctrl.set1Score()">{{ctrl.set1Score()}}</span><span data-ng-if="ctrl.set2Score()">, {{ctrl.set2Score()}}</span><span data-ng-if="ctrl.set3Score()">, {{ctrl.set3Score()}}</span>
       </p>
     </div>
   </div>
