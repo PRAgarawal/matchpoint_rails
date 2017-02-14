@@ -1,6 +1,4 @@
 class MatchesController < RestfulController
-  include DateHelper
-
   def index_scope(scope)
     get_requests = params[:requests]
     get_my_matches = params[:my_matches]

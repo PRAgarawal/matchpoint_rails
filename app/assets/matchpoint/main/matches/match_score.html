@@ -23,16 +23,16 @@
     Game totals
   </div>
 
-  <div class="row match-set">
+  <div class="row match-set" data-ng-if="match">
     <div class="col-md-4 col-xs-4 set-col">
     </div>
 
     <div class="col-md-4 col-xs-4 set-col player-header">
-      {{match.users[0].first_name + " " + match.users[0].last_name}}
+      {{ctrl.getFirstUserName(match)}}
     </div>
 
     <div class="col-md-4 col-xs-4 set-col player-header">
-      {{match.users[1].first_name + " " + match.users[1].last_name}}
+      {{ctrl.getSecondUserName(match)}}
     </div>
   </div>
 

@@ -72,29 +72,15 @@ chatsModule.controller('ChatController',
         return canRecordScore($scope.match, oldest, latest);
       };
 
-      function getWinningUserName(userId) {
-        if (!$scope.match) {
-          return false;
-        }
-
-        for (var i=0; i < $scope.match.users.length; i++) {
-          var user = $scope.match.users[i]
-          if (user.id == userId) {
-            return user.first_name + " " + user.last_name;
-          }
-        }
-        return false;
-      }
-
       ctrl.winningUser = function() {
         if (!$scope.match) {
           return false;
         }
 
         if ($scope.match.match_users[0].is_winner) {
-          return getWinningUserName($scope.match.match_users[0].user_id);
+          return getUserNameFromId($scope, $scope.match.match_users[0].user_id);
         } else if ($scope.match.match_users[1].is_winner) {
-          return getWinningUserName($scope.match.match_users[1].user_id);
+          return getUserNameFromId($scope, $scope.match.match_users[1].user_id);
         }
 
         return false;
@@ -104,7 +90,7 @@ chatsModule.controller('ChatController',
         var userScore0 = matchUser0['set_' + setNum + '_total'];
         var userScore1 = matchUser1['set_' + setNum + '_total'];
 
-        if (isNaN(userScore0) || isNaN(userScore1)) {
+        if (!userScore0 && !userScore1) {
           return false;
         }
 

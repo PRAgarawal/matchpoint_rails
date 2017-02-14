@@ -43,6 +43,20 @@ function canRecordScore(match, oldest, latest) {
   return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
 }
 
+function getUserNameFromId($scope, userId) {
+  if (!$scope.match) {
+    return '';
+  }
+
+  for (var i=0; i < $scope.match.users.length; i++) {
+    var user = $scope.match.users[i];
+    if (user.id == userId) {
+      return user.first_name + " " + user.last_name;
+    }
+  }
+  return '';
+}
+
 function openMatchJoinedModal($scope, resources, $modal, match) {
   $modal.open({
     templateUrl: 'main/matches/match_joined_modal.html',
@@ -231,8 +245,16 @@ matchesModule.controller('MatchScoreController',
         resources.all('matches/' + $scope.match.id).customPUT($scope.match).then(function (match) {
           mixPanelEvts.scoreSubmitted(match);
           matchpointModals.genericConfirmation(null, "Score submitted", "Success", "OK", true);
-          resources.location.path('chats/' + $scope.chat.id + "/" + $scope.match.id);
+          resources.location.path('chats/' + $scope.match.chat.id + "/" + $scope.match.id);
         });
+      };
+
+      ctrl.getFirstUserName = function(match) {
+        return getUserNameFromId($scope, match.match_users[0].user_id);
+      };
+
+      ctrl.getSecondUserName = function(match) {
+        return getUserNameFromId($scope, match.match_users[1].user_id);
       };
 
       return ctrl;
