@@ -210,7 +210,7 @@ matchesModule.controller('MatchScoreController',
       });
 
       function isInvalidScoreData() {
-        if ($scope.match.isFirstUserWinner === undefined || !($scope.match.match_users[0].set_1_total >= 0) || !($scope.match.match_users[1].set_1_total >= 0)) {
+        if ($scope.match.winningUserId === undefined || !($scope.match.match_users[0].set_1_total >= 0) || !($scope.match.match_users[1].set_1_total >= 0)) {
           // User did not fill out all necessary match data
           matchpointModals.error('You must select a winner and enter match totals', 'Invalid data');
           return true;
@@ -223,16 +223,13 @@ matchesModule.controller('MatchScoreController',
         if (isInvalidScoreData()) {
           return;
         }
-        $scope.match.match_users[0].is_winner = $scope.match.isFirstUserWinner;
-        $scope.match.match_users[1].is_winner = !$scope.match.isFirstUserWinner;
-        $scope.match.put().then(function (match) {
+        $scope.match.match_users[0].is_winner = $scope.match.winningUserId == $scope.match.match_users[0].user_id;
+        $scope.match.match_users[1].is_winner = $scope.match.winningUserId == $scope.match.match_users[1].user_id;
+        resources.all('matches/' + $scope.match.id).customPUT($scope.match).then(function (match) {
           mixPanelEvts.scoreSubmitted(match);
+          matchpointModals.genericConfirmation(null, "Score submitted", "Success", "OK", true);
+          resources.location.path('chats/' + $scope.match.id);
         });
-        // resources.success_message(
-        //     $scope.match.put(), "Match score submitted").
-        //     then(function (match) {
-        //       mixPanelEvts.scoreSubmitted(match);
-        //     });
       };
 
       return ctrl;

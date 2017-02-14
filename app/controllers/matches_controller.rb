@@ -34,11 +34,6 @@ class MatchesController < RestfulController
     end
   end
 
-  def score
-    authorize match, :score?
-    score = params[:score]
-  end
-
   protected
 
   def update_match_membership

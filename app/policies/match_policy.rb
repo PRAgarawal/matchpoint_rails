@@ -33,7 +33,8 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def update?
-    match.first_user.id == user.id
+    # TODO: May need more permissions to only allow first user to edit?
+    match.users.include?(user)
   end
 
   def destroy?

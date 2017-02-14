@@ -9,12 +9,12 @@
     </div>
 
     <div class="winner-checkbox">
-      <input type="radio" value="true" id="winner0" data-ng-model="match.isFirstUserWinner">
+      <input type="radio" value="{{match.users[0].id}}" id="winner0" data-ng-model="match.winningUserId">
       <label for="winner0">{{match.users[0].first_name + " " + match.users[0].last_name}}</label>
     </div>
 
     <div class="winner-checkbox">
-      <input type="radio" value="false" id="winner1" data-ng-model="match.isFirstUserWinner">
+      <input type="radio" value="{{match.users[1].id}}" id="winner1" data-ng-model="match.winningUserId">
       <label for="winner1">{{match.users[1].first_name + " " + match.users[1].last_name}}</label>
     </div>
   </div>
