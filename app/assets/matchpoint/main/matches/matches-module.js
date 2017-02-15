@@ -34,7 +34,7 @@ function isNoScore(match) {
 }
 
 var TWO_DAYS_AGO = -48*60*60*1000;
-var TWO_HOURS_AGO = -2*60*60*1000;
+var ONE_HOUR_AGO = -1*60*60*1000;
 function canRecordScore(match, oldest, latest) {
   if (!match) {
     return false;
@@ -85,7 +85,7 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
-  var latest = new Date((new Date()).getTime() + TWO_HOURS_AGO);
+  var latest = new Date((new Date()).getTime() + ONE_HOUR_AGO);
   $scope.matchType = matchType;
 
   ctrl.timezone = function(match) {
@@ -232,7 +232,7 @@ matchesModule.controller('MatchScoreController',
       function isInvalidScoreData() {
         if ($scope.match.winningUserId === undefined || $scope.match.match_users[0].set_1_total == null || $scope.match.match_users[1].set_1_total == null) {
           // User did not fill out all necessary match data
-          matchpointModals.error('You must select a winner and enter match totals', 'Invalid data');
+          matchpointModals.error('You must select a winner and enter a valid score.', 'Invalid data');
           return true;
         }
 
