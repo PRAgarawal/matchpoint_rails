@@ -224,6 +224,7 @@ matchesModule.controller('MatchScoreController',
       resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
         mixPanelEvts.matchChatView(match);
         $scope.match = match;
+        $scope.match.score_submitter_id = $scope.user.id;
       });
 
       function isInvalidScoreData() {

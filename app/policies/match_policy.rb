@@ -14,7 +14,7 @@ class MatchPolicy < Struct.new(:user, :match)
     # TODO: Set a max score recording number on the match model
     if match.is_singles && match.users.include?(user) && (match.match_users.first.is_winner == nil)
       return [
-          :id, :match_date, match_users_attributes:
+          :id, :match_date, :score_submitter_id, match_users_attributes:
           [
               :id, :is_winner, :set_1_total, :set_2_total, :set_3_total
           ]
