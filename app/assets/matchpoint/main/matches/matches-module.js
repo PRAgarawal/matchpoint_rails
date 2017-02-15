@@ -227,7 +227,7 @@ matchesModule.controller('MatchScoreController',
       });
 
       function isInvalidScoreData() {
-        if ($scope.match.winningUserId === undefined || !($scope.match.match_users[0].set_1_total >= 0) || !($scope.match.match_users[1].set_1_total >= 0)) {
+        if ($scope.match.winningUserId === undefined || $scope.match.match_users[0].set_1_total == null || $scope.match.match_users[1].set_1_total == null) {
           // User did not fill out all necessary match data
           matchpointModals.error('You must select a winner and enter match totals', 'Invalid data');
           return true;
