@@ -103,7 +103,7 @@
       }]);
 
   matchpointWidgets.controller('ErrorModalCtrl',
-      ['$scope, $modalInstance, message, title',
+      ['$scope', '$modalInstance', 'message', 'title',
       function ($scope, $modalInstance, message, title) {
         $scope.message = message ? message : "An error occurred";
         $scope.title = title ? title : "Error";

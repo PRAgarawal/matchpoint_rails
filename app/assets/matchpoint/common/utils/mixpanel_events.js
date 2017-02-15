@@ -35,6 +35,9 @@ var mixPanelEvts = {
   navigateCreateMatch: function() {
     mixpanel.track("Navigate 'Create Match'")
   },
+  navigateRecordScore: function() {
+    mixpanel.track("Navigate 'Record Score'")
+  },
   navigatePastMatches: function() {
     mixpanel.track("Navigate 'Past Matches'");
   },
@@ -142,6 +145,10 @@ var mixPanelEvts = {
     } else if (mixPanelIsMatchFull(match, true)) {
       mixpanel.track("Match full to open", matchData);
     }
+  },
+  scoreSubmitted: function(match) {
+    var matchData = mixPanelMatchInfo(match);
+    mixpanel.track("Match score submitted", matchData);
   },
 
   // --------- MESSAGE EVENTS ---------

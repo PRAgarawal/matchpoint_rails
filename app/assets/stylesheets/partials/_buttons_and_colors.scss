@@ -445,7 +445,6 @@ $buttonfonts: Roboto, Helvetica, Arial, Sans-Serif;
   letter-spacing: .95px;
   font-family: $buttonfonts;
   line-height: 16px;
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.29), inset 0px 1px 1px 0px rgba(255,255,255,0.50);
   border-radius: 2px;
   padding: 12px 20px 12px 20px;
   min-width: 130px;
@@ -456,13 +455,11 @@ $buttonfonts: Roboto, Helvetica, Arial, Sans-Serif;
 
 .mpbtn:hover {
   color: $white;
-    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.29);
-
 }
 
 .btn-orange {
   @extend .mpbtn;
-  background-image: linear-gradient(-180deg, #FDAC28 0%, #DA9119 100%);
+  background: #FDAC28;
   border: 1px solid #C88516;
 }
 
@@ -473,7 +470,7 @@ $buttonfonts: Roboto, Helvetica, Arial, Sans-Serif;
 
 .btn-grey {
   @extend .mpbtn;
-  background-image: linear-gradient(-180deg, #F5F6F6 0%, #E1E1E1 100%);
+  background: #F5F6F6;
   border: 1px solid #DDDDDD;
   color: #868686;
 }
@@ -497,8 +494,7 @@ $buttonfonts: Roboto, Helvetica, Arial, Sans-Serif;
 
 .btn-green {
   @extend .mpbtn;
-  background-image: linear-gradient(-180deg, #95CF45 0%, #76AC2B 100%);
-border: 1px solid #6A972C;
+  background: $mp-green;
 }
 
 .btn-green:hover {
@@ -523,7 +519,6 @@ border: 1px solid #6A972C;
   font-size: 14px;
   padding: 8px 12px 8px 12px;
   margin: 20px 0 0 10px;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
   line-height: 39px;
 }
 
@@ -550,7 +545,6 @@ border: 1px solid #6A972C;
   font-family: $buttonfonts;
   vertical-align: center;
   letter-spacing: 0.97px;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16);
   text-align: center;
   font-weight: normal;
   text-decoration: none;
@@ -594,7 +588,7 @@ border: 1px solid #6A972C;
 .btn-mp-green {
   @extend .btn-mp;
   border: 1px solid #156E81;
-  background: $mp-green linear-gradient(-235deg, $mp-green 2%, $mp-green-hl 100%);
+  background: $mp-green;
 }
 
 .btn-mp-green:link {
@@ -626,7 +620,7 @@ border: 1px solid #6A972C;
 .btn-mpgreen {
   @extend .btn-mp;
   border: 1px solid #39944B;
-  background: $green linear-gradient(-180deg, #52C96A 0%, #4BA146 96%);
+  background: $mp-green;
 }
 
 .btn-mpgreen:link {
@@ -659,7 +653,7 @@ border: 1px solid #6A972C;
 
 .mporange {
   border: 1px solid #C88516;
-  background: $orange linear-gradient(-180deg, #FFAE29 0%, #D99119 100%);
+  background: $orange;
 }
 
 .mporange-hover {
@@ -669,7 +663,7 @@ border: 1px solid #6A972C;
 
 .mpgreen {
   border: 1px solid #39944B;
-  background: $green linear-gradient(-180deg, #52C96A 0%, #4BA146 96%);
+  background: $mp-green;
 }
 
 .mpgreen-hover {

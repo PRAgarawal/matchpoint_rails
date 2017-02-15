@@ -41,6 +41,7 @@ $message-radius: 12px;
 
   .no-messages {
     padding-top: 1em;
+    text-align: center;
   }
 
   .message-body {
@@ -62,5 +63,18 @@ $message-radius: 12px;
       color: white;
       margin: 1em 1em 0 15%;
     }
+  }
+
+  .winner-header {
+    text-align: center;
+    font-weight: bold;
+    color: $mp-green;
+    margin-bottom: 0;
+  }
+
+  .set-scores {
+    text-align: center;
+    font-size: .9em;
+    padding-bottom: 1.4em;
   }
 }

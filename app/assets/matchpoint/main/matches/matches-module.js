@@ -18,11 +18,43 @@ matchesModule.config(['$routeProvider',
     when('/new_match', {
       templateUrl: 'main/matches/new_match.html',
       controller: 'NewMatchRequestsController as ctrl'
+    }).
+    when('/match_score/:matchId', {
+      templateUrl: 'main/matches/match_score.html',
+      controller: 'MatchScoreController as ctrl'
     });
   }]);
 
 function isMatchFull(match) {
   return (match.is_singles && match.users.length == 2) || (match.users.length == 4);
+}
+
+function isNoScore(match) {
+  return (match.match_users.length > 0) && (match.match_users[0].is_winner === null);
+}
+
+var TWO_DAYS_AGO = -48*60*60*1000;
+var TWO_HOURS_AGO = -2*60*60*1000;
+function canRecordScore(match, oldest, latest) {
+  if (!match) {
+    return false;
+  }
+  var matchDate = new Date(match.match_date);
+  return (matchDate > oldest) && (matchDate < latest) && match.is_singles && isMatchFull(match) && isNoScore(match);
+}
+
+function getUserNameFromId($scope, userId) {
+  if (!$scope.match) {
+    return '';
+  }
+
+  for (var i=0; i < $scope.match.users.length; i++) {
+    var user = $scope.match.users[i];
+    if (user.id == userId) {
+      return user.first_name + " " + user.last_name;
+    }
+  }
+  return '';
 }
 
 function openMatchJoinedModal($scope, resources, $modal, match) {
@@ -52,6 +84,8 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
 
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
+  var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
+  var latest = new Date((new Date()).getTime() + TWO_HOURS_AGO);
   $scope.matchType = matchType;
 
   ctrl.timezone = function(match) {
@@ -86,6 +120,19 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
 
   ctrl.showUserModal = function(user) {
     openUserInfoModal(user, $modal, $scope, resources);
+  };
+
+  ctrl.canRecordScore = function(match) {
+    return canRecordScore(match, oldest, latest);
+  };
+
+  ctrl.isWinner = function(match, user) {
+    for(var i = 0; i < match.match_users.length; i++) {
+      if (match.match_users[i].user_id == user.id && match.match_users[i].is_winner) {
+        return true;
+      }
+    }
+    return false;
   };
 
   ctrl.getMatches();
@@ -126,10 +173,10 @@ matchesModule.controller('MyMatchesListController',
       $scope.pageTitle = 'My Matches';
 
       ctrl.leaveMatch = function (match) {
-          leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches', function(){
-              ctrl.getMatches();
+        leaveMatchModal(matchpointModals, resources, ctrl, match, 'from_my_matches', function(){
+          ctrl.getMatches();
           });
-      };
+        };
     }]);
 
 matchesModule.controller('PastMatchesListController',
@@ -164,6 +211,45 @@ matchesModule.controller('NewMatchRequestsController',
               resources.location.path('my_matches');
               return false;
             });
+      };
+
+      return ctrl;
+    }]);
+
+matchesModule.controller('MatchScoreController',
+    ['$scope', 'resources', 'matchpointModals', function ($scope, resources, matchpointModals) {
+      mixPanelEvts.navigateRecordScore();
+      var ctrl = this;
+
+      resources.one('matches/' + resources.routeParams.matchId).get().then(function (match) {
+        mixPanelEvts.matchChatView(match);
+        $scope.match = match;
+        $scope.match.score_submitter_id = $scope.user.id;
+        $scope.firstUserName = getUserNameFromId($scope, $scope.match.match_users[0].user_id);
+        $scope.secondUserName = getUserNameFromId($scope, $scope.match.match_users[1].user_id);
+      });
+
+      function isInvalidScoreData() {
+        if ($scope.match.winningUserId === undefined || $scope.match.match_users[0].set_1_total == null || $scope.match.match_users[1].set_1_total == null) {
+          // User did not fill out all necessary match data
+          matchpointModals.error('You must select a winner and enter match totals', 'Invalid data');
+          return true;
+        }
+
+        return false;
+      }
+
+      ctrl.submitScore = function() {
+        if (isInvalidScoreData()) {
+          return;
+        }
+        $scope.match.match_users[0].is_winner = $scope.match.winningUserId == $scope.match.match_users[0].user_id;
+        $scope.match.match_users[1].is_winner = $scope.match.winningUserId == $scope.match.match_users[1].user_id;
+        resources.all('matches/' + $scope.match.id).customPUT($scope.match).then(function (match) {
+          mixPanelEvts.scoreSubmitted(match);
+          matchpointModals.genericConfirmation(null, "Score submitted", "Success", "OK", true);
+          resources.location.path('chats/' + $scope.match.chat.id + "/" + $scope.match.id);
+        });
       };
 
       return ctrl;

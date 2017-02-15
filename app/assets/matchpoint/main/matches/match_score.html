@@ -1,0 +1,171 @@
+<div class="new-match match-score col-md-offset-1 col-md-10">
+  <div class="page-title">
+    <h3>Report Score</h3>
+  </div>
+
+  <div class="winner-row">
+    <div class="score-header set-label winner-header">
+      Match winner
+    </div>
+
+    <div class="winner-checkbox">
+      <input type="radio" value="{{match.match_users[0].user_id}}" id="winner0" data-ng-model="match.winningUserId">
+      <label for="winner0">{{firstUserName}}</label>
+    </div>
+
+    <div class="winner-checkbox">
+      <input type="radio" value="{{match.match_users[1].user_id}}" id="winner1" data-ng-model="match.winningUserId">
+      <label for="winner1">{{secondUserName}}</label>
+    </div>
+  </div>
+
+  <div class="score-header set-label">
+    Game totals
+  </div>
+
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col player-header">
+      {{firstUserName}}
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col player-header">
+      {{secondUserName}}
+    </div>
+  </div>
+
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 1</p>
+      <p class="set-note">required</p>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user0Set1" data-ng-model="match.match_users[0].set_1_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user1Set1" data-ng-model="match.match_users[1].set_1_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 2</p>
+      <p class="set-note">(if applicable)</p>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user0Set2" data-ng-model="match.match_users[0].set_2_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user1Set2" data-ng-model="match.match_users[1].set_2_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row match-set">
+    <div class="col-md-4 col-xs-4 set-col">
+      <p class="set-label">Set 2</p>
+      <p class="set-note">(if applicable)</p>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user0Set3" data-ng-model="match.match_users[0].set_3_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-xs-4 set-col">
+      <select id="user1Set3" data-ng-model="match.match_users[1].set_3_total" class="form-control">
+        <option value="">--</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="center-btn">
+    <button class="btn-sm-mpgreen" data-ng-click="ctrl.submitScore()">Submit</button>
+  </div>
+</div>

@@ -1,7 +1,10 @@
 class Match < ApplicationRecord
   include UnionScopable
 
+  attr_accessor :score_submitter_id
+
   has_many :match_users
+  accepts_nested_attributes_for :match_users
   has_many :users, through: :match_users
   has_one :chat
   belongs_to :court
@@ -11,6 +14,7 @@ class Match < ApplicationRecord
   validate :max_players_not_exceeded
 
   after_create :create_initial_match_user_and_chat
+  after_update :send_score_submitted_email
 
   # All the current user's friends' matches
   scope :from_friends, -> {
@@ -94,7 +98,14 @@ class Match < ApplicationRecord
   end
 
   def formatted_match_date
-    timezone = User.current_user.is_dfw ? 'America/Chicago' : 'America/Los_Angeles'
-    return self.match_date.in_time_zone(timezone).strftime('%a, %b %-d at %-l:%M %p %Z')
+    return self.match_date.in_time_zone(DateHelper.timezone).strftime('%a, %b %-d at %-l:%M %p %Z')
+  end
+
+  def send_score_submitted_email
+    user = User.find_by(id: score_submitter_id)
+    if user.present?
+      other_user = self.users.where('users.id != ?', score_submitter_id).first
+      MatchMailer.score_submitted(other_user, user, self).deliver_later
+    end
   end
 end
