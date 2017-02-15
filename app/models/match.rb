@@ -102,10 +102,10 @@ class Match < ApplicationRecord
   end
 
   def send_score_submitted_email
-    user = User.find_by(id: score_submitter_id).present?
+    user = User.find_by(id: score_submitter_id)
     if user.present?
       other_user = self.users.where('users.id != ?', score_submitter_id).first
-      MatchMailer.score_submitted(other_user, user, self)
+      MatchMailer.score_submitted(other_user, user, self).deliver_later
     end
   end
 end

@@ -225,6 +225,8 @@ matchesModule.controller('MatchScoreController',
         mixPanelEvts.matchChatView(match);
         $scope.match = match;
         $scope.match.score_submitter_id = $scope.user.id;
+        $scope.firstUserName = getUserNameFromId($scope, $scope.match.match_users[0].user_id);
+        $scope.secondUserName = getUserNameFromId($scope, $scope.match.match_users[1].user_id);
       });
 
       function isInvalidScoreData() {
@@ -248,14 +250,6 @@ matchesModule.controller('MatchScoreController',
           matchpointModals.genericConfirmation(null, "Score submitted", "Success", "OK", true);
           resources.location.path('chats/' + $scope.match.chat.id + "/" + $scope.match.id);
         });
-      };
-
-      ctrl.getFirstUserName = function(match) {
-        return getUserNameFromId($scope, match.match_users[0].user_id);
-      };
-
-      ctrl.getSecondUserName = function(match) {
-        return getUserNameFromId($scope, match.match_users[1].user_id);
       };
 
       return ctrl;

@@ -9,13 +9,13 @@
     </div>
 
     <div class="winner-checkbox">
-      <input type="radio" value="{{match.users[0].id}}" id="winner0" data-ng-model="match.winningUserId">
-      <label for="winner0">{{match.users[0].first_name + " " + match.users[0].last_name}}</label>
+      <input type="radio" value="{{match.match_users[0].user_id}}" id="winner0" data-ng-model="match.winningUserId">
+      <label for="winner0">{{firstUserName}}</label>
     </div>
 
     <div class="winner-checkbox">
-      <input type="radio" value="{{match.users[1].id}}" id="winner1" data-ng-model="match.winningUserId">
-      <label for="winner1">{{match.users[1].first_name + " " + match.users[1].last_name}}</label>
+      <input type="radio" value="{{match.match_users[1].user_id}}" id="winner1" data-ng-model="match.winningUserId">
+      <label for="winner1">{{secondUserName}}</label>
     </div>
   </div>
 
@@ -23,16 +23,16 @@
     Game totals
   </div>
 
-  <div class="row match-set" data-ng-if="match">
+  <div class="row match-set">
     <div class="col-md-4 col-xs-4 set-col">
     </div>
 
     <div class="col-md-4 col-xs-4 set-col player-header">
-      {{ctrl.getFirstUserName(match)}}
+      {{firstUserName}}
     </div>
 
     <div class="col-md-4 col-xs-4 set-col player-header">
-      {{ctrl.getSecondUserName(match)}}
+      {{secondUserName}}
     </div>
   </div>
 
