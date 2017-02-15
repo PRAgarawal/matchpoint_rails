@@ -41,7 +41,7 @@ class MatchMailer < ApplicationMailer
 
     headers['X-SMTPAPI'] = '{"asm_group_id": 1915}'
 
-    mail(to: to_user.email, subject: "Update to your #{match.is_singles ? 'singles' : 'doubles'} match on #{match.formatted_match_date}")
+    mail(to: to_user.email, subject: subject_match_update(match))
   end
 
   def score_submitted(to_user, user, match)
@@ -49,8 +49,8 @@ class MatchMailer < ApplicationMailer
     @friend = user
     @to_user_name = to_user.first_name
 
-    #TODO: What group should we use for score updates?
-    # headers['X-SMTPAPI'] = '{"asm_group_id": 1915}'
-    mail(to: to_user.email, subject: "#{user.first_name} submitted the score for your match on #{match.formatted_match_date}")
+    headers['X-SMTPAPI'] = '{"asm_group_id": 1915}'
+
+    mail(to: to_user.email, subject: subject_match_update(match))
   end
 end
