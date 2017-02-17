@@ -10,16 +10,13 @@
 
   .top-nav-block {
     background: $mp-green;
-    border: 3px solid $green300;
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
     margin: 1em 0 1em 0;
-    border-radius: 3px;
+    border-radius: 2px;
 
     &:hover {
       background: $mp-green-hl;
-      border: 3px solid $green900;
     }
   }
 

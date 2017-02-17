@@ -10,9 +10,14 @@ class MatchPolicy < Struct.new(:user, :match)
   end
 
   def permitted_attributes_for_update
-    # Can only record scores for singles matches that do not yet have a score
+    # Can only record scores for completed singles matches that do not yet have a score, and that are no more than two days old
     # TODO: Set a max score recording number on the match model
-    if match.is_singles && match.users.include?(user) && (match.match_users.first.is_winner == nil)
+    if match.is_singles &&
+        (match.match_date < Time.now) &&
+        (match.match_date > 2.days.ago) &&
+        (match.match_users.count == 2) &&
+        match.users.include?(user) &&
+        (match.match_users.first.is_winner == nil)
       return [
           :id, :match_date, :score_submitter_id, match_users_attributes:
           [
