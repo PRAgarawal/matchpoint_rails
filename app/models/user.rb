@@ -137,4 +137,10 @@ class User < ApplicationRecord
   def full_name
     return "#{self.first_name} #{self.last_name}"
   end
+
+  def record
+    wins = MatchUser.where(user_id: self.id, is_winner: true).count
+    losses = MatchUser.where(user_id: self.id, is_winner: false).count
+    return "#{wins}-#{losses}"
+  end
 end
