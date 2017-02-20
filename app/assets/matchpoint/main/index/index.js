@@ -63,6 +63,8 @@ homeModule.controller('HomeNavController',
         resources.location.path('courts')
       }
 
+      $scope.year = new Date().getFullYear();
+
       ctrl.showInviteFriendDialog = function () {
         $modal.open({
           templateUrl: 'main/friends/invite_friend_modal.html',
