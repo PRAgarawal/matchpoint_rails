@@ -1,10 +1,10 @@
-<div class="friends">
+<div class="users">
   <div class="row page-title">
     <h3>Friends</h3>
   </div>
 
-  <div class="no-friends">
-    To add a friend click on a name in a match or invite your friends to join Match Point.
+  <div class="no-users">
+    To add a user click on a name in a match or invite your users to join Match Point.
   </div>
 
   <div class="center-btn">
@@ -13,13 +13,13 @@
     </a>
   </div>
 
-  <div data-ng-repeat="friend in friends" class="friend-container">
-    <div class="friend-info">
-      <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
-      <span>Skill level {{(friend.skill / 2).toFixed(1)}}</span>
+  <div data-ng-repeat="user in friends" class="user-container">
+    <div class="user-info">
+      <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
+      <span>Skill level {{(user.skill / 2).toFixed(1)}}</span>
     </div>
-    <div class="friend-links">
-      <a href="javascript:;" class="friend-remove" data-ng-click="ctrl.removeFriend(friend, false)">
+    <div class="user-links">
+      <a href="javascript:;" class="user-remove" data-ng-click="ctrl.removeFriend(user, false)">
         <span class="glyphicon glyphicon-remove"></span>
         Remove Friend
       </a>
@@ -29,17 +29,17 @@
   <div data-ng-if="friendRequests.length > 0">
     <h4>Requests waiting for your approval</h4>
 
-    <div data-ng-repeat="friend in friendRequests" class="friend-container">
-      <div class="friend-info">
-        <span class="friend-name">{{friend.first_name + ' ' + friend.last_name}}</span>
-        <span>{{(friend.skill / 2).toFixed(1)}}</span>
+    <div data-ng-repeat="user in friendRequests" class="user-container">
+      <div class="user-info">
+        <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
+        <span>{{(user.skill / 2).toFixed(1)}}</span>
       </div>
-      <div class="friend-links">
-        <a href="javascript:;" data-ng-click="ctrl.acceptRequest(friend)">
+      <div class="user-links">
+        <a href="javascript:;" data-ng-click="ctrl.acceptRequest(user)">
           <span class="glyphicon glyphicon-plus"></span>
           Accept
         </a>
-        <a href="javascript:;" data-ng-click="ctrl.removeFriend(friend, true)">
+        <a href="javascript:;" data-ng-click="ctrl.removeFriend(user, true)">
           <span class="glyphicon glyphicon-minus"></span>
           Decline
         </a>

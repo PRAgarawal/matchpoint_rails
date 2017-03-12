@@ -3,34 +3,34 @@
   justify-content: space-between;
 }
 
-.friend-container {
+.user-container {
   padding: 1em;
   background: white;
   margin-top: 1em;
   margin-bottom: 1em;
 
-  .friend-info {
+  .user-info {
     display: flex;
     justify-content: space-between;
   }
 
-  .friend-name {
+  .user-name {
     font-weight: bold;
   }
 
-  .friend-links {
+  .user-links {
     padding-top: .5em;
     display: flex;
     justify-content: space-between;
   }
 }
 
-.friend-email {
+.user-email {
   margin-top: 1em;
 }
 
-.friends {
-  .no-friends {
+.users {
+  .no-users {
     text-align: center;
     margin-bottom: 1em;
   }

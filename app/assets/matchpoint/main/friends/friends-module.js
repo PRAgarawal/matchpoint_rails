@@ -1,11 +1,15 @@
-var friendsModule = angular.module('FriendsModule', ['ngSanitize']);
+var usersModule = angular.module('UsersModule', ['ngSanitize']);
 
-friendsModule.config(['$routeProvider', '$compileProvider',
+usersModule.config(['$routeProvider', '$compileProvider',
   function ($routeProvider, $compileProvider) {
     $routeProvider.
     when('/friends', {
       templateUrl: 'main/friends/friends.html',
       controller: 'FriendsListController as ctrl'
+    }).
+    when('/most_active', {
+      templateUrl: 'main/friends/most_active.html',
+      controller: 'MostActiveListController as ctrl'
     });
 
     $compileProvider
@@ -27,7 +31,7 @@ function openUserInfoModal(user, $modal, $scope, resources) {
   });
 }
 
-friendsModule.controller('FriendsListController',
+usersModule.controller('FriendsListController',
     ['$scope', 'resources', '$modal', 'matchpointModals', function ($scope, resources, $modal, matchpointModals) {
       mixPanelEvts.navigateFriends();
       var ctrl = this;
@@ -85,7 +89,16 @@ friendsModule.controller('FriendsListController',
       };
     }]);
 
-friendsModule.controller('InviteFriendModalController',
+usersModule.controller('MostActiveListController',
+    ['$scope', 'resources', function ($scope, resources) {
+      mixPanelEvts.navigateMostActive();
+
+      resources.all('users/most_active').getList().then(function (activeUsers) {
+        $scope.activeUsers = activeUsers;
+      });
+  }]);
+
+usersModule.controller('InviteFriendModalController',
     ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
       mixPanelEvts.navigateInvite();
 
@@ -110,7 +123,7 @@ friendsModule.controller('InviteFriendModalController',
       ctrl.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);
 
-friendsModule.controller('AddFriendModalController',
+usersModule.controller('AddFriendModalController',
     ['$scope', '$modalInstance', 'resources', 'matchpointModals', function ($scope, $modalInstance, resources, matchpointModals) {
       var ctrl = this;
       $scope.data = {};
@@ -127,7 +140,7 @@ friendsModule.controller('AddFriendModalController',
       ctrl.cancel = function() { $modalInstance.dismiss('cancel'); }
     }]);
 
-friendsModule.controller('UserInfoModalController',
+usersModule.controller('UserInfoModalController',
     ['$scope', '$modalInstance', 'resources', 'userId', function ($scope, $modalInstance, resources, userId) {
       mixPanelEvts.navigateUserProfile();
       var ctrl = this;

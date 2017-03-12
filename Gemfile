@@ -57,6 +57,9 @@ group :development, :test do
   gem 'ruby-prof'
   gem 'listen'
 
+  # https://github.com/deivid-rodriguez/byebug/issues/289#issuecomment-251383465
+  gem 'rb-readline'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end

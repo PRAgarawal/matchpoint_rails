@@ -46,4 +46,8 @@ class UserPolicy < Struct.new(:user, :user_object_to_authorize)
     return true if friendship.nil?
     friendship.user == user || friendship.friend == user
   end
+
+  def most_active?
+    true
+  end
 end

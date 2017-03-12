@@ -6,7 +6,7 @@ matchpoint = angular.module('matchpointApp', [
   'ui.bootstrap',
   'restangular',
   'HomeModule',
-  'FriendsModule',
+  'UsersModule',
   'CourtsModule',
   'MatchesModule',
   'ChatsModule',

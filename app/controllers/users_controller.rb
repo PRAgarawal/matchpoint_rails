@@ -66,6 +66,18 @@ class UsersController < RestfulController
     end
   end
 
+  MAX_ACTIVE = 10
+
+  def most_active
+    authorize User, :most_active?
+    most_active = User.select('users.*, COUNT(users.id) AS num_matches')
+                      .joins(:match_users).group('users.id')
+                      .where(is_dfw: User.current_user.is_dfw)
+                      .order('num_matches DESC')
+                      .limit(MAX_ACTIVE)
+    render_records(most_active)
+  end
+
   protected
 
   def update_friendship

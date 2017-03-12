@@ -14,6 +14,8 @@ Rails.application.routes.draw do
            constraints: { email: /[^\/]+/ }
       put 'accept_friendship/:friend_id', to: 'users#accept_friendship', as: 'accept_friendship'
       delete 'destroy_friendship/:friend_id', to: 'users#destroy_friendship', as: 'destroy_friendship'
+
+      get 'most_active', to: 'users#most_active', as: 'most_active'
     end
   end
 

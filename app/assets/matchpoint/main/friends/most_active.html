@@ -1,0 +1,13 @@
+<div class="users">
+  <div class="row page-title">
+    <h3>Most Active Users in {{user.is_dfw ? "DFW" : "LA"}}</h3>
+  </div>
+
+  <div data-ng-repeat="user in activeUsers" class="user-container">
+    <div class="user-info">
+      <span>{{$index + 1}}</span>
+      <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
+      <span>Skill level {{(user.skill / 2).toFixed(1)}}</span>
+    </div>
+  </div>
+</div>
