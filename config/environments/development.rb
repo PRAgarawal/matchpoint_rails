@@ -76,6 +76,7 @@ Rails.application.configure do
   }
 
   ENV['MIXPANEL_KEY'] = '193a285a569c812e4938b7c38a9357da'
+  ENV['FACEBOOK_APP_ID'] = ''
 
   # Limit size of log file, and limit number of log files to one
   # TODO: Figure this shizz out for rails 5.0

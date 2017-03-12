@@ -39,10 +39,11 @@ mixpanel.init("<%= ENV['MIXPANEL_KEY'] %>");</script>
 <%= yield :head %>
 
 <body data-ng-app='matchpointApp' class="all-background">
+
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '253842408386816',
+        appId      : <%= ENV['FACEBOOK_APP_ID'] %>,
         xfbml      : true,
         version    : 'v2.8'
       });
