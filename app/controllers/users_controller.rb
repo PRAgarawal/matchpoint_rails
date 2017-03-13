@@ -73,6 +73,8 @@ class UsersController < RestfulController
     most_active = User.select('users.*, COUNT(users.id) AS num_matches')
                       .joins(:match_users).group('users.id')
                       .where(is_dfw: User.current_user.is_dfw)
+                      .where('extract(year from match_users.created_at) = ?', Time.now.year)
+                      .where('extract(month from match_users.created_at) = ?', Time.now.month)
                       .order('num_matches DESC')
                       .limit(MAX_ACTIVE)
     render_records(most_active)
