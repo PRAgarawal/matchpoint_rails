@@ -143,4 +143,22 @@ class User < ApplicationRecord
     losses = MatchUser.where(user_id: self.id, is_winner: false).count
     return "#{wins}-#{losses}"
   end
+
+  def self.update_scores
+    ActiveRecord::Base.connection.execute('
+      UPDATE users
+      SET score = (SELECT COUNT(matches.id) FROM (
+          SELECT matches.id
+          FROM users AS u
+          LEFT JOIN match_users mu1 ON mu1.user_id = u.id
+          LEFT JOIN matches ON matches.id = mu1.match_id
+          LEFT JOIN match_users mu2 ON mu2.match_id = matches.id
+          WHERE (date_trunc(\'month\', matches.match_date) = date_trunc(\'month\', now()))
+              AND matches.match_date < now()
+              AND u.id = users.id
+          GROUP BY matches.id
+          HAVING COUNT(matches.id) = (CASE WHEN matches.is_singles THEN 2 ELSE 4 END)
+      ) AS matches);
+    ')
+  end
 end
