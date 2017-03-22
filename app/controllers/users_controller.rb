@@ -90,7 +90,7 @@ class UsersController < RestfulController
   end
 
   def render_records(friends)
-    render json: friends, only: [:id, :first_name, :last_name, :skill]
+    render json: friends, only: [:id, :first_name, :last_name, :skill, :score]
   end
 
   def render_record(user)
