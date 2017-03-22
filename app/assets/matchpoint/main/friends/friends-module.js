@@ -90,12 +90,17 @@ usersModule.controller('FriendsListController',
     }]);
 
 usersModule.controller('MostActiveListController',
-    ['$scope', 'resources', function ($scope, resources) {
+    ['$scope', 'resources', '$modal', function ($scope, resources, $modal) {
+      var ctrl = this;
       mixPanelEvts.navigateMostActive();
 
       resources.all('users/most_active').getList().then(function (activeUsers) {
         $scope.activeUsers = activeUsers;
       });
+
+      ctrl.showUserModal = function(user) {
+        openUserInfoModal(user, $modal, $scope, resources);
+      };
   }]);
 
 usersModule.controller('InviteFriendModalController',
