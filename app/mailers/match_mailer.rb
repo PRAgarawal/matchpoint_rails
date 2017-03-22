@@ -3,7 +3,7 @@ class MatchMailer < ApplicationMailer
 
   def daily_digest(user)
     User.current_user = user
-    @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff).order(match_date: :asc).to_a
+    @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff(user)).order(match_date: :asc).to_a
     @friend_matches = Match.new_from_friends.to_a
     @court_matches = Match.new_on_courts
                          .where.not(matches: { id: @friend_matches.pluck(:id) })

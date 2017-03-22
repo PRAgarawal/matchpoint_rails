@@ -98,7 +98,7 @@ class Match < ApplicationRecord
   end
 
   def formatted_match_date
-    return self.match_date.in_time_zone(DateHelper.timezone).strftime('%a, %b %-d at %-l:%M %p %Z')
+    return self.match_date.in_time_zone(DateHelper.timezone(self.users.first)).strftime('%a, %b %-d at %-l:%M %p %Z')
   end
 
   def send_score_submitted_email
