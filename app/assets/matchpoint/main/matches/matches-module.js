@@ -87,6 +87,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
   var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
   var latest = new Date((new Date()).getTime() + ONE_HOUR_AGO);
   $scope.matchType = matchType;
+  $scope.dataLoading = true;
 
   ctrl.timezone = function(match) {
       return /\((.*)\)/.exec(new Date(match.match_date).toString())[1];
@@ -96,6 +97,7 @@ var BaseMatchesListController = function ($scope, $modal, resources, matchType) 
     $scope.matches = [];
     resources.all('matches?' + matchType + '=true').getList().then(function (matches) {
       $scope.matches = matches;
+      $scope.dataLoading = false;
     });
   };
 
