@@ -132,3 +132,21 @@
     padding: .5em;
   }
 }
+
+.spinner {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -14px;
+  height: 28px;
+  width: 28px;
+  animation: rotate 0.8s infinite linear;
+  border: 8px solid #0F9347;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

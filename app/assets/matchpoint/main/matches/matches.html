@@ -16,6 +16,8 @@
     </a>
   </div>
 
+  <div data-ng-if="dataLoading" class="spinner"></div>
+
   <div data-ng-repeat="match in matches" class="match-container">
     <div data-ng-class="ctrl.getMatchStatus(match) ? ctrl.getMatchStatus(match) : 'blank'">
       {{ctrl.getMatchStatus(match)}}
