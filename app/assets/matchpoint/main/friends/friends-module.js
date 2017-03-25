@@ -36,6 +36,10 @@ usersModule.controller('FriendsListController',
       mixPanelEvts.navigateFriends();
       var ctrl = this;
 
+      ctrl.showUserModal = function(user) {
+        openUserInfoModal(user, $modal, $scope, resources);
+      };
+
       function getFriendsAndRequests() {
         resources.all('users').getList().then(function (friends) {
           $scope.friends = friends;

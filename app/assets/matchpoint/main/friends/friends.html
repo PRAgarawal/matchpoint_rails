@@ -13,7 +13,7 @@
     </a>
   </div>
 
-  <div data-ng-repeat="user in friends" class="user-container">
+  <div data-ng-repeat="user in friends" data-ng-click="ctrl.showUserModal(user)" class="user-container">
     <div class="user-info">
       <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
       <span>Skill level {{(user.skill / 2).toFixed(1)}}</span>
@@ -21,7 +21,7 @@
     <div class="user-links">
       <a href="javascript:;" class="user-remove" data-ng-click="ctrl.removeFriend(user, false)">
         <span class="glyphicon glyphicon-remove"></span>
-        Remove Friend
+        Unfriend
       </a>
     </div>
   </div>
