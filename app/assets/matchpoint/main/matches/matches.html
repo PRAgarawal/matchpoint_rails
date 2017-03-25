@@ -16,6 +16,10 @@
     </a>
   </div>
 
+  <div data-ng-if="!dataLoading" data-ng-click="ctrl.getMatches()">
+    <span class="glyphicon glyphicon-refresh refresh-center"></span>
+  </div>
+
   <div data-ng-if="dataLoading" class="spinner"></div>
 
   <div data-ng-repeat="match in matches" class="match-container">
