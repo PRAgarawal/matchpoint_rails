@@ -48,6 +48,6 @@ class CourtsController < RestfulController
   end
 
   def render_records(courts)
-    render json: courts, include: [:postal_address]
+    render json: courts, include: [:postal_address], methods: [:num_users]
   end
 end

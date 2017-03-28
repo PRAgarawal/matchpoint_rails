@@ -37,4 +37,8 @@ class Court < ApplicationRecord
       CourtUser.create!(user_id: User.current_user.id, court_id: self.id)
     end
   end
+
+  def num_users
+    return self.users.count
+  end
 end
