@@ -31,6 +31,8 @@ settingsModule.controller('ChangePasswordController',
         resources.one('users').customPUT({user: $scope.user}).then(function () {
           mixPanelEvts.changePassword();
           matchpointModals.genericConfirmation(null, "Password changed", "Success", "OK", true);
+        }, function(){
+          matchpointModals.genericConfirmation(null, 'Try again. Either your current password is not correct or your new password and confirm new password do not match', "Error", "OK", true);
         });
       };
     }]);
