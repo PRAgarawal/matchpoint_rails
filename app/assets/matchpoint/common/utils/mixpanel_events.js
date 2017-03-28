@@ -163,7 +163,8 @@ var mixPanelEvts = {
   },
   courtRequestSubmit: function(court) {
     mixpanel.track("Court request submit", {
-      'court_name': court.name
+      'court_name': court.name,
+      'metro': court.is_dfw ? "DFW" : "LA"
     });
   },
   changePassword: function() {
