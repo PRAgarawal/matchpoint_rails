@@ -76,11 +76,12 @@ chatsModule.controller('ChatController',
         if (!$scope.match) {
           return false;
         }
-
-        if ($scope.match.match_users[0].is_winner) {
-          return getUserNameFromId($scope, $scope.match.match_users[0].user_id);
-        } else if ($scope.match.match_users[1].is_winner) {
-          return getUserNameFromId($scope, $scope.match.match_users[1].user_id);
+        if ($scope.match.match_users.length > 1) {
+          if ($scope.match.match_users[0].is_winner) {
+            return getUserNameFromId($scope, $scope.match.match_users[0].user_id);
+          } else if ($scope.match.match_users[1].is_winner) {
+            return getUserNameFromId($scope, $scope.match.match_users[1].user_id);
+          }
         }
 
         return false;
