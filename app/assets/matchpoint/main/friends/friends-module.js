@@ -150,7 +150,7 @@ usersModule.controller('AddFriendModalController',
     }]);
 
 usersModule.controller('UserInfoModalController',
-    ['$scope', '$modalInstance', 'resources', 'userId', function ($scope, $modalInstance, resources, userId) {
+    ['$scope', '$modalInstance', 'resources', 'userId', '$modal', function ($scope, $modalInstance, resources, userId, $modal) {
       mixPanelEvts.navigateUserProfile();
       var ctrl = this;
 
@@ -172,12 +172,16 @@ usersModule.controller('UserInfoModalController',
         });
       };
 
-      //TODO: Implement reject friend button
       ctrl.rejectFriend = function() {
         resources.one('users/accept_friendship/' + userId).customPUT().then(function () {
           mixPanelEvts.friendRequestReject($scope.otherUser);
           $scope.otherUser.friend_status = 'no_friendship';
         });
+      };
+
+      ctrl.showUserModal = function(friend) {
+        $modalInstance.close('cancel');
+        openUserInfoModal(friend, $modal, $scope, resources);
       };
 
       ctrl.cancel = function() { $modalInstance.close('cancel'); }

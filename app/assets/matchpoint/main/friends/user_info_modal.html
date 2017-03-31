@@ -1,35 +1,50 @@
 <div class="modal-header">
   <h3 class="modal-title">Player Profile</h3>
 </div>
-<div class="modal-body player-profile">
-  <div class="player-data">
-    <div class="player-name">
-      {{otherUser.first_name + " " + otherUser.last_name}}
-    </div>
-    <div class="player-skill">
-      Skill level: {{(otherUser.skill/2).toFixed(1)}}
-    </div>
-  </div>
-
-  <div data-ng-if="otherUser.id != user.id">
-    <div data-ng-if="otherUser.friend_status == 'friend'" class="friend-status">
-      You and {{otherUser.first_name}} are friends.
-    </div>
-    <div data-ng-if="otherUser.friend_status == 'request_sent'" class="friend-status">
-      Friend request sent!
-    </div>
-    <button data-ng-if="otherUser.friend_status == 'no_friendship'" type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.addFriend()">
-      <span class="glyphicon glyphicon-plus"></span>
-      Add friend
-    </button>
-    <div data-ng-if="otherUser.friend_status == 'request_received'">
-      <div>
-        {{otherUser.first_name}} wants to be your friend.
+<div class="modal-body">
+  <div class="player-profile">
+    <div class="player-data">
+      <div class="player-name">
+        {{otherUser.first_name + " " + otherUser.last_name}}
       </div>
-      <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.acceptFriend()">
+      <div class="player-skill">
+        Skill level: {{(otherUser.skill/2).toFixed(1)}}
+      </div>
+    </div>
+
+    <div data-ng-if="otherUser.id != user.id">
+      <div data-ng-if="otherUser.friend_status == 'friend'" class="friend-status">
+        You and {{otherUser.first_name}} are friends.
+      </div>
+      <div data-ng-if="otherUser.friend_status == 'request_sent'" class="friend-status">
+        Friend request sent!
+      </div>
+      <button data-ng-if="otherUser.friend_status == 'no_friendship'" type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.addFriend()">
         <span class="glyphicon glyphicon-plus"></span>
         Add friend
       </button>
+      <div data-ng-if="otherUser.friend_status == 'request_received'">
+        <div>
+          {{otherUser.first_name}} wants to be your friend.
+        </div>
+        <button type="button" class="btn-sm-mpgreen" data-ng-click="ctrl.acceptFriend()">
+          <span class="glyphicon glyphicon-plus"></span>
+          Add friend
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-friends-header" data-ng-if="otherUser.friends.length > 0">
+    {{otherUser.first_name}}'s friends
+  </div>
+
+  <div class="player-friends">
+    <div data-ng-repeat="friend in otherUser.friends" data-ng-click="ctrl.showUserModal(friend)" class="user-container">
+      <div class="user-info">
+        <span class="user-name">{{friend.first_name + ' ' + friend.last_name}}</span>
+        <span>Skill level {{(friend.skill / 2).toFixed(1)}}</span>
+      </div>
     </div>
   </div>
 </div>

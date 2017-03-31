@@ -3,6 +3,30 @@
   justify-content: space-between;
 }
 
+.player-friends-header {
+  font-size: 1.2em;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+.player-friends {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .user-container {
+    background: #f2f2f2;
+    width: 47%;
+    margin-left: 1em;
+    margin-bottom: 0;
+
+    @media only screen and (max-width: 768px) {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
+
 .user-container {
   padding: 1em;
   background: white;
