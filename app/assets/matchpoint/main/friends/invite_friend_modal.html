@@ -14,8 +14,8 @@
   </div>
 
   <div data-ng-if="!data.emailSelected" class="invite-options">
-    <div class="invite-statement">
-      The more people using Match Point the more often everyone can play. Help spread the word by inviting others.
+    <div data-ng-if="user.is_dfw" class="invite-statement">
+      Win a $100 Tennis Warehouse gift card by inviting the most people in the month of April. Help spread the word by inviting others.
     </div>
     <a data-ng-if="ctrl.isOnMobile()" href="sms:{{smsInviteLink}}" class="btn-sm-mporange" onclick="mixPanelEvts.textInvite()">
       Text
