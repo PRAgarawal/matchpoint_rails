@@ -38,10 +38,6 @@
     justify-content: space-between;
   }
 
-  .user-name {
-    font-weight: bold;
-  }
-
   .user-links {
     padding-top: .5em;
     display: flex;
@@ -87,4 +83,10 @@
   font-weight: bold;
   display: flex;
   justify-content: space-between;
+}
+
+.leaderboard-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-weight: bold;
 }
