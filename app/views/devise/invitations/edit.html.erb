@@ -6,10 +6,6 @@
   <iframe width="560" height="315" src="https://www.youtube.com/embed/3MxACF7YXRA" frameborder="0" allowfullscreen></iframe>
 </div>
 
-<p class="accept-terms">
-  Don't worry, we hate spam as much as you. We won't sell your email to anyone and you can unsubscribe from any of our communications.
-</p>
-
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
@@ -53,6 +49,10 @@
     <p><%= f.label :password %>
     <%= f.password_field :password, class: 'form-control' %></p>
   <% end %>
+
+  <p class="disclaimer-center">
+    Don't worry, we hate spam as much as you. We won't sell your email to anyone and you can unsubscribe from any of our communications.
+  </p>
 
   <div class="actions">
     <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn-sm-mpgreen' %>

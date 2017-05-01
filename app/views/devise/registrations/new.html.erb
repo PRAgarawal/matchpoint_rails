@@ -21,10 +21,6 @@
   <a href="/"><img class="logo-header" src="<%= image_path 'mp_logo.png' %>"></a>
 <% end %>
 
-<p class="accept-terms">
-  Don't worry, we hate spam as much as you. We won't sell your email to anyone and you can unsubscribe from any of our communications.
-</p>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -45,6 +41,10 @@
     <%= f.label :email %>
     <%= f.email_field :email, class: 'form-control' %>
   </div>
+
+  <p class="disclaimer">
+    Don't worry, we hate spam as much as you. We won't sell your email to anyone and you can unsubscribe from any of our communications.
+  </p>
 
   <div class="field">
     <%= f.label :gender %>
