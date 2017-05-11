@@ -118,7 +118,15 @@ class User < ApplicationRecord
   end
 
   def ui_skill
-    return (self.skill.to_i/2.0).round(1)
+    case self.skill
+      when 12 then return "Pro"
+      when 10 then return "Open"
+      when 8 then return "Elite"
+      when 6 then return "A"
+      when 4 then return "B"
+      when 2 then return "C"
+      when 0 then return "D"
+    end
   end
 
   def has_joined_courts
