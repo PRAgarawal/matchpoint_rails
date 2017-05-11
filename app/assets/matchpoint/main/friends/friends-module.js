@@ -114,7 +114,7 @@ usersModule.controller('InviteFriendModalController',
       var ctrl = this;
       $scope.data = {};
       $scope.inviteUrl = EXTERNAL_URL + '/users/sign_up?invited_by_code=' + $scope.user.invite_code;
-      var smsBody = 'I just joined Match Point to make it easier for us to schedule tennis matches. Use this link to sign up and become my friend: ' + $scope.inviteUrl;
+      var smsBody = 'I just joined Match Point to make it easier for us to schedule racquetball matches. Use this link to sign up and become my friend: ' + $scope.inviteUrl;
       var bodyParamChar = getMobileOperatingSystem() === 'iOS' ? '&' : '?';
       $scope.smsInviteLink = bodyParamChar + 'body=' + encodeURIComponent(smsBody);
       
