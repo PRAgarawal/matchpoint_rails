@@ -1,5 +1,26 @@
 var usersModule = angular.module('UsersModule', ['ngSanitize']);
 
+usersModule.filter("skill", function(){
+  return function (skill) {
+    switch(skill) {
+      case 12:
+        return "Pro";
+      case 10:
+        return "Open";
+      case 8:
+        return "Elite";
+      case 6:
+        return "A";
+      case 4:
+        return "B";
+      case 2:
+        return "C";
+      case 0:
+        return "D";
+    }
+  }
+});
+
 usersModule.config(['$routeProvider', '$compileProvider',
   function ($routeProvider, $compileProvider) {
     $routeProvider.

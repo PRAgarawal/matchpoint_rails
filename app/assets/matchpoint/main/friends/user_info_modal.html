@@ -8,7 +8,7 @@
         {{otherUser.first_name + " " + otherUser.last_name}}
       </div>
       <div class="player-skill">
-        Skill level: {{(otherUser.skill/2).toFixed(1)}}
+        Skill level: {{(otherUser.skill | skill )}}
       </div>
     </div>
 
@@ -43,7 +43,7 @@
     <div data-ng-repeat="friend in otherUser.friends" data-ng-click="ctrl.showUserModal(friend)" class="user-container">
       <div class="user-info">
         <span class="user-name">{{friend.first_name + ' ' + friend.last_name}}</span>
-        <span>Skill level {{(friend.skill / 2).toFixed(1)}}</span>
+        <span>Skill level {{(friend.skill | skill )}}</span>
       </div>
     </div>
   </div>

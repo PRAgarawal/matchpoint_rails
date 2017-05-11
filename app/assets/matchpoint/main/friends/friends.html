@@ -16,7 +16,7 @@
   <div data-ng-repeat="user in friends" data-ng-click="ctrl.showUserModal(user)" class="user-container">
     <div class="user-info">
       <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
-      <span>Skill level {{(user.skill / 2).toFixed(1)}}</span>
+      <span>Skill level {{(user.skill | skill )}}</span>
     </div>
     <div class="user-links">
       <a href="javascript:;" class="user-remove" data-ng-click="ctrl.removeFriend(user, false)">
@@ -32,7 +32,7 @@
     <div data-ng-repeat="user in friendRequests" class="user-container">
       <div class="user-info">
         <span class="user-name">{{user.first_name + ' ' + user.last_name}}</span>
-        <span>{{(user.skill / 2).toFixed(1)}}</span>
+        <span>{{(user.skill | skill )}}</span>
       </div>
       <div class="user-links">
         <a href="javascript:;" data-ng-click="ctrl.acceptRequest(user)">

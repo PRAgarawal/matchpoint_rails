@@ -1,5 +1,26 @@
 var matchesModule = angular.module('MatchesModule', ['ngSanitize']);
 
+matchesModule.filter("skill", function(){
+  return function (skill) {
+    switch(skill) {
+      case 12:
+        return "Pro";
+      case 10:
+        return "Open";
+      case 8:
+        return "Elite";
+      case 6:
+        return "A";
+      case 4:
+        return "B";
+      case 2:
+        return "C";
+      case 0:
+        return "D";
+    }
+  }
+});
+
 matchesModule.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.

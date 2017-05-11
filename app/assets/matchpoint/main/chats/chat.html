@@ -27,7 +27,7 @@
       <div class="match-users">
         <div data-ng-repeat="user in match.users" class="match-user" data-ng-click="ctrl.showUserModal(user)">
           <span class="user-name">{{user.first_name + " " + user.last_name}}</span>
-          <span class="user-skill">({{(user.skill/2).toFixed(1)}})</span>
+          <span class="user-skill">({{(user.skill | skill )}})</span>
         </div>
       </div>
       <div class="match-links">
