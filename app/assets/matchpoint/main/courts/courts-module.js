@@ -69,6 +69,7 @@ courtsModule.controller('NewCourtController',
         $scope.court.is_dfw = $scope.user.is_dfw;
         resources.all('courts').post($scope.court).then(function (court) {
           mixPanelEvts.courtRequestSubmit($scope.court);
+          mixPanelEvts.joinCourt($scope.court);
           matchpointModals.genericConfirmation(null, "Thanks for your submission! The court is now available to be joined by any user and matches can be scheduled there.", "Court request received!", "OK", true);
           $scope.user.has_joined_courts = true;
           resources.location.path('courts');
