@@ -3,19 +3,19 @@ var chatsModule = angular.module('ChatsModule', ['ngSanitize']);
 chatsModule.filter("skill", function(){
   return function (skill) {
     switch(skill) {
-      case 12:
-        return "Pro";
-      case 10:
-        return "Open";
       case 8:
-        return "Elite";
+        return "Pro";
+      case 7:
+        return "Open";
       case 6:
+        return "Elite";
+      case 5:
         return "A";
       case 4:
         return "B";
-      case 2:
+      case 3:
         return "C";
-      case 0:
+      case 2:
         return "D";
     }
   }

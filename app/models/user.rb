@@ -119,13 +119,13 @@ class User < ApplicationRecord
 
   def ui_skill
     case self.skill
-      when 12 then return "Pro"
-      when 10 then return "Open"
-      when 8 then return "Elite"
-      when 6 then return "A"
+      when 8 then return "Pro"
+      when 7 then return "Open"
+      when 6 then return "Elite"
+      when 5 then return "A"
       when 4 then return "B"
-      when 2 then return "C"
-      when 0 then return "D"
+      when 3 then return "C"
+      when 2 then return "D"
     end
   end
 
