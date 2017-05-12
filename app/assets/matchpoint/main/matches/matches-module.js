@@ -106,7 +106,7 @@ function leaveMatchModal(matchpointModals, resources, ctrl, match, mpMessage, ca
 var BaseMatchesListController = function ($scope, $modal, resources, matchType) {
   var ctrl = this;
   var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
-  var latest = new Date((new Date()).getTime() + ONE_HOUR_AGO);
+  var latest = new Date((new Date()).getTime());
   $scope.matchType = matchType;
   $scope.dataLoading = true;
 

@@ -35,7 +35,7 @@ chatsModule.controller('ChatController',
       var ctrl = this;
       var chatId = resources.routeParams.chatId;
       var oldest = new Date((new Date()).getTime() + TWO_DAYS_AGO);
-      var latest = new Date((new Date()).getTime() + ONE_HOUR_AGO);
+      var latest = new Date((new Date()).getTime());
       var matchUser0, matchUser1;
       $scope.message = {chat_id: chatId};
 
