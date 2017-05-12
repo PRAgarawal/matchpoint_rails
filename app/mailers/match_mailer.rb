@@ -3,7 +3,10 @@ class MatchMailer < ApplicationMailer
 
   def daily_digest(user)
     User.current_user = user
-    @my_matches = user.matches.where('matches.match_date >= ?', DateHelper.today_cutoff(user)).order(match_date: :asc).to_a
+    @my_matches = user.matches.where('matches.match_date >= ?', Time.now).order(match_date: :asc).to_a
+
+    #find my matches for user in the next 24 hours and use for trigger to remind user
+    @my_matches24 = user.matches.where(match_date: Time.now..(Time.now + 1.days)).order(match_date: :asc).to_a
     @friend_matches = Match.new_from_friends.to_a
     @court_matches = Match.new_on_courts
                          .where.not(matches: { id: @friend_matches.pluck(:id) })
@@ -11,7 +14,7 @@ class MatchMailer < ApplicationMailer
 
     headers['X-SMTPAPI'] = '{"asm_group_id": 1911}'
 
-    if @friend_matches.count > 0 || @court_matches.count > 0
+    if @friend_matches.count > 0 || @court_matches.count > 0 || @my_matches24.count > 0
       @first_name = user.first_name
       mail(to: user.email, subject: "New Matches - #{Date.today.strftime('%a %b %-d, %Y')}")
     end
