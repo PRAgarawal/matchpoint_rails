@@ -21,7 +21,7 @@ class MatchPolicy < Struct.new(:user, :match)
       return [
           :id, :match_date, :score_submitter_id, match_users_attributes:
           [
-              :id, :is_winner, :set_1_total, :set_2_total, :set_3_total
+              :id, :is_winner, :set_1_total, :set_2_total, :set_3_total, :set_4_total, :set_5_total
           ]
       ]
     else
