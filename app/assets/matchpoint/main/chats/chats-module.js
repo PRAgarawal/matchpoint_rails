@@ -134,6 +134,14 @@ chatsModule.controller('ChatController',
       ctrl.set3Score = function() {
         return getSetScoreText(3);
       };
+
+      ctrl.set4Score = function() {
+        return getSetScoreText(4);
+      };
+
+      ctrl.set5Score = function() {
+        return getSetScoreText(5);
+      };
       
       getMessages();
     }]);
