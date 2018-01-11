@@ -59,8 +59,8 @@ Rails.application.configure do
   # For devise
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
   config.action_mailer.asset_host = 'http://localhost:3000'
-  ENV['SENDGRID_USERNAME'] = 'app45653070@heroku.com'
-  ENV['SENDGRID_PASSWORD'] = 'dpj7r2gr2223'
+  ENV['SENDGRID_USERNAME'] = 'BOGUS'
+  ENV['SENDGRID_PASSWORD'] = 'BOGUS'
 
   # For sendgrid
   config.action_mailer.perform_deliveries = true
@@ -75,7 +75,7 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
 
-  ENV['MIXPANEL_KEY'] = '193a285a569c812e4938b7c38a9357da'
+  ENV['MIXPANEL_KEY'] = 'BOGUS'
   ENV['FACEBOOK_APP_ID'] = 'BOGUS'
 
   # Limit size of log file, and limit number of log files to one
